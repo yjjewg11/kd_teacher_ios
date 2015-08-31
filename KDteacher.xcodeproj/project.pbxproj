@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04A6ADFA1B9447EC0001E58D /* setUpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ADF81B9447EC0001E58D /* setUpTableViewController.m */; };
+		04A6ADFB1B9447EC0001E58D /* setUpTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A6ADF91B9447EC0001E58D /* setUpTableViewController.xib */; };
+		04E8FE8C1B900DFF00119282 /* HomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8FE801B900DFF00119282 /* HomePageViewController.xib */; };
+		04E8FE931B900DFF00119282 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FE8A1B900DFF00119282 /* HomePageViewController.m */; };
 		E73218DD1B7C7CFA00B09F6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73218DC1B7C7CFA00B09F6B /* main.m */; };
 		E73218E01B7C7CFA00B09F6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E73218DF1B7C7CFA00B09F6B /* AppDelegate.m */; };
-		E73218E31B7C7CFA00B09F6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E73218E21B7C7CFA00B09F6B /* ViewController.m */; };
-		E73218E61B7C7CFA00B09F6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E73218E41B7C7CFA00B09F6B /* Main.storyboard */; };
 		E73218E81B7C7CFA00B09F6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73218E71B7C7CFA00B09F6B /* Images.xcassets */; };
 		E73218EB1B7C7CFA00B09F6B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E73218E91B7C7CFA00B09F6B /* LaunchScreen.xib */; };
-		E75299DD1B7C9B9D006AA1CE /* KDteacherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E73218F61B7C7CFB00B09F6B /* KDteacherTests.m */; };
 		E75CA5E11B7CC93C00FF56CF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E75CA5E01B7CC93C00FF56CF /* libz.dylib */; };
 		E75CA5E51B7CCE8000FF56CF /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E75CA5E21B7CCE8000FF56CF /* libMobClickLibrary.a */; };
 /* End PBXBuildFile section */
@@ -29,14 +30,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04A6ADF71B9447EC0001E58D /* setUpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setUpTableViewController.h; sourceTree = "<group>"; };
+		04A6ADF81B9447EC0001E58D /* setUpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setUpTableViewController.m; sourceTree = "<group>"; };
+		04A6ADF91B9447EC0001E58D /* setUpTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = setUpTableViewController.xib; sourceTree = "<group>"; };
+		04E8FE801B900DFF00119282 /* HomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageViewController.xib; sourceTree = "<group>"; };
+		04E8FE8A1B900DFF00119282 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
+		04E8FE8B1B900DFF00119282 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
 		E73218D71B7C7CFA00B09F6B /* 问界互动家园.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "问界互动家园.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73218DB1B7C7CFA00B09F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E73218DC1B7C7CFA00B09F6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E73218DE1B7C7CFA00B09F6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E73218DF1B7C7CFA00B09F6B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E73218E11B7C7CFA00B09F6B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E73218E21B7C7CFA00B09F6B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		E73218E51B7C7CFA00B09F6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E73218E71B7C7CFA00B09F6B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E73218EA1B7C7CFA00B09F6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E73218F01B7C7CFB00B09F6B /* KDteacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KDteacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +72,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04E8FE7F1B900DBD00119282 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				04E8FE801B900DFF00119282 /* HomePageViewController.xib */,
+				04E8FE8A1B900DFF00119282 /* HomePageViewController.m */,
+				04E8FE8B1B900DFF00119282 /* HomePageViewController.h */,
+				04A6ADF71B9447EC0001E58D /* setUpTableViewController.h */,
+				04A6ADF81B9447EC0001E58D /* setUpTableViewController.m */,
+				04A6ADF91B9447EC0001E58D /* setUpTableViewController.xib */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
 		E73218CE1B7C7CFA00B09F6B = {
 			isa = PBXGroup;
 			children = (
@@ -90,14 +107,12 @@
 		E73218D91B7C7CFA00B09F6B /* KDteacher */ = {
 			isa = PBXGroup;
 			children = (
+				04E8FE7F1B900DBD00119282 /* TabBar */,
 				E75CA5E21B7CCE8000FF56CF /* libMobClickLibrary.a */,
 				E75CA5E31B7CCE8000FF56CF /* MobClick.h */,
 				E75CA5E41B7CCE8000FF56CF /* MobClickSocialAnalytics.h */,
 				E73218DE1B7C7CFA00B09F6B /* AppDelegate.h */,
 				E73218DF1B7C7CFA00B09F6B /* AppDelegate.m */,
-				E73218E11B7C7CFA00B09F6B /* ViewController.h */,
-				E73218E21B7C7CFA00B09F6B /* ViewController.m */,
-				E73218E41B7C7CFA00B09F6B /* Main.storyboard */,
 				E73218E71B7C7CFA00B09F6B /* Images.xcassets */,
 				E73218E91B7C7CFA00B09F6B /* LaunchScreen.xib */,
 				E73218DA1B7C7CFA00B09F6B /* Supporting Files */,
@@ -212,7 +227,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E73218E61B7C7CFA00B09F6B /* Main.storyboard in Resources */,
+				04E8FE8C1B900DFF00119282 /* HomePageViewController.xib in Resources */,
+				04A6ADFB1B9447EC0001E58D /* setUpTableViewController.xib in Resources */,
 				E73218EB1B7C7CFA00B09F6B /* LaunchScreen.xib in Resources */,
 				E73218E81B7C7CFA00B09F6B /* Images.xcassets in Resources */,
 			);
@@ -232,8 +248,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E73218E31B7C7CFA00B09F6B /* ViewController.m in Sources */,
 				E73218E01B7C7CFA00B09F6B /* AppDelegate.m in Sources */,
+				04A6ADFA1B9447EC0001E58D /* setUpTableViewController.m in Sources */,
+				04E8FE931B900DFF00119282 /* HomePageViewController.m in Sources */,
 				E73218DD1B7C7CFA00B09F6B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,7 +259,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E75299DD1B7C9B9D006AA1CE /* KDteacherTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,14 +273,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E73218E41B7C7CFA00B09F6B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E73218E51B7C7CFA00B09F6B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E73218E91B7C7CFA00B09F6B /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -360,11 +368,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = KDteacher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -380,11 +388,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = KDteacher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
