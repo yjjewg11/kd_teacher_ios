@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		04A6ADFA1B9447EC0001E58D /* setUpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ADF81B9447EC0001E58D /* setUpTableViewController.m */; };
 		04A6ADFB1B9447EC0001E58D /* setUpTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A6ADF91B9447EC0001E58D /* setUpTableViewController.xib */; };
+		04B250201B9552ED0041DB62 /* aboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B2501E1B9552ED0041DB62 /* aboutUsViewController.m */; };
+		04B250211B9552ED0041DB62 /* aboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B2501F1B9552ED0041DB62 /* aboutUsViewController.xib */; };
+		04B2502F1B958EE80041DB62 /* pushTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B2502D1B958EE80041DB62 /* pushTableViewController.m */; };
+		04B250301B958EE80041DB62 /* pushTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B2502E1B958EE80041DB62 /* pushTableViewController.xib */; };
+		04B250341B959FBC0041DB62 /* feedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B250321B959FBC0041DB62 /* feedBackViewController.m */; };
+		04B250351B959FBC0041DB62 /* feedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B250331B959FBC0041DB62 /* feedBackViewController.xib */; };
 		04E8FE8C1B900DFF00119282 /* HomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8FE801B900DFF00119282 /* HomePageViewController.xib */; };
 		04E8FE931B900DFF00119282 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FE8A1B900DFF00119282 /* HomePageViewController.m */; };
 		E73218DD1B7C7CFA00B09F6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73218DC1B7C7CFA00B09F6B /* main.m */; };
@@ -33,6 +39,15 @@
 		04A6ADF71B9447EC0001E58D /* setUpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setUpTableViewController.h; sourceTree = "<group>"; };
 		04A6ADF81B9447EC0001E58D /* setUpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setUpTableViewController.m; sourceTree = "<group>"; };
 		04A6ADF91B9447EC0001E58D /* setUpTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = setUpTableViewController.xib; sourceTree = "<group>"; };
+		04B2501D1B9552ED0041DB62 /* aboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aboutUsViewController.h; sourceTree = "<group>"; };
+		04B2501E1B9552ED0041DB62 /* aboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aboutUsViewController.m; sourceTree = "<group>"; };
+		04B2501F1B9552ED0041DB62 /* aboutUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = aboutUsViewController.xib; sourceTree = "<group>"; };
+		04B2502C1B958EE80041DB62 /* pushTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pushTableViewController.h; sourceTree = "<group>"; };
+		04B2502D1B958EE80041DB62 /* pushTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pushTableViewController.m; sourceTree = "<group>"; };
+		04B2502E1B958EE80041DB62 /* pushTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pushTableViewController.xib; sourceTree = "<group>"; };
+		04B250311B959FBC0041DB62 /* feedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = feedBackViewController.h; sourceTree = "<group>"; };
+		04B250321B959FBC0041DB62 /* feedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = feedBackViewController.m; sourceTree = "<group>"; };
+		04B250331B959FBC0041DB62 /* feedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = feedBackViewController.xib; sourceTree = "<group>"; };
 		04E8FE801B900DFF00119282 /* HomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageViewController.xib; sourceTree = "<group>"; };
 		04E8FE8A1B900DFF00119282 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		04E8FE8B1B900DFF00119282 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
@@ -72,6 +87,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04B2501C1B9552C80041DB62 /* setUp */ = {
+			isa = PBXGroup;
+			children = (
+				04B2501D1B9552ED0041DB62 /* aboutUsViewController.h */,
+				04B2501E1B9552ED0041DB62 /* aboutUsViewController.m */,
+				04B2501F1B9552ED0041DB62 /* aboutUsViewController.xib */,
+				04B2502C1B958EE80041DB62 /* pushTableViewController.h */,
+				04B2502D1B958EE80041DB62 /* pushTableViewController.m */,
+				04B2502E1B958EE80041DB62 /* pushTableViewController.xib */,
+				04B250311B959FBC0041DB62 /* feedBackViewController.h */,
+				04B250321B959FBC0041DB62 /* feedBackViewController.m */,
+				04B250331B959FBC0041DB62 /* feedBackViewController.xib */,
+			);
+			name = setUp;
+			sourceTree = "<group>";
+		};
 		04E8FE7F1B900DBD00119282 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +138,7 @@
 		E73218D91B7C7CFA00B09F6B /* KDteacher */ = {
 			isa = PBXGroup;
 			children = (
+				04B2501C1B9552C80041DB62 /* setUp */,
 				04E8FE7F1B900DBD00119282 /* TabBar */,
 				E75CA5E21B7CCE8000FF56CF /* libMobClickLibrary.a */,
 				E75CA5E31B7CCE8000FF56CF /* MobClick.h */,
@@ -228,9 +260,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				04E8FE8C1B900DFF00119282 /* HomePageViewController.xib in Resources */,
+				04B250211B9552ED0041DB62 /* aboutUsViewController.xib in Resources */,
 				04A6ADFB1B9447EC0001E58D /* setUpTableViewController.xib in Resources */,
 				E73218EB1B7C7CFA00B09F6B /* LaunchScreen.xib in Resources */,
 				E73218E81B7C7CFA00B09F6B /* Images.xcassets in Resources */,
+				04B250301B958EE80041DB62 /* pushTableViewController.xib in Resources */,
+				04B250351B959FBC0041DB62 /* feedBackViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,8 +285,11 @@
 			files = (
 				E73218E01B7C7CFA00B09F6B /* AppDelegate.m in Sources */,
 				04A6ADFA1B9447EC0001E58D /* setUpTableViewController.m in Sources */,
+				04B250341B959FBC0041DB62 /* feedBackViewController.m in Sources */,
 				04E8FE931B900DFF00119282 /* HomePageViewController.m in Sources */,
+				04B250201B9552ED0041DB62 /* aboutUsViewController.m in Sources */,
 				E73218DD1B7C7CFA00B09F6B /* main.m in Sources */,
+				04B2502F1B958EE80041DB62 /* pushTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -97,8 +97,8 @@
     self.mailListBtn.selected = NO;
     self.messageBtn.selected = NO;
     setUpTableViewController *setup = [[setUpTableViewController alloc]initWithNibName:@"setUpTableViewController" bundle:nil];
-    UINavigationController *setNav = [[UINavigationController alloc]initWithRootViewController:setup];
-    [self presentViewController:setNav animated:YES completion:nil];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:setup];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     //获取当前页面网址

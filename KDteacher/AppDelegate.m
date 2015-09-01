@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "MobClick.h"
 #import "HomePageViewController.h"
-#import "setUpTableViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -22,8 +21,8 @@
     self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     [MobClick startWithAppkey:@"55cc8dece0f55a2379004ba7" reportPolicy:BATCH channelId:@"app store"];
     HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
-            self.window.rootViewController=home;
     
+    self.window.rootViewController=home;
     [self.window makeKeyAndVisible];
     
 

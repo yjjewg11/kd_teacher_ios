@@ -7,7 +7,10 @@
 //
 
 #import "setUpTableViewController.h"
-
+#import "aboutUsViewController.h"
+#import "pushTableViewController.h"
+#import "feedBackViewController.h"
+#import "HomePageViewController.h"
 @interface setUpTableViewController ()
 
 @end
@@ -23,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"设置";
-    self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
+    self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(gotoBack)];
     self.navigationItem.leftBarButtonItem = leftButton;
 }
@@ -53,9 +56,8 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mycell"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
     switch (indexPath.section) {
         case 0:
             switch (indexPath.row) {
@@ -94,9 +96,11 @@
             }
             break;
     }
-    
+//设置单元格被选中的颜色
+    cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.frame];
+    cell.selectedBackgroundView.backgroundColor = [UIColor  clearColor];
+
    
-    
     return cell;
 }
 
@@ -137,21 +141,50 @@
 }
 */
 
-/*
+
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
-    
-    // Pass the selected object to the new view controller.
-    
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    //第一个分区
+    if (indexPath.section == 0) {
+    if (indexPath.row == 0) {
+        aboutUsViewController *ab = [[aboutUsViewController alloc]initWithNibName:@"aboutUsViewController" bundle:nil];
+        
+        [self.navigationController pushViewController:ab animated:YES];
+    }else if (indexPath.row == 1){
+        pushTableViewController *push = [[pushTableViewController alloc]initWithNibName:@"pushTableViewController" bundle:nil];
+        [self.navigationController pushViewController:push animated:YES];
+    }else if (indexPath.row == 2){
+        feedBackViewController *feed = [[feedBackViewController alloc]initWithNibName:@"feedBackViewController" bundle:nil];
+        [self.navigationController pushViewController:feed animated:YES];
+    }else if (indexPath.row == 3){
+        
+    }
+    }//第二个分区
+    else if (indexPath.section == 1){
+        if (indexPath.row == 0) {
+            HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
+            
+            [self presentViewController:home animated:YES completion:^{
+                [home.myView setHidden:NO];
+                home.setupBtn.selected = YES;
+                home.homeBtn.selected = NO;
+                [home.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_update()"];
+            }];
+        }
+        else if (indexPath.row == 1){
+            HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
+            [self presentViewController:home animated:YES completion:^{
+                [home.myView setHidden:NO];
+                home.setupBtn.selected = YES;
+                home.homeBtn.selected = NO;
+                [home.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_updatepassword()"];
+            }];
+        }
+    }
 }
-*/
+
 
 /*
 #pragma mark - Navigation
