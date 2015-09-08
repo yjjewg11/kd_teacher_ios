@@ -36,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		046F8BD01B994716009EF427 /* KDteacher.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KDteacher.pch; sourceTree = "<group>"; };
+		046F8BD11B994735009EF427 /* MacroDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacroDefinition.h; sourceTree = "<group>"; };
 		04A6ADF71B9447EC0001E58D /* setUpTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setUpTableViewController.h; sourceTree = "<group>"; };
 		04A6ADF81B9447EC0001E58D /* setUpTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = setUpTableViewController.m; sourceTree = "<group>"; };
 		04A6ADF91B9447EC0001E58D /* setUpTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = setUpTableViewController.xib; sourceTree = "<group>"; };
@@ -155,8 +157,10 @@
 		E73218DA1B7C7CFA00B09F6B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				046F8BD11B994735009EF427 /* MacroDefinition.h */,
 				E73218DB1B7C7CFA00B09F6B /* Info.plist */,
 				E73218DC1B7C7CFA00B09F6B /* main.m */,
+				046F8BD01B994716009EF427 /* KDteacher.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -409,8 +413,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/KDteacher/KDteacher.pch";
 				INFOPLIST_FILE = KDteacher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -429,8 +434,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/KDteacher/KDteacher.pch";
 				INFOPLIST_FILE = KDteacher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

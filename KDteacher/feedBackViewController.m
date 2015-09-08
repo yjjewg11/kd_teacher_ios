@@ -16,10 +16,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"反馈设置";
-    //设置左边的返回按钮
-    self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(gotoBack)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0 , 100, 44)];
+    titleLabel.backgroundColor = [UIColor clearColor];  //设置Label背景透明
+    titleLabel.font = [UIFont boldSystemFontOfSize:20];  //设置文本字体与大小
+    titleLabel.textColor = [UIColor whiteColor];  //设置文本颜色
+    titleLabel.textAlignment = 1;
+    titleLabel.text = @"意见反馈";  //设置标题
+    self.navigationItem.titleView = titleLabel;
+    
+    self.navigationController.navigationBar.barTintColor = COLOR(8, 122, 203, 1);
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(gotoBack)];
+    
     self.navigationItem.leftBarButtonItem = leftButton;
     //设置右边的提交按钮
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(submit)];

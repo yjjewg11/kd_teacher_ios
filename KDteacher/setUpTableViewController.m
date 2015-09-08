@@ -25,9 +25,19 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"设置";
-    self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(gotoBack)];
+    //自定义标题
+   UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0 , 100, 44)];
+    titleLabel.backgroundColor = [UIColor clearColor];  //设置Label背景透明
+    titleLabel.font = [UIFont boldSystemFontOfSize:20];  //设置文本字体与大小
+    titleLabel.textColor = [UIColor whiteColor];  //设置文本颜色
+    titleLabel.textAlignment = 1;
+    titleLabel.text = @"设置";  //设置标题
+    self.navigationItem.titleView = titleLabel;
+    
+    self.navigationController.navigationBar.barTintColor = COLOR(8, 122, 203, 1);
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(gotoBack)];
+
     self.navigationItem.leftBarButtonItem = leftButton;
 }
 -(void)gotoBack{
@@ -148,21 +158,26 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //第一个分区
     if (indexPath.section == 0) {
+        //单击关于我们所响应的事件
     if (indexPath.row == 0) {
         aboutUsViewController *ab = [[aboutUsViewController alloc]initWithNibName:@"aboutUsViewController" bundle:nil];
         
         [self.navigationController pushViewController:ab animated:YES];
-    }else if (indexPath.row == 1){
+    }//单击推送消息所响应的事件
+    else if (indexPath.row == 1){
         pushTableViewController *push = [[pushTableViewController alloc]initWithNibName:@"pushTableViewController" bundle:nil];
         [self.navigationController pushViewController:push animated:YES];
-    }else if (indexPath.row == 2){
+    }//单击反馈消息所显示的事件
+    else if (indexPath.row == 2){
         feedBackViewController *feed = [[feedBackViewController alloc]initWithNibName:@"feedBackViewController" bundle:nil];
         [self.navigationController pushViewController:feed animated:YES];
-    }else if (indexPath.row == 3){
+    }//单击版本更新所响应的事件
+    else if (indexPath.row == 3){
         
     }
     }//第二个分区
     else if (indexPath.section == 1){
+        //单击修改名字所显示的事件
         if (indexPath.row == 0) {
             HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
             
@@ -172,7 +187,7 @@
                 home.homeBtn.selected = NO;
                 [home.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_update()"];
             }];
-        }
+        }//单击修改密码所响应的事件
         else if (indexPath.row == 1){
             HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
             [self presentViewController:home animated:YES completion:^{
@@ -182,6 +197,22 @@
                 [home.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_updatepassword()"];
             }];
         }
+    }//第三个分区
+    else if(indexPath.section==2){
+        //单击清楚缓存所响应的事件
+        if (indexPath.row==0) {
+            NSLog(@"fsfsfs");
+        }
+    //单击注销所响应的事件
+    else if(indexPath.row==1){
+        HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
+        [self presentViewController:home animated:YES completion:^{
+            [home.myView setHidden:YES];
+            home.setupBtn.selected = YES;
+            home.homeBtn.selected = NO;
+            [home.webView stringByEvaluatingJavaScriptFromString:@"javascript:G_jsCallBack.userinfo_logout()"];
+        }];
+    }
     }
 }
 

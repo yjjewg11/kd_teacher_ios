@@ -8,6 +8,9 @@
 
 #import "HomePageViewController.h"
 #import "setUpTableViewController.h"
+
+
+//#define SCREENHEIGHT   self.view.frame.size.height
 @interface HomePageViewController ()
 
 @end
@@ -16,12 +19,17 @@
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
+        
+    
         }
     return self;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height)];
+    
+    self.view.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT)];
     
     [self.webView setScalesPageToFit:YES];
     self.webView.delegate = self;
@@ -33,6 +41,7 @@
     //添加一个主页的按钮
     self.homeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
+//    CGFloat height=48;
     
     [self.homeBtn setImage:[UIImage imageNamed:@"zhuye2.png"] forState:UIControlStateNormal];
     [self.homeBtn setImage:[UIImage imageNamed:@"zhuye1.png"] forState:UIControlStateSelected];
@@ -57,9 +66,9 @@
     [self.setupBtn setImage:[UIImage imageNamed:@"shezhi1.png"] forState:UIControlStateSelected];
     [self.setupBtn addTarget:self action:@selector(setupClicked:) forControlEvents:UIControlEventTouchUpInside];
     self.setupBtn.frame = CGRectMake(240, 0, 80, 50);
-
+ 
     //添加一个视图好显示按钮
-    self.myView = [[UIView alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height-80, 320, 80)];
+    self.myView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-48, SCREEN_WIDTH, 48)];
     self.myView.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1];
     [self.myView addSubview:self.homeBtn];
     [self.myView addSubview:self.mailListBtn];
@@ -102,11 +111,11 @@
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     //获取当前页面网址
-    NSString *currentURL = [self.webView stringByEvaluatingJavaScriptFromString:@"document.location.href"];
-     NSLog(@"currentURL=%@",currentURL);
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.location.href"];
+    
     //获取当前页面标题
-    NSString *title = [self.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.setIosApp()"];
-    NSLog(@"title=%@",title);
+    [self.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.setIosApp()"];
+
     
 }
 //回调

@@ -22,11 +22,19 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"关于我们";
-    self.navigationController.navigationBar.backgroundColor = [UIColor blueColor];
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(goBack)];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0 , 100, 44)];
+    titleLabel.backgroundColor = [UIColor clearColor];  //设置Label背景透明
+    titleLabel.font = [UIFont boldSystemFontOfSize:20];  //设置文本字体与大小
+    titleLabel.textColor = [UIColor whiteColor];  //设置文本颜色
+    titleLabel.textAlignment = 1;
+    titleLabel.text = @"关于我们";  //设置标题
+    self.navigationItem.titleView = titleLabel;
+    
+    self.navigationController.navigationBar.barTintColor = COLOR(8, 122, 203, 1);
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(goBack)];
+    
     self.navigationItem.leftBarButtonItem = leftButton;
-
     UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(60, self.view.bounds.origin.y+150, 200, 100)];
     iv.image = [UIImage imageNamed:@"logo.png"];
     iv.contentMode = UIViewContentModeScaleAspectFit;
