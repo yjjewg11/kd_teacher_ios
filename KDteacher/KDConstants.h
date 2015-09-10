@@ -19,4 +19,9 @@
 
 #define G_Web_IOS       @"ios"      //正式
 #define Web_IOS_sessionid     @"sessionid"      //正式
+
+//调js的相关方法
+#define Star_Js        @"G_jsCallBack.setIosApp()"//加载完webview代码
+#define Head_Pic           @"selectHeadPic"   
+#define Image_Pic          @"selectImgPic"   
 @end

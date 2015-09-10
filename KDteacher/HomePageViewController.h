@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HomePageViewController : UIViewController<UIWebViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
+#import "ZYQAssetPickerController.h"
+@interface HomePageViewController : UIViewController<UIWebViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,ZYQAssetPickerControllerDelegate>
 @property(nonatomic,strong)UIWebView *webView;
 @property(nonatomic,strong)UIView *myView;
 @property(nonatomic,strong)UIButton *homeBtn;

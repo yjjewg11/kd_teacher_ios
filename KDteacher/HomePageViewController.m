@@ -14,6 +14,7 @@
 #import "KGBaseDomain.h"
 #import "MJExtension.h"
 #import "ResMsgDomain.h"
+
 //#define SCREENHEIGHT   self.view.frame.size.height
 @interface HomePageViewController ()
 
@@ -32,13 +33,18 @@ static NSString *web_sessionid;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT)];
+    self.view.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-48);
+    self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT-48)];
     
     [self.webView setScalesPageToFit:YES];
+    self.webView.userInteractionEnabled = YES;
     self.webView.delegate = self;
-    [self.webView setNeedsDisplayInRect:self.view.bounds];
-    
+    UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc]
+                             initWithFrame : CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)] ;
+    [activityIndicatorView setCenter: self.view.center] ;
+    [activityIndicatorView setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleWhite] ;
+    [self.view addSubview : activityIndicatorView] ;
+    [self.webView setNeedsDisplayInRect:self.view.frame];
     [self.view addSubview: self.webView];
     NSURL *url = [NSURL URLWithString:Webview_URL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadRevalidatingCacheData timeoutInterval:3];
@@ -76,25 +82,25 @@ static NSString *web_sessionid;
     [self.homeBtn setImage:[UIImage imageNamed:@"zhuye1.png"] forState:UIControlStateSelected];
     self.homeBtn.selected = YES;
     [self.homeBtn addTarget:self action:@selector(homeClicked:) forControlEvents:UIControlEventTouchUpInside];
-    self.homeBtn.frame = CGRectMake(0, 0, 80, 50);
+    self.homeBtn.frame = CGRectMake(0, 0, 80, 48);
     //添加一个通讯录按钮
     self.mailListBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.mailListBtn setImage:[UIImage imageNamed:@"tongxunlu2.png"] forState:UIControlStateNormal];
     [self.mailListBtn setImage:[UIImage imageNamed:@"tongxunlu1.png"] forState:UIControlStateSelected];
     [self.mailListBtn addTarget:self action:@selector(mailClicked:) forControlEvents:UIControlEventTouchUpInside];
-    self.mailListBtn.frame = CGRectMake(80, 0, 80, 50);
+    self.mailListBtn.frame = CGRectMake(80, 0, 80, 48);
     //添加一个消息按钮
     self.messageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.messageBtn setImage:[UIImage imageNamed:@"xiaoxi2.png"] forState:UIControlStateNormal];
     [self.messageBtn setImage:[UIImage imageNamed:@"xiaoxi1.png"] forState:UIControlStateSelected];
     [self.messageBtn addTarget:self action:@selector(messageClicked:) forControlEvents:UIControlEventTouchUpInside];
-    self.messageBtn.frame = CGRectMake(160, 0, 80, 50);
+    self.messageBtn.frame = CGRectMake(160, 0, 80, 48);
     //添加一个设置按钮
     self.setupBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.setupBtn setImage:[UIImage imageNamed:@"shezhi2.png"] forState:UIControlStateNormal];
     [self.setupBtn setImage:[UIImage imageNamed:@"shezhi1.png"] forState:UIControlStateSelected];
     [self.setupBtn addTarget:self action:@selector(setupClicked:) forControlEvents:UIControlEventTouchUpInside];
-    self.setupBtn.frame = CGRectMake(240, 0, 80, 50);
+    self.setupBtn.frame = CGRectMake(240, 0, 80, 48);
  
     //添加一个视图好显示按钮
     self.myView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-48, SCREEN_WIDTH, 48)];
@@ -139,16 +145,23 @@ static NSString *web_sessionid;
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:setup];
     [self presentViewController:nav animated:YES completion:nil];
 }
+//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+//网页加载完时调用此方法
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     //获取当前页面网址
-    [self.webView stringByEvaluatingJavaScriptFromString:@"document.location.href"];
+   // [self.webView stringByEvaluatingJavaScriptFromString:@"document.location.href"];
     
     //获取当前页面标题
-    [self.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.setIosApp()"];
+    [self.webView stringByEvaluatingJavaScriptFromString:Star_Js];
 
     
 }
-//回调
+//网页加载失败时调用此方法
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"加载网页失败" message:@"请检查网络是否连接" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+}
+//回调此方法
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSHTTPCookieStorage *myCookie = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [myCookie cookies]) {
@@ -177,18 +190,19 @@ static NSString *web_sessionid;
             [self.myView setHidden:NO];
                 return false;
             
-        }else if ([str1 isEqualToString:@"selectHeadPic"]) {//
+        }else if ([str1 isEqualToString:Head_Pic]) {//
             [self UploadAvatar];
         
             
-        }else if ([str1 isEqualToString:@"selectImgPic"]) {//
+        }else if ([str1 isEqualToString:Image_Pic]) {//
         
-            [self UploadAvatar];
+            [self uploadAllImages];
         }
 
     return true;
 }
 //上传头像的方法
+//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 -(void)UploadAvatar{
    
     // 判断是否支持相机
@@ -299,14 +313,14 @@ static NSString *web_sessionid;
         //得到选择后沙盒中图片的完整路径
       NSString  *filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,  @"/image.png"];
         NSLog(@"filePath=%@",filePath);
-     
+     //上传图片的参数
     
        NSMutableDictionary * parameters = [[NSMutableDictionary alloc] init];
         [parameters setObject:web_sessionid forKey:@"JSESSIONID"];
         [parameters setObject:[NSNumber numberWithInteger:1] forKey:@"type"];
-
+//上传图片的地址
         NSString *url = URL(G_baseServiceURL, G_rest_uploadFile_upload);
-        
+        //上传图片的方法
          AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
        
         [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -316,15 +330,17 @@ static NSString *web_sessionid;
                                     mimeType:@"image/jpeg/file"];
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
             KGBaseDomain * baseDomain = [KGBaseDomain objectWithKeyValues:responseObject];
-            
+           //上传成功所处理的事情
             if([baseDomain.ResMsg.status isEqualToString:String_Success]) {
-                
+                //得到imgurl的地址
                NSString *imgUrls = [responseObject objectForKey:@"imgUrl"];
                 NSLog(@"imgurl = %@",imgUrls);
                 NSArray *imgSubuuid = [imgUrls componentsSeparatedByString:@"?uuid="];
-                //NSString *imgUrl = [imgSubuuid firstObject];
+              
+                //得到它的uuid参数
                 NSString *uuid = [imgSubuuid lastObject];
                 NSLog(@"uuid=%@",uuid);
+                //调用js的方法并传参数
                 NSString *headJs = [NSString stringWithFormat:@"G_jsCallBack.selectHeadPic_callback_imgUrl('%@','%@');", imgUrls, uuid];
                 [self.webView stringByEvaluatingJavaScriptFromString:headJs];
                 NSString *imgJs = [NSString stringWithFormat:@"G_jsCallBack.selectPic_callback_imgUrl('%@','%@');", imgUrls, uuid];
@@ -347,11 +363,93 @@ static NSString *web_sessionid;
     }
     
 }
+//上传多张图片的方法
+//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+-(void)uploadAllImages{
+    ZYQAssetPickerController *picker = [[ZYQAssetPickerController alloc] init];
+    picker.maximumNumberOfSelection = 9;
+    picker.assetsFilter = [ALAssetsFilter allPhotos];
+    picker.showEmptyGroups=NO;
+    picker.delegate=self;
+    picker.selectionFilter = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        if ([[(ALAsset*)evaluatedObject valueForProperty:ALAssetPropertyType] isEqual:ALAssetTypeVideo]) {
+            NSTimeInterval duration = [[(ALAsset*)evaluatedObject valueForProperty:ALAssetPropertyDuration] doubleValue];
+            return duration >= 5;
+        } else {
+            return YES;
+        }
+    }];
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+-(void)assetPickerController:(ZYQAssetPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
+    for (int i=0; i<assets.count; i++) {
+        ALAsset *asset=assets[i];
+        UIImage *tempImg=[UIImage imageWithCGImage:asset.defaultRepresentation.fullScreenImage];
+      tempImg = [UtilMethod imageWithImageSimple:tempImg scaledToSize:CGSizeMake(120.0, 120.0)];
+        NSData *data;
+        data = UIImageJPEGRepresentation(tempImg, 1.0);
+        //这里将图片放在沙盒的documents文件夹中
+        NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        
+        
+        //文件管理器
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
+        [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
+        [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:@"/image.png"] contents:data attributes:nil];
+        
+        //得到选择后沙盒中图片的完整路径
+        NSString  *filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,  @"/image.png"];
+        NSLog(@"filePath=%@",filePath);
+        //上传图片的参数
+        
+        NSMutableDictionary * parameters = [[NSMutableDictionary alloc] init];
+        [parameters setObject:web_sessionid forKey:@"JSESSIONID"];
+        [parameters setObject:[NSNumber numberWithInteger:1] forKey:@"type"];
+        //上传图片的地址
+        NSString *url = URL(G_baseServiceURL, G_rest_uploadFile_upload);
+        //上传图片的方法
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        
+        [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [formData appendPartWithFileData:data
+                                        name:@"file"
+                                    fileName:filePath
+                                    mimeType:@"image/jpeg/file"];
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            KGBaseDomain * baseDomain = [KGBaseDomain objectWithKeyValues:responseObject];
+            //上传成功所处理的事情
+            if([baseDomain.ResMsg.status isEqualToString:String_Success]) {
+                //得到imgurl的地址
+                NSString *imgUrls = [responseObject objectForKey:@"imgUrl"];
+                NSLog(@"imgurl = %@",imgUrls);
+                NSArray *imgSubuuid = [imgUrls componentsSeparatedByString:@"?uuid="];
+                
+                //得到它的uuid参数
+                NSString *uuid = [imgSubuuid lastObject];
+                NSLog(@"uuid=%@",uuid);
+                //调用js的方法并传参数
+               
+                NSString *imgJs = [NSString stringWithFormat:@"G_jsCallBack.selectPic_callback_imgUrl('%@','%@');", imgUrls, uuid];
+                [self.webView stringByEvaluatingJavaScriptFromString:imgJs];
+                
+            } else {
+                NSLog(@"failure:%@", baseDomain.ResMsg.message);
+            }
+            
+            
+            NSLog(@"Success: %@", responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+        
+        //关闭相册界面
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
-    NSLog(@"您取消了选择图片");
-    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
+}
 @end
