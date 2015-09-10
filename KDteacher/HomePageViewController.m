@@ -8,14 +8,19 @@
 
 #import "HomePageViewController.h"
 #import "setUpTableViewController.h"
-
-
+#import "AFNetworking.h"
+#import "KDConstants.h"
+#import "UtilMethod.h"
+#import "KGBaseDomain.h"
+#import "MJExtension.h"
+#import "ResMsgDomain.h"
 //#define SCREENHEIGHT   self.view.frame.size.height
 @interface HomePageViewController ()
 
 @end
 
 @implementation HomePageViewController
+static NSString *web_sessionid;
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -27,17 +32,41 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT)];
     
     [self.webView setScalesPageToFit:YES];
     self.webView.delegate = self;
     [self.webView setNeedsDisplayInRect:self.view.bounds];
-    NSString *url=@"http://jz.wenjienet.com/px-rest/kd/index.html";
-    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
     [self.view addSubview: self.webView];
+    NSURL *url = [NSURL URLWithString:Webview_URL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadRevalidatingCacheData timeoutInterval:3];
+     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                               
+                               //转换NSURLResponse成为HTTPResponse
+                               NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
+                               //获取headerfields
+                               NSDictionary *fields = [HTTPResponse allHeaderFields];//原生NSURLConnection写法
+                               // NSDictionary *fields = [operation.response allHeaderFields]; //afnetworking写法
+                               NSLog(@"fields = %@",[fields description]);
+                               
+                               //获取cookie方法1
+                               // NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:fields forURL:url];
+                               //获取cookie方法2
+                               //NSString *cookieString = [[HTTPResponse allHeaderFields] valueForKey:@"Set-Cookie"];
+                               //获取cookie方法3
+                               NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+                               for (NSHTTPCookie *cookie in [cookieJar cookies]) {
+                                   NSLog(@"cookie%@", cookie);
+                               }
+                           }];
     [self.webView loadRequest:request];
+   
+
     //添加一个主页的按钮
     self.homeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
@@ -76,7 +105,8 @@
     [self.myView addSubview:self.setupBtn];
     [self.view addSubview:self.myView];
     [self.myView setHidden:YES];
-}
+    //得到cookie
+   }
 -(void)homeClicked:(UIButton *)homebtn{
     homebtn.selected = YES;
     self.messageBtn.selected = NO;
@@ -120,30 +150,42 @@
 }
 //回调
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    
-    //得到当前访问页面的地址
+    NSHTTPCookieStorage *myCookie = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [myCookie cookies]) {
+        NSLog(@"cookie=%@", cookie);
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie]; // 保存
+    }
+
+       //得到当前访问页面的地址
     NSString *urlString = [[request URL] absoluteString];
     urlString = [urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSLog(@"urlString=%@",urlString);
     //先将这个字符串地址按://分割成两部分
-    NSArray *urlArray = [urlString componentsSeparatedByString:@"://"];
+    NSArray *urlArray = [urlString componentsSeparatedByString:@"/ios/"];
     NSLog(@"urlArray=%@",urlArray);
     //获取最后一部分字符串
     NSString *subStr = [urlArray lastObject];
+    
     NSLog(@"subStr=%@",subStr);
     //把这个字符串用/分割
     NSArray *subArray = [subStr componentsSeparatedByString:@"/"];
-    //遍历数组，如果字符串等于sessionid就执行方法
-    for (NSString *str in subArray) {
-        if ([str isEqualToString:@"sessionid"]) {
+    NSString *str1=subArray[0];
+  
+        if ([str1 isEqualToString:Web_IOS_sessionid]) {//
+            web_sessionid=subArray[1];
+            NSLog(@"file:%@",web_sessionid);
             [self.myView setHidden:NO];
-            return false;
-        }else if([str isEqualToString:@"selectHeadPic"]){
+                return false;
+            
+        }else if ([str1 isEqualToString:@"selectHeadPic"]) {//
             [self UploadAvatar];
-            [self.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.selectPic_callback(base64"];
-        }
         
-    }
+            
+        }else if ([str1 isEqualToString:@"selectImgPic"]) {//
+        
+            [self UploadAvatar];
+        }
+
     return true;
 }
 //上传头像的方法
@@ -230,6 +272,7 @@
     {
         //先把图片转成NSData
         UIImage* image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+     image = [UtilMethod imageWithImageSimple:image scaledToSize:CGSizeMake(120.0, 120.0)];
         NSData *data;
         if (UIImagePNGRepresentation(image) == nil)
         {
@@ -256,6 +299,49 @@
         //得到选择后沙盒中图片的完整路径
       NSString  *filePath = [[NSString alloc]initWithFormat:@"%@%@",DocumentsPath,  @"/image.png"];
         NSLog(@"filePath=%@",filePath);
+     
+    
+       NSMutableDictionary * parameters = [[NSMutableDictionary alloc] init];
+        [parameters setObject:web_sessionid forKey:@"JSESSIONID"];
+        [parameters setObject:[NSNumber numberWithInteger:1] forKey:@"type"];
+
+        NSString *url = URL(G_baseServiceURL, G_rest_uploadFile_upload);
+        
+         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+       
+        [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [formData appendPartWithFileData:data
+                                        name:@"file"
+                                    fileName:filePath
+                                    mimeType:@"image/jpeg/file"];
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            KGBaseDomain * baseDomain = [KGBaseDomain objectWithKeyValues:responseObject];
+            
+            if([baseDomain.ResMsg.status isEqualToString:String_Success]) {
+                
+               NSString *imgUrls = [responseObject objectForKey:@"imgUrl"];
+                NSLog(@"imgurl = %@",imgUrls);
+                NSArray *imgSubuuid = [imgUrls componentsSeparatedByString:@"?uuid="];
+                //NSString *imgUrl = [imgSubuuid firstObject];
+                NSString *uuid = [imgSubuuid lastObject];
+                NSLog(@"uuid=%@",uuid);
+                NSString *headJs = [NSString stringWithFormat:@"G_jsCallBack.selectHeadPic_callback_imgUrl('%@','%@');", imgUrls, uuid];
+                [self.webView stringByEvaluatingJavaScriptFromString:headJs];
+                NSString *imgJs = [NSString stringWithFormat:@"G_jsCallBack.selectPic_callback_imgUrl('%@','%@');", imgUrls, uuid];
+                [self.webView stringByEvaluatingJavaScriptFromString:imgJs];
+                
+            } else {
+                NSLog(@"failure:%@", baseDomain.ResMsg.message);
+            }
+
+            
+            NSLog(@"Success: %@", responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+        
+        
+        
         //关闭相册界面
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
