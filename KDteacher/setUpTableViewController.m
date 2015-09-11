@@ -53,7 +53,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return 4;
+            return 3;
           case 1:
             return 2;
             case 2:
@@ -80,15 +80,12 @@
                     case 2:
                     cell.textLabel.text = @"意见反馈";
                     break;
-                    case 3:
-                    cell.textLabel.text = @"版本更新";
-                    break;
-            }
+                }
             break;
            case 1:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = @"修改名字";
+                    cell.textLabel.text = @"修改资料";
                     break;
                     case 1:
                     cell.textLabel.text = @"修改密码";
@@ -171,9 +168,6 @@
     else if (indexPath.row == 2){
         feedBackViewController *feed = [[feedBackViewController alloc]initWithNibName:@"feedBackViewController" bundle:nil];
         [self.navigationController pushViewController:feed animated:YES];
-    }//单击版本更新所响应的事件
-    else if (indexPath.row == 3){
-        
     }
     }//第二个分区
     else if (indexPath.section == 1){
@@ -201,7 +195,16 @@
     else if(indexPath.section==2){
         //单击清楚缓存所响应的事件
         if (indexPath.row==0) {
-            NSLog(@"fsfsfs");
+            //清除缓存
+           [[NSURLCache sharedURLCache] removeAllCachedResponses];
+            HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
+            [self presentViewController:home animated:YES completion:^{
+                [home.myView setHidden:NO];
+                home.setupBtn.selected = NO;
+                home.homeBtn.selected = YES;
+                [home.webView stringByEvaluatingJavaScriptFromString:@"javascript:menu_dohome()"];
+            }];
+
         }
     //单击注销所响应的事件
     else if(indexPath.row==1){
@@ -210,6 +213,8 @@
             [home.myView setHidden:YES];
             home.setupBtn.selected = YES;
             home.homeBtn.selected = NO;
+            //清除缓存
+            [[NSURLCache sharedURLCache] removeAllCachedResponses];
             [home.webView stringByEvaluatingJavaScriptFromString:@"javascript:G_jsCallBack.userinfo_logout()"];
         }];
     }

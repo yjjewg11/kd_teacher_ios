@@ -444,10 +444,6 @@ static NSString *web_sessionid;
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
         }];
-        
-        //关闭相册界面
-        [picker dismissViewControllerAnimated:YES completion:nil];
-        
 
 }
 

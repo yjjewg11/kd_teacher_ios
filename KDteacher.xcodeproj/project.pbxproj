@@ -18,8 +18,8 @@
 		0454497F1BA041540067C0F6 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 045449751BA041540067C0F6 /* NSObject+MJKeyValue.m */; };
 		045449801BA041540067C0F6 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 045449771BA041540067C0F6 /* NSObject+MJProperty.m */; };
 		045449811BA041540067C0F6 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 045449791BA041540067C0F6 /* NSString+MJExtension.m */; };
-		046293311BA15AF900741C3B /* ZYQAssetPicker.Bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0462932E1BA15AF900741C3B /* ZYQAssetPicker.Bundle */; };
-		046293321BA15AF900741C3B /* ZYQAssetPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046293301BA15AF900741C3B /* ZYQAssetPickerController.m */; };
+		046293361BA1884500741C3B /* ZYQAssetPicker.Bundle in Resources */ = {isa = PBXBuildFile; fileRef = 046293331BA1884500741C3B /* ZYQAssetPicker.Bundle */; };
+		046293371BA1884500741C3B /* ZYQAssetPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046293351BA1884500741C3B /* ZYQAssetPickerController.m */; };
 		0468E01F1B9EEB28001BA58F /* KDConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0468E01E1B9EEB28001BA58F /* KDConstants.m */; };
 		04A60ABD1B9EBEB400AC61D5 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A60AAB1B9EBEB400AC61D5 /* AFHTTPRequestOperation.m */; };
 		04A60ABE1B9EBEB400AC61D5 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A60AAD1B9EBEB400AC61D5 /* AFHTTPRequestOperationManager.m */; };
@@ -82,9 +82,9 @@
 		045449771BA041540067C0F6 /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
 		045449781BA041540067C0F6 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
 		045449791BA041540067C0F6 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
-		0462932E1BA15AF900741C3B /* ZYQAssetPicker.Bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ZYQAssetPicker.Bundle; path = "../../ZYQAssetPickerController-master/ZYQAssetPickerController/ZYQAssetPicker.Bundle"; sourceTree = "<group>"; };
-		0462932F1BA15AF900741C3B /* ZYQAssetPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZYQAssetPickerController.h; path = "../../ZYQAssetPickerController-master/ZYQAssetPickerController/ZYQAssetPickerController.h"; sourceTree = "<group>"; };
-		046293301BA15AF900741C3B /* ZYQAssetPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZYQAssetPickerController.m; path = "../../ZYQAssetPickerController-master/ZYQAssetPickerController/ZYQAssetPickerController.m"; sourceTree = "<group>"; };
+		046293331BA1884500741C3B /* ZYQAssetPicker.Bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZYQAssetPicker.Bundle; sourceTree = "<group>"; };
+		046293341BA1884500741C3B /* ZYQAssetPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYQAssetPickerController.h; sourceTree = "<group>"; };
+		046293351BA1884500741C3B /* ZYQAssetPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYQAssetPickerController.m; sourceTree = "<group>"; };
 		0468E01D1B9EEB28001BA58F /* KDConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDConstants.h; sourceTree = "<group>"; };
 		0468E01E1B9EEB28001BA58F /* KDConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDConstants.m; sourceTree = "<group>"; };
 		046F8BD01B994716009EF427 /* KDteacher.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KDteacher.pch; sourceTree = "<group>"; };
@@ -199,11 +199,19 @@
 		0462932D1BA15AC600741C3B /* ZYQAssetPickerController */ = {
 			isa = PBXGroup;
 			children = (
-				0462932E1BA15AF900741C3B /* ZYQAssetPicker.Bundle */,
-				0462932F1BA15AF900741C3B /* ZYQAssetPickerController.h */,
-				046293301BA15AF900741C3B /* ZYQAssetPickerController.m */,
+				046293331BA1884500741C3B /* ZYQAssetPicker.Bundle */,
+				046293341BA1884500741C3B /* ZYQAssetPickerController.h */,
+				046293351BA1884500741C3B /* ZYQAssetPickerController.m */,
 			);
 			name = ZYQAssetPickerController;
+			sourceTree = "<group>";
+		};
+		046293381BA188E700741C3B /* KDProject */ = {
+			isa = PBXGroup;
+			children = (
+				E73218D91B7C7CFA00B09F6B /* KDteacher */,
+			);
+			name = KDProject;
 			sourceTree = "<group>";
 		};
 		04A60AA91B9EBE8F00AC61D5 /* AFNETWording */ = {
@@ -232,7 +240,7 @@
 			name = AFNETWording;
 			sourceTree = "<group>";
 		};
-		04B2501C1B9552C80041DB62 /* setUp */ = {
+		04B2501C1B9552C80041DB62 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
 				0462932D1BA15AC600741C3B /* ZYQAssetPickerController */,
@@ -248,7 +256,7 @@
 				04B250321B959FBC0041DB62 /* feedBackViewController.m */,
 				04B250331B959FBC0041DB62 /* feedBackViewController.xib */,
 			);
-			name = setUp;
+			name = FrameWorks;
 			sourceTree = "<group>";
 		};
 		04E8FE7F1B900DBD00119282 /* TabBar */ = {
@@ -271,7 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				E75CA5E01B7CC93C00FF56CF /* libz.dylib */,
-				E73218D91B7C7CFA00B09F6B /* KDteacher */,
+				046293381BA188E700741C3B /* KDProject */,
 				E73218F31B7C7CFB00B09F6B /* KDteacherTests */,
 				E73218D81B7C7CFA00B09F6B /* Products */,
 			);
@@ -289,7 +297,7 @@
 		E73218D91B7C7CFA00B09F6B /* KDteacher */ = {
 			isa = PBXGroup;
 			children = (
-				04B2501C1B9552C80041DB62 /* setUp */,
+				04B2501C1B9552C80041DB62 /* FrameWorks */,
 				04E8FE7F1B900DBD00119282 /* TabBar */,
 				E75CA5E21B7CCE8000FF56CF /* libMobClickLibrary.a */,
 				E75CA5E31B7CCE8000FF56CF /* MobClick.h */,
@@ -419,7 +427,7 @@
 				E73218E81B7C7CFA00B09F6B /* Images.xcassets in Resources */,
 				04B250301B958EE80041DB62 /* pushTableViewController.xib in Resources */,
 				04B250351B959FBC0041DB62 /* feedBackViewController.xib in Resources */,
-				046293311BA15AF900741C3B /* ZYQAssetPicker.Bundle in Resources */,
+				046293361BA1884500741C3B /* ZYQAssetPicker.Bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,7 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				046293321BA15AF900741C3B /* ZYQAssetPickerController.m in Sources */,
+				046293371BA1884500741C3B /* ZYQAssetPickerController.m in Sources */,
 				0468E01F1B9EEB28001BA58F /* KDConstants.m in Sources */,
 				0454497B1BA041540067C0F6 /* MJFoundation.m in Sources */,
 				0454497F1BA041540067C0F6 /* NSObject+MJKeyValue.m in Sources */,
