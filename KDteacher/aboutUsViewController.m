@@ -39,7 +39,7 @@
     iv.image = [UIImage imageNamed:@"logo.png"];
     iv.contentMode = UIViewContentModeScaleAspectFit;
     UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(80, self.view.bounds.origin.y+150+200, 160, 100)];
-    imageV.image = [UIImage imageNamed:@"erweimaweizi.png"];
+    imageV.image = [UIImage imageNamed:@"erweima.png"];
     imageV.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:imageV];
     [self.view addSubview:iv];
