@@ -127,7 +127,7 @@ static NSString *web_sessionid;
     self.homeBtn.selected = NO;
     self.messageBtn.selected = NO;
     self.setupBtn.selected = NO;
-    [self.webView stringByEvaluatingJavaScriptFromString:@"javascript:G_jsCallBack.QueueTeacher()"];
+    [self.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.QueueTeacher()"];
 }
 -(void)messageClicked:(UIButton *)messageBtn{
     messageBtn.selected = YES;
@@ -153,7 +153,6 @@ static NSString *web_sessionid;
     
     //获取当前页面标题
     [self.webView stringByEvaluatingJavaScriptFromString:Star_Js];
-
     
 }
 //网页加载失败时调用此方法
@@ -285,19 +284,10 @@ static NSString *web_sessionid;
     if ([type isEqualToString:@"public.image"])
     {
         //先把图片转成NSData
-        UIImage* image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-     image = [UtilMethod imageWithImageSimple:image scaledToSize:CGSizeMake(120.0, 120.0)];
+        UIImage* image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+     image = [UtilMethod imageWithImageSimple:image scaledToSize:CGSizeMake(198.0, 198.0)];
         NSData *data;
-        if (UIImagePNGRepresentation(image) == nil)
-        {
-            data = UIImageJPEGRepresentation(image, 1.0);
-        }
-        else
-        {
-            data = UIImagePNGRepresentation(image);
-        }
-        
-        
+            data = UIImageJPEGRepresentation(image, 0.5);
         //图片保存的路径
         //这里将图片放在沙盒的documents文件夹中
         NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -343,8 +333,8 @@ static NSString *web_sessionid;
                 //调用js的方法并传参数
                 NSString *headJs = [NSString stringWithFormat:@"G_jsCallBack.selectHeadPic_callback_imgUrl('%@','%@');", imgUrls, uuid];
                 [self.webView stringByEvaluatingJavaScriptFromString:headJs];
-                NSString *imgJs = [NSString stringWithFormat:@"G_jsCallBack.selectPic_callback_imgUrl('%@','%@');", imgUrls, uuid];
-                [self.webView stringByEvaluatingJavaScriptFromString:imgJs];
+                //NSString *imgJs = [NSString stringWithFormat:@"G_jsCallBack.selectPic_callback_imgUrl('%@','%@');", imgUrls, uuid];
+               // [self.webView stringByEvaluatingJavaScriptFromString:imgJs];
                 
             } else {
                 NSLog(@"failure:%@", baseDomain.ResMsg.message);
@@ -386,9 +376,9 @@ static NSString *web_sessionid;
     for (int i=0; i<assets.count; i++) {
         ALAsset *asset=assets[i];
         UIImage *tempImg=[UIImage imageWithCGImage:asset.defaultRepresentation.fullScreenImage];
-      tempImg = [UtilMethod imageWithImageSimple:tempImg scaledToSize:CGSizeMake(120.0, 120.0)];
+      //tempImg = [UtilMethod imageWithImageSimple:tempImg scaledToSize:CGSizeMake(120.0, 120.0)];
         NSData *data;
-        data = UIImageJPEGRepresentation(tempImg, 1.0);
+        data = UIImageJPEGRepresentation(tempImg, 0.1);
         //这里将图片放在沙盒的documents文件夹中
         NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
         

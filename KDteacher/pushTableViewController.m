@@ -7,9 +7,10 @@
 //
 
 #import "pushTableViewController.h"
-
+#import "pushTableViewCell.h"
+#define NewMessageKey @"newMessage"
 @interface pushTableViewController ()
-@property (strong, nonatomic) IBOutlet UITableViewCell *pushMessage;
+
 
 @end
 
@@ -30,6 +31,11 @@
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(gotoBack)];
     
     self.navigationItem.leftBarButtonItem = leftButton;
+    self.tableView.rowHeight = 40;
+    [self.tableView registerNib:[UINib nibWithNibName:@"pushTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"pushTableViewCell"];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+
 }
 -(void)gotoBack{
     [self.navigationController popViewControllerAnimated:YES];
@@ -60,11 +66,11 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //设置单元格被选中的颜色
-    self.pushMessage.selectedBackgroundView = [[UIView alloc] initWithFrame:self.pushMessage.frame];
-    self.pushMessage.selectedBackgroundView.backgroundColor = [UIColor  clearColor];
-
-        return self.pushMessage;
+    pushTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pushTableViewCell"];
+    cell.flagTitleLabel.text = @"推送消息";
+    cell.mySwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:NewMessageKey];
+    return cell;
+    
 }
 
 

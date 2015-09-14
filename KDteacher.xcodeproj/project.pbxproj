@@ -18,6 +18,9 @@
 		0454497F1BA041540067C0F6 /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 045449751BA041540067C0F6 /* NSObject+MJKeyValue.m */; };
 		045449801BA041540067C0F6 /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 045449771BA041540067C0F6 /* NSObject+MJProperty.m */; };
 		045449811BA041540067C0F6 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 045449791BA041540067C0F6 /* NSString+MJExtension.m */; };
+		045FF5011BA6A0DF00938124 /* pushTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FF4FF1BA6A0DF00938124 /* pushTableViewCell.m */; };
+		045FF5021BA6A0DF00938124 /* pushTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045FF5001BA6A0DF00938124 /* pushTableViewCell.xib */; };
+		045FF5061BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 045FF5041BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a */; };
 		046293361BA1884500741C3B /* ZYQAssetPicker.Bundle in Resources */ = {isa = PBXBuildFile; fileRef = 046293331BA1884500741C3B /* ZYQAssetPicker.Bundle */; };
 		046293371BA1884500741C3B /* ZYQAssetPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046293351BA1884500741C3B /* ZYQAssetPickerController.m */; };
 		0468E01F1B9EEB28001BA58F /* KDConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0468E01E1B9EEB28001BA58F /* KDConstants.m */; };
@@ -82,6 +85,11 @@
 		045449771BA041540067C0F6 /* NSObject+MJProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJProperty.m"; sourceTree = "<group>"; };
 		045449781BA041540067C0F6 /* NSString+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MJExtension.h"; sourceTree = "<group>"; };
 		045449791BA041540067C0F6 /* NSString+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MJExtension.m"; sourceTree = "<group>"; };
+		045FF4FE1BA6A0DF00938124 /* pushTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pushTableViewCell.h; sourceTree = "<group>"; };
+		045FF4FF1BA6A0DF00938124 /* pushTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pushTableViewCell.m; sourceTree = "<group>"; };
+		045FF5001BA6A0DF00938124 /* pushTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pushTableViewCell.xib; sourceTree = "<group>"; };
+		045FF5041BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
+		045FF5051BA6A63C00938124 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		046293331BA1884500741C3B /* ZYQAssetPicker.Bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZYQAssetPicker.Bundle; sourceTree = "<group>"; };
 		046293341BA1884500741C3B /* ZYQAssetPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYQAssetPickerController.h; sourceTree = "<group>"; };
 		046293351BA1884500741C3B /* ZYQAssetPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYQAssetPickerController.m; sourceTree = "<group>"; };
@@ -144,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				045FF5061BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
 				E75CA5E11B7CC93C00FF56CF /* libz.dylib in Frameworks */,
 				E75CA5E51B7CCE8000FF56CF /* libMobClickLibrary.a in Frameworks */,
 			);
@@ -196,6 +205,15 @@
 			name = MJExtension;
 			sourceTree = "<group>";
 		};
+		045FF5031BA6A61B00938124 /* Umessage_SDK */ = {
+			isa = PBXGroup;
+			children = (
+				045FF5041BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a */,
+				045FF5051BA6A63C00938124 /* UMessage.h */,
+			);
+			name = Umessage_SDK;
+			sourceTree = "<group>";
+		};
 		0462932D1BA15AC600741C3B /* ZYQAssetPickerController */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +261,7 @@
 		04B2501C1B9552C80041DB62 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				045FF5031BA6A61B00938124 /* Umessage_SDK */,
 				0462932D1BA15AC600741C3B /* ZYQAssetPickerController */,
 				045449681BA041240067C0F6 /* MJExtension */,
 				04A60AA91B9EBE8F00AC61D5 /* AFNETWording */,
@@ -252,6 +271,9 @@
 				04B2502C1B958EE80041DB62 /* pushTableViewController.h */,
 				04B2502D1B958EE80041DB62 /* pushTableViewController.m */,
 				04B2502E1B958EE80041DB62 /* pushTableViewController.xib */,
+				045FF4FE1BA6A0DF00938124 /* pushTableViewCell.h */,
+				045FF4FF1BA6A0DF00938124 /* pushTableViewCell.m */,
+				045FF5001BA6A0DF00938124 /* pushTableViewCell.xib */,
 				04B250311B959FBC0041DB62 /* feedBackViewController.h */,
 				04B250321B959FBC0041DB62 /* feedBackViewController.m */,
 				04B250331B959FBC0041DB62 /* feedBackViewController.xib */,
@@ -427,6 +449,7 @@
 				E73218E81B7C7CFA00B09F6B /* Images.xcassets in Resources */,
 				04B250301B958EE80041DB62 /* pushTableViewController.xib in Resources */,
 				04B250351B959FBC0041DB62 /* feedBackViewController.xib in Resources */,
+				045FF5021BA6A0DF00938124 /* pushTableViewCell.xib in Resources */,
 				046293361BA1884500741C3B /* ZYQAssetPicker.Bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -446,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				046293371BA1884500741C3B /* ZYQAssetPickerController.m in Sources */,
+				045FF5011BA6A0DF00938124 /* pushTableViewCell.m in Sources */,
 				0468E01F1B9EEB28001BA58F /* KDConstants.m in Sources */,
 				0454497B1BA041540067C0F6 /* MJFoundation.m in Sources */,
 				0454497F1BA041540067C0F6 /* NSObject+MJKeyValue.m in Sources */,
@@ -595,7 +619,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KDteacher/KDteacher.pch";
 				INFOPLIST_FILE = KDteacher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -616,7 +640,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KDteacher/KDteacher.pch";
 				INFOPLIST_FILE = KDteacher/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
