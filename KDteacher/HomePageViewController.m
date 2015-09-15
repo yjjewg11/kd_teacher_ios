@@ -71,7 +71,7 @@ static NSString *web_sessionid;
                                }
                            }];
     [self.webView loadRequest:request];
-   
+  
 
     //添加一个主页的按钮
     self.homeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -135,8 +135,6 @@ static NSString *web_sessionid;
                      selector:@selector(clearBuffer)
                          name:@"clearBuffer"
                        object:nil];
-
-   
 }
 //实现通知方法
 -(void)ChangeData{
@@ -225,9 +223,9 @@ static NSString *web_sessionid;
   
         if ([str1 isEqualToString:Web_IOS_sessionid]) {//
             web_sessionid=subArray[1];
-           
             NSLog(@"file:%@",web_sessionid);
             [self.myView setHidden:NO];
+           
             if ([web_sessionid isEqualToString:@""]) {
                 [self.myView setHidden:YES];
             }
@@ -242,6 +240,7 @@ static NSString *web_sessionid;
         
             [self uploadAllImages];
         }
+   
 
     return true;
 }

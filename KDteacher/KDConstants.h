@@ -15,7 +15,7 @@
 #define G_rest_uploadFile_upload       @"rest/uploadFile/upload.json"      //正式
 #define Webview_URL      @"http://kd.wenjienet.com/px-rest/kd/index.html"
 #define String_Success                          @"success"
-#define Push_Token      @"rest/pushMsgDeviceve.json"
+#define Push_Token      @"rest/pushMsgDevice/save.json"
 
 #define G_Web_IOS       @"ios"      //正式
 #define Web_IOS_sessionid     @"sessionid"      //正式

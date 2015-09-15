@@ -10,10 +10,15 @@
 //#import "MobClick.h"
 #import "HomePageViewController.h"
 #import "UMessage.h"
+#import "UMFeedback.h"
+#import "UMOpus.h"
+#import "UMOpenMacros.h"
+#import "KeychainItemWrapper.h"
+#import "KGHttpService.h"
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 #define _IPHONE80_ 80000
-
+#define NewMessageKey @"newMessage"
 @interface AppDelegate ()
 
 @end
@@ -23,6 +28,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [UMFeedback setAppkey:@"55cc8dece0f55a2379004ba7"];
     self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
     
@@ -80,9 +87,55 @@
 }
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
+    NSString * token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    
+    NSArray * strAry = [token componentsSeparatedByString:@" "];
+    NSMutableString * key = [NSMutableString stringWithString:@""];
+    for(NSString * str in strAry){
+        [key appendString:str];
+    }
+    
+    if(![key isEqualToString:@""]){
+        [self savePushToken:key];
+    }
+
     [UMessage registerDeviceToken:deviceToken];
     
+    NSLog(@"umeng message alias is: %@", [UMFeedback uuid]);
+    [UMessage addAlias:[UMFeedback uuid] type:[UMFeedback messageType] response:^(id responseObject, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error);
+            NSLog(@"%@", responseObject);
+        }
+    }];
 }
+
+- (void)savePushToken:(NSString *)key{
+    KeychainItemWrapper * wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"KeyChain" accessGroup:nil];
+    //    NSString * wrapperToken = [wrapper objectForKey:(__bridge id)kSecAttrAccount];
+    
+    //    if(![key isEqualToString:wrapperToken] || [key isEqualToString:String_DefValue_Empty]){
+    
+    
+    id temp = [[NSUserDefaults standardUserDefaults] objectForKey:NewMessageKey];
+    if (temp == nil) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:NewMessageKey];
+    }
+    NSString * status;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:NewMessageKey]) {
+        status = @"0";
+    }else{
+        status = @"2";
+    }
+    [[KGHttpService sharedService] submitPushTokenWithStatus:status success:^(NSString *msgStr) {
+        [wrapper setObject:key forKey:(__bridge id)kSecAttrAccount];
+    } faild:^(NSString *errorMsg) {
+        
+    }];
+
+        
+}
+
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {

@@ -11,6 +11,7 @@
 #import "pushTableViewController.h"
 #import "feedBackViewController.h"
 #import "HomePageViewController.h"
+#import "KDConstants.h"
 @interface setUpTableViewController ()
 
 @end
@@ -39,6 +40,7 @@
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(gotoBack)];
 
     self.navigationItem.leftBarButtonItem = leftButton;
+    
 }
 -(void)gotoBack{
     [self dismissViewControllerAnimated:YES completion:nil];

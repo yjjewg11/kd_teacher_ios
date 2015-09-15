@@ -10,6 +10,7 @@
 
 #import "pushTableViewCell.h"
 #import "UMessage.h"
+
 @implementation pushTableViewCell
 
 #define NewMessageKey @"newMessage"
@@ -23,10 +24,12 @@
 
 #pragma mark - 开关点击
 - (void)switchChange:(UISwitch *)sender{
-    
-       
+    NSString *changeSwitch = sender.on?@"0":@"2";
     [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:[_dic objectForKey:_flagTitleLabel.text]];
     [[NSUserDefaults standardUserDefaults] synchronize];
+   
+   
+       
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
