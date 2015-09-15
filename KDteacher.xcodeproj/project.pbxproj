@@ -10,6 +10,7 @@
 		040685F21BA81B4A006AB926 /* FuniKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 040685EF1BA81B4A006AB926 /* FuniKeyChain.m */; };
 		040685F31BA81B4A006AB926 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 040685F11BA81B4A006AB926 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		040685F71BA81EB3006AB926 /* KGHttpService.m in Sources */ = {isa = PBXBuildFile; fileRef = 040685F61BA81EB3006AB926 /* KGHttpService.m */; };
+		040685F91BA8277E006AB926 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040685F81BA8277E006AB926 /* Security.framework */; };
 		041CC2B51BA7F01A00D1CB51 /* UMFeedbackLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 041CC28C1BA7F01A00D1CB51 /* UMFeedbackLocalizable.strings */; };
 		041CC2B61BA7F01A00D1CB51 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 041CC28E1BA7F01A00D1CB51 /* libUMFeedback.a */; };
 		041CC2B71BA7F01A00D1CB51 /* bubble_min@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 041CC2901BA7F01A00D1CB51 /* bubble_min@2x.png */; };
@@ -96,6 +97,7 @@
 		040685F11BA81B4A006AB926 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		040685F51BA81EB3006AB926 /* KGHttpService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGHttpService.h; sourceTree = "<group>"; };
 		040685F61BA81EB3006AB926 /* KGHttpService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KGHttpService.m; sourceTree = "<group>"; };
+		040685F81BA8277E006AB926 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		041CC28D1BA7F01A00D1CB51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/UMFeedbackLocalizable.strings; sourceTree = "<group>"; };
 		041CC28E1BA7F01A00D1CB51 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
 		041CC2901BA7F01A00D1CB51 /* bubble_min@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_min@2x.png"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040685F91BA8277E006AB926 /* Security.framework in Frameworks */,
 				041CC2B61BA7F01A00D1CB51 /* libUMFeedback.a in Frameworks */,
 				045FF5061BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
 				041CC2C71BA7F01A00D1CB51 /* libUMOpus.a in Frameworks */,
@@ -462,6 +465,7 @@
 		E73218CE1B7C7CFA00B09F6B = {
 			isa = PBXGroup;
 			children = (
+				040685F81BA8277E006AB926 /* Security.framework */,
 				E75CA5E01B7CC93C00FF56CF /* libz.dylib */,
 				046293381BA188E700741C3B /* KDProject */,
 				E73218F31B7C7CFB00B09F6B /* KDteacherTests */,
