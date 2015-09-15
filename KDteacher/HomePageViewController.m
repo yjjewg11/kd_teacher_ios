@@ -111,8 +111,48 @@ static NSString *web_sessionid;
     [self.myView addSubview:self.setupBtn];
     [self.view addSubview:self.myView];
     [self.myView setHidden:YES];
-    //得到cookie
-   }
+    //添加一个通知修改资料
+    NSNotificationCenter *changeData = [NSNotificationCenter defaultCenter];
+    [changeData addObserver:self
+           selector:@selector(ChangeData)
+               name:@"changeData"
+             object:nil];
+    //添加一个通知修改密码
+    NSNotificationCenter *changePassword = [NSNotificationCenter defaultCenter];
+    [changePassword addObserver:self
+                   selector:@selector(ChangePassword)
+                       name:@"changePassword"
+                     object:nil];
+    //添加一个通知注销
+    NSNotificationCenter *cancellation = [NSNotificationCenter defaultCenter];
+    [cancellation addObserver:self
+                       selector:@selector(cancellation)
+                           name:@"cancellation"
+                         object:nil];
+    //添加一个通知注销
+    NSNotificationCenter *clearBuffer = [NSNotificationCenter defaultCenter];
+    [clearBuffer addObserver:self
+                     selector:@selector(clearBuffer)
+                         name:@"clearBuffer"
+                       object:nil];
+
+   
+}
+//实现通知方法
+-(void)ChangeData{
+    [self.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_update()"];
+}
+-(void)ChangePassword{
+    [self.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_updatepassword()"];
+}
+-(void)cancellation{
+    
+   [self.webView stringByEvaluatingJavaScriptFromString:@"javascript:G_jsCallBack.userinfo_logout()"];
+}
+-(void)clearBuffer{
+     
+    [self.webView stringByEvaluatingJavaScriptFromString:@"javascript:menu_dohome()"];
+}
 -(void)homeClicked:(UIButton *)homebtn{
     homebtn.selected = YES;
     self.messageBtn.selected = NO;
@@ -185,8 +225,13 @@ static NSString *web_sessionid;
   
         if ([str1 isEqualToString:Web_IOS_sessionid]) {//
             web_sessionid=subArray[1];
+           
             NSLog(@"file:%@",web_sessionid);
             [self.myView setHidden:NO];
+            if ([web_sessionid isEqualToString:@""]) {
+                [self.myView setHidden:YES];
+            }
+            
                 return false;
             
         }else if ([str1 isEqualToString:Head_Pic]) {//

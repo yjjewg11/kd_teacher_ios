@@ -173,50 +173,42 @@
     else if (indexPath.section == 1){
         //单击修改名字所显示的事件
         if (indexPath.row == 0) {
-            HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
-            
-            [self presentViewController:home animated:YES completion:^{
-                [home.myView setHidden:NO];
-                home.setupBtn.selected = YES;
-                home.homeBtn.selected = NO;
-                [home.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_update()"];
+            //HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
+            [self dismissViewControllerAnimated:YES completion:^{
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"changeData" object:self userInfo:nil];
             }];
         }//单击修改密码所响应的事件
         else if (indexPath.row == 1){
-            HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
-            [self presentViewController:home animated:YES completion:^{
-                [home.myView setHidden:NO];
-                home.setupBtn.selected = YES;
-                home.homeBtn.selected = NO;
-                [home.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_updatepassword()"];
+            [self dismissViewControllerAnimated:YES completion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"changePassword" object:self userInfo:nil];
             }];
+
         }
     }//第三个分区
     else if(indexPath.section==2){
-        //单击清楚缓存所响应的事件
+        //单击清除缓存所响应的事件
         if (indexPath.row==0) {
-            //清除缓存
-           [[NSURLCache sharedURLCache] removeAllCachedResponses];
-            HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
-            [self presentViewController:home animated:YES completion:^{
-                [home.myView setHidden:NO];
-                home.setupBtn.selected = NO;
-                home.homeBtn.selected = YES;
-                [home.webView stringByEvaluatingJavaScriptFromString:@"javascript:menu_dohome()"];
+            
+            [self dismissViewControllerAnimated:YES completion:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"clearBuffer" object:self userInfo:nil];
             }];
+
+//           [[NSURLCache sharedURLCache] removeAllCachedResponses];
+//            HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
+//            [self presentViewController:home animated:YES completion:^{
+//                [home.myView setHidden:NO];
+//                home.setupBtn.selected = NO;
+//                home.homeBtn.selected = YES;
+//                [home.webView stringByEvaluatingJavaScriptFromString:@"javascript:menu_dohome()"];
+//            }];
 
         }
     //单击注销所响应的事件
     else if(indexPath.row==1){
-        HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
-        [self presentViewController:home animated:YES completion:^{
-            [home.myView setHidden:YES];
-            home.setupBtn.selected = YES;
-            home.homeBtn.selected = NO;
-            //清除缓存
-            [[NSURLCache sharedURLCache] removeAllCachedResponses];
-            [home.webView stringByEvaluatingJavaScriptFromString:@"javascript:G_jsCallBack.userinfo_logout()"];
+        [self dismissViewControllerAnimated:YES completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"cancellation" object:self userInfo:nil];
         }];
+
     }
     }
 }

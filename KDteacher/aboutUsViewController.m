@@ -35,14 +35,14 @@
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(goBack)];
     
     self.navigationItem.leftBarButtonItem = leftButton;
-    UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(60, self.view.bounds.origin.y+150, 200, 100)];
-    iv.image = [UIImage imageNamed:@"logo.png"];
-    iv.contentMode = UIViewContentModeScaleAspectFit;
-    UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(80, self.view.bounds.origin.y+150+200, 160, 100)];
-    imageV.image = [UIImage imageNamed:@"erweima.png"];
-    imageV.contentMode = UIViewContentModeScaleAspectFit;
-    [self.view addSubview:imageV];
-    [self.view addSubview:iv];
+//    UIImageView *iv = [[UIImageView alloc]initWithFrame:CGRectMake(60, self.view.bounds.origin.y+150, 200, 100)];
+//    iv.image = [UIImage imageNamed:@"logo.png"];
+//    iv.contentMode = UIViewContentModeScaleAspectFit;
+//    UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(80, self.view.bounds.origin.y+150+200, 160, 100)];
+//    imageV.image = [UIImage imageNamed:@"erweima.png"];
+//    imageV.contentMode = UIViewContentModeScaleAspectFit;
+//    [self.view addSubview:imageV];
+//    [self.view addSubview:iv];
 }
 -(void)goBack{
     [self.navigationController popViewControllerAnimated:YES];

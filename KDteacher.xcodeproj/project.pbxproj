@@ -626,7 +626,7 @@
 					"$(PROJECT_DIR)/KDteacher",
 				);
 				PRODUCT_NAME = "问界互动家园";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "062aa286-c619-478d-a9be-577993c28a7e";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -647,7 +647,7 @@
 					"$(PROJECT_DIR)/KDteacher",
 				);
 				PRODUCT_NAME = "问界互动家园";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "062aa286-c619-478d-a9be-577993c28a7e";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
