@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
 @interface KGHttpService : NSObject
 @property (strong, nonatomic) NSString * pushToken;
 @property(nonatomic,strong)NSString *jssionID;

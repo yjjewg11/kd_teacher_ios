@@ -17,5 +17,6 @@ static NSString *web_sessionid = nil;
 @property(nonatomic,strong)UIButton *messageBtn;
 @property(nonatomic,strong)UIButton *setupBtn;
 @property(nonatomic,strong) UIActionSheet *myActionSheet;
+
 //@property(nonatomic,strong)NSString *web_sessionid;
 @end

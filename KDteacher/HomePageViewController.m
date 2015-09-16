@@ -69,7 +69,7 @@
                                //获取cookie方法3
                                NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
                                for (NSHTTPCookie *cookie in [cookieJar cookies]) {
-                                   NSLog(@"cookie%@", cookie);
+                                   NSLog(@"cookie=%@", cookie);
                                }
                            }];
     [self.webView loadRequest:request];

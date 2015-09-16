@@ -9,6 +9,7 @@
 
 #import "KGHttpService.h"
 #import "KDConstants.h"
+#import "HomePageViewController.h"
 @implementation KGHttpService
 + (KGHttpService *)sharedService {
     static KGHttpService *_sharedService = nil;
@@ -22,16 +23,27 @@
 //提交推送token
 - (void)submitPushTokenWithStatus:(NSString *)status success:(void (^)(NSString * msgStr))success faild:(void (^)(NSString * errorMsg))faild {
     
-    NSDictionary * dic = @{@"device_id" : _pushToken,
+        NSDictionary * dic = @{@"device_id" : _pushToken,
                            @"device_type": @"ios",
-                           @"status":status};
+                           @"status":status
+                           };
+    NSString *path = URL(G_baseServiceURL, Push_Token);
+
+    [self getServerJson:path params:dic
+success:^(NSString *message) {
+    
+} faild:^(NSString *errMessage) {
+    NSLog(@"errorMessage=%@",errMessage);
+}];
+}
+-(void)getServerJson:(NSString *)path params:(NSDictionary *)jsonDictionary success:(void(^)(NSString *message))success faild:(void(^)(NSString *errMessage))faild {
     NSData   * jsonData       = nil;
     
-    if([NSJSONSerialization isValidJSONObject:dic])
+    if([NSJSONSerialization isValidJSONObject:jsonDictionary])
     {
-        jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
+        jsonData = [NSJSONSerialization dataWithJSONObject:jsonDictionary options:0 error:nil];
     }
-    NSString *path = URL(G_baseServiceURL, Push_Token);
+   // NSString *path = URL(G_baseServiceURL, Push_Token);
     NSURL * url = [NSURL URLWithString:path];
     NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
@@ -44,5 +56,6 @@
     NSLog(@"str=%@",str);
 }
 
+}
 
 @end

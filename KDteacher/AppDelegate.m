@@ -118,7 +118,7 @@
     
     //    if(![key isEqualToString:wrapperToken] || [key isEqualToString:String_DefValue_Empty]){
     
-    
+    [KGHttpService sharedService].pushToken = key;
     id temp = [[NSUserDefaults standardUserDefaults] objectForKey:NewMessageKey];
     if (temp == nil) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:NewMessageKey];
@@ -131,6 +131,7 @@
     }
     [[KGHttpService sharedService] submitPushTokenWithStatus:status success:^(NSString *msgStr) {
         [wrapper setObject:key forKey:(__bridge id)kSecAttrAccount];
+        NSLog(@"msgStr=%@",msgStr);
     } faild:^(NSString *errorMsg) {
         
     }];
