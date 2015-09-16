@@ -14,14 +14,14 @@
 #import "KGBaseDomain.h"
 #import "MJExtension.h"
 #import "ResMsgDomain.h"
-
+#import "KGHttpService.h"
 //#define SCREENHEIGHT   self.view.frame.size.height
 @interface HomePageViewController ()
 
 @end
 
 @implementation HomePageViewController
-static NSString *web_sessionid;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -67,7 +67,7 @@ static NSString *web_sessionid;
                                //获取cookie方法3
                                NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
                                for (NSHTTPCookie *cookie in [cookieJar cookies]) {
-                                   NSLog(@"cookie%@", cookie);
+                                   NSLog(@"cookie=%@", cookie);
                                }
                            }];
     [self.webView loadRequest:request];
@@ -223,6 +223,10 @@ static NSString *web_sessionid;
   
         if ([str1 isEqualToString:Web_IOS_sessionid]) {//
             web_sessionid=subArray[1];
+          
+            NSUserDefaults *userDF = [NSUserDefaults standardUserDefaults];
+            [userDF setValue:web_sessionid forKey:@"JSESSIONID"];
+            [userDF synchronize];
             NSLog(@"file:%@",web_sessionid);
             [self.myView setHidden:NO];
            
