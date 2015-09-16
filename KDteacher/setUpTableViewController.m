@@ -17,6 +17,7 @@
 @end
 
 @implementation setUpTableViewController
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -40,7 +41,7 @@
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(gotoBack)];
 
     self.navigationItem.leftBarButtonItem = leftButton;
-    
+   
 }
 -(void)gotoBack{
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -10,7 +10,7 @@
 
 #import "pushTableViewCell.h"
 #import "UMessage.h"
-
+#import "KGHttpService.h"
 @implementation pushTableViewCell
 
 #define NewMessageKey @"newMessage"
@@ -19,12 +19,16 @@
 
 - (void)awakeFromNib {
     [_mySwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
-    _dic = @{@"新消息":NewMessageKey,@"声音":VoiceKey,@"震动":ShakeKey};
+    _dic = @{@"推送消息":NewMessageKey,@"声音":VoiceKey,@"震动":ShakeKey};
 }
 
 #pragma mark - 开关点击
 - (void)switchChange:(UISwitch *)sender{
-    
+   
+    [[KGHttpService sharedService] submitPushTokenWithStatus:sender.on?@"0":@"2" success:^(NSString *msgStr) {
+    } faild:^(NSString *errorMsg) {
+    }];
+
     [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:[_dic objectForKey:_flagTitleLabel.text]];
     [[NSUserDefaults standardUserDefaults] synchronize];
    

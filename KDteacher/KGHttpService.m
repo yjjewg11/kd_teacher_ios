@@ -38,6 +38,10 @@
     [request setHTTPBody: jsonData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:[NSString stringWithFormat:@"%ld", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+    NSData *recievied = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSLog(@"recievied = %@",recievied);
+    NSString *str = [[NSString alloc]initWithData:recievied encoding:NSUTF8StringEncoding];
+    NSLog(@"str=%@",str);
 }
 
 

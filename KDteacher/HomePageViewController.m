@@ -14,14 +14,14 @@
 #import "KGBaseDomain.h"
 #import "MJExtension.h"
 #import "ResMsgDomain.h"
-
+#import "KGHttpService.h"
 //#define SCREENHEIGHT   self.view.frame.size.height
 @interface HomePageViewController ()
 
 @end
 
 @implementation HomePageViewController
-static NSString *web_sessionid;
+
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -31,8 +31,10 @@ static NSString *web_sessionid;
         }
     return self;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-48);
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT-48)];
     
@@ -223,6 +225,9 @@ static NSString *web_sessionid;
   
         if ([str1 isEqualToString:Web_IOS_sessionid]) {//
             web_sessionid=subArray[1];
+            NSUserDefaults *userDefalut = [NSUserDefaults standardUserDefaults];
+            [userDefalut setValue:web_sessionid forKey:@"JSESSIONID"];
+            [userDefalut synchronize];
             NSLog(@"file:%@",web_sessionid);
             [self.myView setHidden:NO];
            
@@ -480,6 +485,6 @@ static NSString *web_sessionid;
         }];
 
 }
-
+   
 }
 @end

@@ -88,14 +88,16 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSString * token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-    
+    NSUserDefaults *userdefault = [NSUserDefaults standardUserDefaults];
+    NSString *str = [userdefault valueForKey:@"JSESSIONID"];
+    NSLog(@"str=%@",str);
     NSArray * strAry = [token componentsSeparatedByString:@" "];
     NSMutableString * key = [NSMutableString stringWithString:@""];
     for(NSString * str in strAry){
         [key appendString:str];
     }
     
-    if(![key isEqualToString:@""]){
+    if(![key isEqualToString:@""] && str != nil){
         [self savePushToken:key];
     }
 

@@ -10,6 +10,7 @@
 
 @interface KGHttpService : NSObject
 @property (strong, nonatomic) NSString * pushToken;
+@property(nonatomic,strong)NSString *jssionID;
 + (KGHttpService *)sharedService;
 - (void)submitPushTokenWithStatus:(NSString *)status success:(void (^)(NSString * msgStr))success faild:(void (^)(NSString * errorMsg))faild;
 
