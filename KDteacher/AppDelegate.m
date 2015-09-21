@@ -97,7 +97,7 @@
         [key appendString:str];
     }
     
-    if(![key isEqualToString:@""] && str != nil){
+    if(![key isEqualToString:@""] && ![str isEqualToString:@""]){
         [self savePushToken:key];
     }
 
