@@ -15,6 +15,7 @@
 #import "UMOpenMacros.h"
 #import "KeychainItemWrapper.h"
 #import "KGHttpService.h"
+
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 #define _IPHONE80_ 80000
@@ -89,16 +90,15 @@
 {
     NSString * token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     NSUserDefaults *userdefault = [NSUserDefaults standardUserDefaults];
-    NSString *str = [userdefault valueForKey:@"JSESSIONID"];
-    NSLog(@"str=%@",str);
+    
     NSArray * strAry = [token componentsSeparatedByString:@" "];
     NSMutableString * key = [NSMutableString stringWithString:@""];
     for(NSString * str in strAry){
         [key appendString:str];
     }
     
-    if(![key isEqualToString:@""] && str != nil){
-        [self savePushToken:key];
+    if(![key isEqualToString:@""]){
+        [KGHttpService sharedService].pushToken = key;
     }
 
     [UMessage registerDeviceToken:deviceToken];
@@ -118,7 +118,7 @@
     
     //    if(![key isEqualToString:wrapperToken] || [key isEqualToString:String_DefValue_Empty]){
     
-    [KGHttpService sharedService].pushToken = key;
+    
     id temp = [[NSUserDefaults standardUserDefaults] objectForKey:NewMessageKey];
     if (temp == nil) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:NewMessageKey];

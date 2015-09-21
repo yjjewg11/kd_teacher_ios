@@ -15,7 +15,11 @@
 #import "MJExtension.h"
 #import "ResMsgDomain.h"
 #import "KGHttpService.h"
+#import "KeychainItemWrapper.h"
+
 //#define SCREENHEIGHT   self.view.frame.size.height
+#define NewMessageKey @"newMessage"
+
 @interface HomePageViewController ()
 
 @end
@@ -225,10 +229,21 @@
   
         if ([str1 isEqualToString:Web_IOS_sessionid]) {//
             web_sessionid=subArray[1];
-            NSUserDefaults *userDefalut = [NSUserDefaults standardUserDefaults];
-            [userDefalut setValue:web_sessionid forKey:@"JSESSIONID"];
-            [userDefalut synchronize];
-            NSLog(@"file:%@",web_sessionid);
+            [KGHttpService sharedService].jssionID = web_sessionid;
+             KeychainItemWrapper * wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"KeyChain" accessGroup:nil];
+            NSString *status;
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:NewMessageKey]) {
+                status = @"0";
+            }else{
+                status = @"2";
+            }
+            [[KGHttpService sharedService] submitPushTokenWithStatus:status success:^(NSString *msgStr) {
+                [wrapper setObject:[KGHttpService sharedService].pushToken forKey:(__bridge id)kSecAttrAccount];
+                NSLog(@"msgStr=%@",msgStr);
+            } faild:^(NSString *errorMsg) {
+                
+            }];
+
             [self.myView setHidden:NO];
            
             if ([web_sessionid isEqualToString:@""]) {

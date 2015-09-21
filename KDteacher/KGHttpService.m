@@ -25,7 +25,7 @@
     
         NSDictionary * dic = @{@"device_id" : _pushToken,
                            @"device_type": @"ios",
-                           @"status":status
+                           @"status":status,@"JSESSION":_jssionID
                            };
     NSString *path = URL(G_baseServiceURL, Push_Token);
 
@@ -56,6 +56,6 @@ success:^(NSString *message) {
     NSLog(@"str=%@",str);
 }
 
-}
+
 
 @end
