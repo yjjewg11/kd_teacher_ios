@@ -89,7 +89,6 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSString * token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
-    NSUserDefaults *userdefault = [NSUserDefaults standardUserDefaults];
     
     NSArray * strAry = [token componentsSeparatedByString:@" "];
     NSMutableString * key = [NSMutableString stringWithString:@""];

@@ -229,6 +229,7 @@
   
         if ([str1 isEqualToString:Web_IOS_sessionid]) {//
             web_sessionid=subArray[1];
+            [self.myView setHidden:NO];
             [KGHttpService sharedService].jssionID = web_sessionid;
              KeychainItemWrapper * wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"KeyChain" accessGroup:nil];
             NSString *status;
@@ -244,7 +245,7 @@
                 
             }];
 
-            [self.myView setHidden:NO];
+            
            
             if ([web_sessionid isEqualToString:@""]) {
                 [self.myView setHidden:YES];
