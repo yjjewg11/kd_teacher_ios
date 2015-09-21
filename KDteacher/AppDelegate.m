@@ -29,6 +29,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [[UIApplication sharedApplication]setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     
     [UMFeedback setAppkey:@"55cc8dece0f55a2379004ba7"];
     self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
@@ -86,6 +87,8 @@
  
     
 }
+
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSString * token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];

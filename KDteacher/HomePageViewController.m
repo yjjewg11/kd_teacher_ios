@@ -26,6 +26,13 @@
 
 @implementation HomePageViewController
 
+//设置隐藏状态栏
+- (BOOL)prefersStatusBarHidden
+
+{
+       return YES;
+    
+    }
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
