@@ -191,12 +191,13 @@
     else if(indexPath.section==2){
         //单击清除缓存所响应的事件
         if (indexPath.row==0) {
-            
+            //清除缓存
+            [[NSURLCache sharedURLCache] removeAllCachedResponses];
             [self dismissViewControllerAnimated:YES completion:^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"clearBuffer" object:self userInfo:nil];
             }];
 
-//           [[NSURLCache sharedURLCache] removeAllCachedResponses];
+           
 //            HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
 //            [self presentViewController:home animated:YES completion:^{
 //                [home.myView setHidden:NO];

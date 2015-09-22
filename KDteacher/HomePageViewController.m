@@ -202,7 +202,7 @@
     //获取当前页面网址
    // [self.webView stringByEvaluatingJavaScriptFromString:@"document.location.href"];
     
-    //获取当前页面标题
+    
     [self.webView stringByEvaluatingJavaScriptFromString:Star_Js];
     
 }
@@ -235,9 +235,9 @@
     NSString *str1=subArray[0];
   
         if ([str1 isEqualToString:Web_IOS_sessionid]) {//
-            web_sessionid=subArray[1];
+            [KGHttpService sharedService].jssionID =subArray[1];
             [self.myView setHidden:NO];
-            [KGHttpService sharedService].jssionID = web_sessionid;
+            
              KeychainItemWrapper * wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"KeyChain" accessGroup:nil];
             NSString *status;
             if ([[NSUserDefaults standardUserDefaults] boolForKey:NewMessageKey]) {
@@ -254,7 +254,7 @@
 
             
            
-            if ([web_sessionid isEqualToString:@""]) {
+            if ([[KGHttpService sharedService].jssionID  isEqualToString:@""]) {
                 [self.myView setHidden:YES];
             }
             
@@ -378,7 +378,7 @@
      //上传图片的参数
     
        NSMutableDictionary * parameters = [[NSMutableDictionary alloc] init];
-        [parameters setObject:web_sessionid forKey:@"JSESSIONID"];
+        [parameters setObject:[KGHttpService sharedService].jssionID  forKey:@"JSESSIONID"];
         [parameters setObject:[NSNumber numberWithInteger:1] forKey:@"type"];
 //上传图片的地址
         NSString *url = URL(G_baseServiceURL, G_rest_uploadFile_upload);
@@ -468,7 +468,7 @@
         //上传图片的参数
         
         NSMutableDictionary * parameters = [[NSMutableDictionary alloc] init];
-        [parameters setObject:web_sessionid forKey:@"JSESSIONID"];
+        [parameters setObject:[KGHttpService sharedService].jssionID  forKey:@"JSESSIONID"];
         [parameters setObject:[NSNumber numberWithInteger:1] forKey:@"type"];
         //上传图片的地址
         NSString *url = URL(G_baseServiceURL, G_rest_uploadFile_upload);
