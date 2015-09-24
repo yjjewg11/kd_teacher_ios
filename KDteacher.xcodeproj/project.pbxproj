@@ -818,7 +818,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KDteacher/KDteacher.pch";
 				INFOPLIST_FILE = KDteacher/Info.plist;
@@ -831,7 +831,7 @@
 					"$(PROJECT_DIR)/KDteacher/UMengFeedback_SDK/UMOpus",
 				);
 				PRODUCT_NAME = "问界互动家园";
-				PROVISIONING_PROFILE = "4f4071ba-f379-4468-adcc-efcb70648dc0";
+				PROVISIONING_PROFILE = "66ac4ccb-0ec7-41c5-9a0c-505a8ca5e95c";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -841,7 +841,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KDteacher/KDteacher.pch";
 				INFOPLIST_FILE = KDteacher/Info.plist;
@@ -854,7 +854,7 @@
 					"$(PROJECT_DIR)/KDteacher/UMengFeedback_SDK/UMOpus",
 				);
 				PRODUCT_NAME = "问界互动家园";
-				PROVISIONING_PROFILE = "4f4071ba-f379-4468-adcc-efcb70648dc0";
+				PROVISIONING_PROFILE = "66ac4ccb-0ec7-41c5-9a0c-505a8ca5e95c";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
