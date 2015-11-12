@@ -15,6 +15,10 @@
 #import "UMOpenMacros.h"
 #import "KeychainItemWrapper.h"
 #import "KGHttpService.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocial.h"
+#import "MobClick.h"
+#import "UMSocialQQHandler.h"
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
@@ -26,18 +30,43 @@
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [UMSocialSnsService handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return  [UMSocialSnsService handleOpenURL:url];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[UIApplication sharedApplication]setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     
     [UMFeedback setAppkey:@"55cc8dece0f55a2379004ba7"];
+    
+//    [MobClick setLogEnabled:YES];  // 打开友盟sdk调试，注意Release发布时需要注释掉此行,减少io消耗
+    
     self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    
     HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
     
-    self.window.rootViewController=home;
+    self.window.rootViewController = home;
+    
     [self.window makeKeyAndVisible];
-[UMessage startWithAppkey:@"55cc8dece0f55a2379004ba7" launchOptions:launchOptions];
+    
+    [UMessage startWithAppkey:@"55cc8dece0f55a2379004ba7" launchOptions:launchOptions];
+    
+//    [UMSocialData openLog:YES];
+    //集成微信 /  qq                                                    078b3b3e3515f1d434c87d20dc02ab8c
+    [UMSocialWechatHandler setWXAppId:@"wxc784adf432c9f59d" appSecret:@"078b3b3e3515f1d434c87d20dc02ab8c" url:@"http://www.wenjienet.com/"];
+    
+    [UMSocialQQHandler setQQWithAppId:@"1104813270" appKey:@"SumAAk7jtaUSnZqd" url:@"http://www.wenjienet.com/"];
+    
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))

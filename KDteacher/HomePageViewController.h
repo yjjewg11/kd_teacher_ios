@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZYQAssetPickerController.h"
+#import "ShareDomain.h"
 //static NSString *web_sessionid = nil;
 @interface HomePageViewController : UIViewController<UIWebViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,ZYQAssetPickerControllerDelegate>
 @property(nonatomic,strong)UIWebView *webView;

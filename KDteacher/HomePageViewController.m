@@ -15,12 +15,20 @@
 #import "MJExtension.h"
 #import "ResMsgDomain.h"
 #import "KGHttpService.h"
+#import "CanShareVC.h"
 #import "KeychainItemWrapper.h"
+#import "MJExtension.h"
+#import "UMSocial.h"
+#import "MainDomain.h"
 
 //#define SCREENHEIGHT   self.view.frame.size.height
 #define NewMessageKey @"newMessage"
 
-@interface HomePageViewController ()
+@interface HomePageViewController () <UMSocialUIDelegate>
+
+@property (strong, nonatomic) NSString * newerMainURL;
+
+@property (assign, nonatomic) NSInteger reqCount;
 
 @end
 
@@ -28,18 +36,19 @@
 
 //设置隐藏状态栏
 - (BOOL)prefersStatusBarHidden
-
 {
-       return YES;
-    
-    }
--(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    return YES;
+}
+
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-        
     
-        }
+    if (self)
+    {
+        
+    }
+    
     return self;
 }
 
@@ -61,7 +70,9 @@
     [self.view addSubview: self.webView];
     NSURL *url = [NSURL URLWithString:Webview_URL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadRevalidatingCacheData timeoutInterval:3];
-     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
@@ -71,7 +82,7 @@
                                //获取headerfields
                                NSDictionary *fields = [HTTPResponse allHeaderFields];//原生NSURLConnection写法
                                // NSDictionary *fields = [operation.response allHeaderFields]; //afnetworking写法
-                               NSLog(@"fields = %@",[fields description]);
+//                               NSLog(@"fields = %@",[fields description]);
                                
                                //获取cookie方法1
                                // NSArray *cookies = [NSHTTPCookie cookiesWithResponseHeaderFields:fields forURL:url];
@@ -80,11 +91,13 @@
                                //获取cookie方法3
                                NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
                                for (NSHTTPCookie *cookie in [cookieJar cookies]) {
-                                   NSLog(@"cookie=%@", cookie);
+//                                   NSLog(@"cookie=%@", cookie);
                                }
                            }];
-    [self.webView loadRequest:request];
-  
+    
+    
+    [self getNewerWebURL];
+    
 
     //添加一个主页的按钮
     self.homeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -205,6 +218,8 @@
     
     [self.webView stringByEvaluatingJavaScriptFromString:Star_Js];
     
+    [self.webView stringByEvaluatingJavaScriptFromString:Share_Js];
+    
 }
 //网页加载失败时调用此方法
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
@@ -215,25 +230,29 @@
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     NSHTTPCookieStorage *myCookie = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [myCookie cookies]) {
-        NSLog(@"cookie=%@", cookie);
+//        NSLog(@"cookie=%@", cookie);
         [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie]; // 保存
     }
-
+    
        //得到当前访问页面的地址
     NSString *urlString = [[request URL] absoluteString];
     urlString = [urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSLog(@"urlString=%@",urlString);
+    
     //先将这个字符串地址按://分割成两部分
     NSArray *urlArray = [urlString componentsSeparatedByString:@"/ios/"];
-    NSLog(@"urlArray=%@",urlArray);
+//    NSLog(@"urlArray=%@",urlArray);
+    
     //获取最后一部分字符串
     NSString *subStr = [urlArray lastObject];
+//    NSLog(@"subStr=%@",subStr);
     
-    NSLog(@"subStr=%@",subStr);
     //把这个字符串用/分割
     NSArray *subArray = [subStr componentsSeparatedByString:@"/"];
     NSString *str1=subArray[0];
-  
+//    NSLog(@"模块名称: %@",str1);
+    
+    
         if ([str1 isEqualToString:Web_IOS_sessionid]) {//
             [KGHttpService sharedService].jssionID =subArray[1];
             [self.myView setHidden:NO];
@@ -252,12 +271,9 @@
                 
             }];
 
-            
-           
             if ([[KGHttpService sharedService].jssionID  isEqualToString:@""]) {
                 [self.myView setHidden:YES];
             }
-            
                 return false;
             
         }else if ([str1 isEqualToString:Head_Pic]) {//
@@ -267,11 +283,68 @@
         }else if ([str1 isEqualToString:Image_Pic]) {//
         
             [self uploadAllImages];
-        }
-   
+        }else if ([str1 isEqualToString:Open_Window]) {
 
+            NSString * dataStr = [self.webView stringByEvaluatingJavaScriptFromString:Share_Object];
+            
+            NSData * data = [dataStr dataUsingEncoding:NSUTF8StringEncoding];
+            
+            ShareDomain * domain = [ShareDomain objectWithJSONData:data];
+            
+            CanShareVC * vc = [[CanShareVC alloc] init];
+            
+            vc.httpcontent = domain.httpurl;
+            
+            vc.mainTitle = domain.title;
+            
+            vc.sharecontent = domain.content;
+            
+            vc.imgUrl = domain.pathurl;
+            
+            [self presentViewController:vc animated:NO completion:nil];
+
+        }else if (Share_Content && [urlString isEqualToString:@"http://120.25.212.44/px-rest/kd/ios/setShareContent"]) {
+            
+            NSString * dataStr = [self.webView stringByEvaluatingJavaScriptFromString:Share_Object];
+            
+            NSData * data = [dataStr dataUsingEncoding:NSUTF8StringEncoding];
+            
+            ShareDomain * domain = [ShareDomain objectWithJSONData:data];
+            
+            if (domain.content == nil)
+            {
+                domain.content = @"分享:http://www.wenjienet.com/";
+            }
+            
+            [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+            
+            [UMSocialData defaultData].extConfig.wechatSessionData.url = domain.httpurl;
+            
+            [UMSocialSnsService presentSnsIconSheetView:self
+                                                 appKey:@"55cc8dece0f55a2379004ba7"
+                                              shareText:domain.content
+                                             shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:domain.pathurl]]]
+                                        shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,nil]
+                                               delegate:self];
+        }
+    
     return true;
 }
+
+- (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+    }
+    else
+    {
+        NSLog(@"%@",response);
+    }
+}
+
 //上传头像的方法
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 -(void)UploadAvatar{
@@ -288,13 +361,8 @@
     
 }
 
-
-
-
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
-    
     //呼出的菜单按钮点击后的响应
     if (buttonIndex == self.myActionSheet.cancelButtonIndex)
     {
@@ -501,13 +569,51 @@
                 NSLog(@"failure:%@", baseDomain.ResMsg.message);
             }
             
-            
             NSLog(@"Success: %@", responseObject);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"Error: %@", error);
         }];
 
 }
+    
    
 }
+
+#pragma mark - 请求最新网页数据
+- (void)getNewerWebURL
+{
+    [[KGHttpService sharedService] getNewerMainUrl:^(id newurl)
+    {
+        MainDomain * domain = [MainDomain objectWithKeyValues:newurl];
+        
+        self.newerMainURL = domain.url;
+        
+        NSUserDefaults *defu = [NSUserDefaults standardUserDefaults];
+        
+        NSLog(@"啊啊啊 %@",domain.url);
+        
+        [defu setObject:domain.url forKey:@"newurl"];
+        
+        [defu synchronize];
+        
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[defu objectForKey:@"newurl"]]]];
+        
+        [self httphandler];
+    }];
+    
+}
+
+- (void)httphandler
+{
+//    self.reqCount ++;
+    if (self.newerMainURL == nil)
+    {
+        [self getNewerWebURL];
+    }
+    else
+    {
+        NSLog(@"请求十次还没请求到数据，算了不来了");
+    }
+}
+
 @end

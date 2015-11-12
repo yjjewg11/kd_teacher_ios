@@ -9,7 +9,9 @@
 
 #import "KGHttpService.h"
 #import "KDConstants.h"
+#import "AFNetworking.h"
 #import "HomePageViewController.h"
+
 @implementation KGHttpService
 + (KGHttpService *)sharedService {
     static KGHttpService *_sharedService = nil;
@@ -56,6 +58,18 @@ success:^(NSString *message) {
     NSLog(@"str=%@",str);
 }
 
-
+- (void)getNewerMainUrl:(void(^)(id newurl))success
+{
+    AFHTTPRequestOperationManager * mgr = [AFHTTPRequestOperationManager manager];
+    
+    [mgr GET:[NSString stringWithFormat:@"%@rest/share/getKDWebUrl.json",G_baseServiceURL] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        success(responseObject);
+    }
+    failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        NSLog(@"最新网页链接请求失败:%@",error);
+    }];
+}
 
 @end
