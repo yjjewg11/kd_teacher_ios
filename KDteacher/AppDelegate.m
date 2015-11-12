@@ -19,6 +19,7 @@
 #import "UMSocial.h"
 #import "MobClick.h"
 #import "UMSocialQQHandler.h"
+#import <Bugly/CrashReporter.h>
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
@@ -109,11 +110,15 @@
     //for log
     [UMessage setLogEnabled:YES];
     
+    
+    #pragma mark - bugly配置
+    
+    [[CrashReporter sharedInstance] enableLog:YES];
+    
+    [[CrashReporter sharedInstance] installWithAppId:@"900011891"];
+    
     return YES;
     //[MobClick startWithAppkey:@"55cc8dece0f55a2379004ba7" reportPolicy:BATCH channelId:@"app store"];
-   
-    
- 
     
 }
 

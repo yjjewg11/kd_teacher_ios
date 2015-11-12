@@ -51,9 +51,20 @@
         self.sharecontent = @"http://www.wenjienet.com/";
     }
     
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+    NSLog(@"%@有连接吗?",self.httpcontent);
+
     
+    //微博
+    [UMSocialData defaultData].extConfig.sinaData.urlResource.resourceType = UMSocialUrlResourceTypeImage;
+    [UMSocialData defaultData].extConfig.sinaData.shareText = self.httpcontent;
+    //微信
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatSessionData.url = self.httpcontent;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = self.httpcontent;
+    //qq
+    [UMSocialData defaultData].extConfig.qqData.urlResource.resourceType = UMSocialUrlResourceTypeImage;
+    [UMSocialData defaultData].extConfig.qqData.url = self.httpcontent;
+//    [UMSocialData defaultData].extConfig.qqData.shareText = self.httpcontent;
     
     [UMSocialSnsService presentSnsIconSheetView:self
                                          appKey:@"55cc8dece0f55a2379004ba7"
@@ -61,6 +72,7 @@
                                      shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.imgUrl]]]
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,nil]
                                        delegate:self];
+    
 }
 
 - (void)didReceiveMemoryWarning

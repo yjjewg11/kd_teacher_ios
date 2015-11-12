@@ -237,7 +237,7 @@
        //得到当前访问页面的地址
     NSString *urlString = [[request URL] absoluteString];
     urlString = [urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"urlString=%@",urlString);
+//    NSLog(@"urlString=%@",urlString);
     
     //先将这个字符串地址按://分割成两部分
     NSArray *urlArray = [urlString componentsSeparatedByString:@"/ios/"];
@@ -266,7 +266,7 @@
             }
             [[KGHttpService sharedService] submitPushTokenWithStatus:status success:^(NSString *msgStr) {
                 [wrapper setObject:[KGHttpService sharedService].pushToken forKey:(__bridge id)kSecAttrAccount];
-                NSLog(@"msgStr=%@",msgStr);
+//                NSLog(@"msgStr=%@",msgStr);
             } faild:^(NSString *errorMsg) {
                 
             }];
@@ -589,8 +589,6 @@
         self.newerMainURL = domain.url;
         
         NSUserDefaults *defu = [NSUserDefaults standardUserDefaults];
-        
-        NSLog(@"啊啊啊 %@",domain.url);
         
         [defu setObject:domain.url forKey:@"newurl"];
         
