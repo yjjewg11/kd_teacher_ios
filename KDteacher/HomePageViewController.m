@@ -303,7 +303,7 @@
             
             [self presentViewController:vc animated:NO completion:nil];
 
-        }else if (Share_Content && [urlString isEqualToString:@"http://120.25.212.44/px-rest/kd/ios/setShareContent"]) {
+        }else if ([str1 isEqualToString:Share_Content]) {
             
             NSString * dataStr = [self.webView stringByEvaluatingJavaScriptFromString:Share_Object];
             
@@ -315,10 +315,18 @@
             {
                 domain.content = @"分享:http://www.wenjienet.com/";
             }
-            
+
+            //微博
+            [UMSocialData defaultData].extConfig.sinaData.urlResource.resourceType = UMSocialUrlResourceTypeImage;
+            [UMSocialData defaultData].extConfig.sinaData.shareText = domain.httpurl;
+            //微信
             [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
-            
             [UMSocialData defaultData].extConfig.wechatSessionData.url = domain.httpurl;
+            [UMSocialData defaultData].extConfig.wechatTimelineData.url = domain.httpurl;
+            //qq
+            [UMSocialData defaultData].extConfig.qqData.urlResource.resourceType = UMSocialUrlResourceTypeImage;
+            [UMSocialData defaultData].extConfig.qqData.url = domain.httpurl;
+            //    [UMSocialData defaultData].extConfig.qqData.shareText = self.httpcontent;
             
             [UMSocialSnsService presentSnsIconSheetView:self
                                                  appKey:@"55cc8dece0f55a2379004ba7"
@@ -326,6 +334,7 @@
                                              shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:domain.pathurl]]]
                                         shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,nil]
                                                delegate:self];
+
         }
     
     return true;

@@ -51,9 +51,6 @@
         self.sharecontent = @"http://www.wenjienet.com/";
     }
     
-    NSLog(@"%@有连接吗?",self.httpcontent);
-
-    
     //微博
     [UMSocialData defaultData].extConfig.sinaData.urlResource.resourceType = UMSocialUrlResourceTypeImage;
     [UMSocialData defaultData].extConfig.sinaData.shareText = self.httpcontent;
