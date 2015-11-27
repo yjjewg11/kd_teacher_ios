@@ -1,26 +1,8 @@
 //
 //  CrashReporter.h
-//  Bugly Version: 1.4.1
+//  Bugly Version: 1.4.3
 //
-//  Copyright (c) 2015年 Tencent All rights reserved.
-//
-
-/// ------ 崩溃回调函数 ------
-// 在崩溃发生后进行调用，应用可以设置回调函数，并在回调中保存崩溃现场信息等信息，崩溃现场等信息可以通过getCrashXXX 接口获取
-// 注意：请不要在此回调函数中执行耗时较长的操作
-// Sample:
-//
-// static int exception_callback_handler() {
-//     NSLog(@"Crash occur in the app");
-//
-//     [... setAttachLog:@""];
-//     return 1;
-// }
-//
-// 你可以在初始化之后设置回调函数
-//
-// [... installWithAppId:BUGLY_APP_ID];
-// exp_call_back_func=&exception_callback_handler;
+//  Copyright (c) 2015年 Tencent. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -267,12 +249,11 @@ extern exp_callback exp_call_back_func;
  */
 - (void)cleanUncaughtExceptionAndSignalHandler;
 
-- (BOOL)checkSignalHandler;
-
-- (BOOL)checkNSExceptionHandler;
-
+/**
+ *
+ *
+ */
 - (BOOL)enableSignalHandlerCheckable:(BOOL)enable;
-
 
 //***********在应用发生崩溃后，如果在exp_call_back_func回调函数中需要获取当前崩溃的信息，可以从这些接口获取***********
 
@@ -341,13 +322,8 @@ extern exp_callback exp_call_back_func;
  */
 - (BOOL)checkBlockDataExistAndReport;
 
-/**
- *    @brief  卸载崩溃捕获监听
- */
-- (void)uninstall;
 
 - (void)enableBlockMonitor:(BOOL) monitor autoReport:(BOOL) reporter __deprecated_msg("Replace by enableBlockMonitor:");
-//*************一些和捕获以及上报相关的接口*************
 
 //设置异常合并上报，当天同一个异常只会上报第一次，后续合并保存并在第二天才会上报
 - (void)setExpMergeUpload:(BOOL)isMerge;
@@ -356,24 +332,22 @@ extern exp_callback exp_call_back_func;
 //注意：当Xcode的编译设置Strip Style为ALL Symbols时，该设置会导致还原出的应用堆栈出现错误，如果您的应用设置这个选项请不要调用这个接口，请调用此接口关闭进程内还原
 - (void)setEnableSymbolicateInProcess:(BOOL)enable;
 
-//设置crash过滤，以shortname为基准（例如SogouInput）,如果包括则不进行记录和上报
-- (BOOL)setExcludeShortName:(NSArray *)shortNames;
-//设置只上报存在关键字的crash列表
-- (BOOL)setIncludeShortName:(NSArray *)shortNames;
-
-//上次关闭是否因为crash,用于启动后检查上次是否是发生了crash，以便做特殊提示
-- (BOOL)isLastCloseByCrash;
-//前面的crash过滤（Include和Exclude）影响isLastCloseByCrash
-//设置NO之后， 如果crash被过滤不进行记录和上报，那么isLastCloseByCrash在下次启动返回NO
-//如果设置为YES， 那么crash被过滤不进行记录和上报，但下次启动isLastCloseByCrash仍旧会返回YES
-- (BOOL)setLastCloseByIncludExclued:(BOOL)enable;
-
-// *****  越狱情况API支持, AppStore版本请不要调用 *****
-// 使用mach exception捕获异常, 捕获的错误比注册sigaction更全面，默认关闭
-- (void)setUserMachHandler:(BOOL)useMach;
-
-// 一般用于越狱产品，可以重新设置数据库到特定路径
-- (BOOL)resetDBPath:(NSString *)newPath;
-// ****
+/// ------ 崩溃回调函数 ------
+// 在崩溃发生后进行调用，应用可以设置回调函数，并在回调中保存崩溃现场信息等信息，崩溃现场等信息可以通过getCrashXXX 接口获取
+// 注意：请不要在此回调函数中执行耗时较长的操作
+// Sample:
+//
+// static int exception_callback_handler() {
+//     NSLog(@"Crash occur in the app");
+//
+//     [... setAttachLog:@""];
+//     return 1;
+// }
+//
+// 你可以在初始化之后设置回调函数
+//
+// [... installWithAppId:BUGLY_APP_ID];
+// exp_call_back_func=&exception_callback_handler;
+//
 
 @end

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0400A8BB1BF467250099F3E4 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0400A8BA1BF467250099F3E4 /* Bugly.framework */; };
 		0400A8BD1BF467580099F3E4 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0400A8BC1BF467580099F3E4 /* libc++.tbd */; };
 		040685F21BA81B4A006AB926 /* FuniKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 040685EF1BA81B4A006AB926 /* FuniKeyChain.m */; };
 		040685F31BA81B4A006AB926 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 040685F11BA81B4A006AB926 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -74,6 +73,7 @@
 		04B250351B959FBC0041DB62 /* feedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B250331B959FBC0041DB62 /* feedBackViewController.xib */; };
 		04E8FE8C1B900DFF00119282 /* HomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8FE801B900DFF00119282 /* HomePageViewController.xib */; };
 		04E8FE931B900DFF00119282 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FE8A1B900DFF00119282 /* HomePageViewController.m */; };
+		04F84EC21C08612300A51140 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F84EC11C08612300A51140 /* Bugly.framework */; };
 		04F91ABA1BF317FF00A2D21B /* CanShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F91AB81BF317FF00A2D21B /* CanShareVC.m */; };
 		04F91ABB1BF317FF00A2D21B /* CanShareVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F91AB91BF317FF00A2D21B /* CanShareVC.xib */; };
 		04F91AC01BF3241800A2D21B /* ShareDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F91ABF1BF3241800A2D21B /* ShareDomain.m */; };
@@ -119,7 +119,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0400A8BA1BF467250099F3E4 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		0400A8BC1BF467580099F3E4 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		040685EE1BA81B4A006AB926 /* FuniKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuniKeyChain.h; sourceTree = "<group>"; };
 		040685EF1BA81B4A006AB926 /* FuniKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FuniKeyChain.m; sourceTree = "<group>"; };
@@ -234,6 +233,7 @@
 		04E8FE801B900DFF00119282 /* HomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageViewController.xib; sourceTree = "<group>"; };
 		04E8FE8A1B900DFF00119282 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		04E8FE8B1B900DFF00119282 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
+		04F84EC11C08612300A51140 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		04F91AB71BF317FF00A2D21B /* CanShareVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanShareVC.h; sourceTree = "<group>"; };
 		04F91AB81BF317FF00A2D21B /* CanShareVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanShareVC.m; sourceTree = "<group>"; };
 		04F91AB91BF317FF00A2D21B /* CanShareVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CanShareVC.xib; sourceTree = "<group>"; };
@@ -308,9 +308,9 @@
 				04F91B941BF330D900A2D21B /* CoreTelephony.framework in Frameworks */,
 				04F91B921BF330CD00A2D21B /* libsqlite3.tbd in Frameworks */,
 				04F91B901BF330C400A2D21B /* CoreGraphics.framework in Frameworks */,
-				0400A8BB1BF467250099F3E4 /* Bugly.framework in Frameworks */,
 				04F91B8C1BF330B200A2D21B /* libiconv.tbd in Frameworks */,
 				04F91AF31BF32A9700A2D21B /* libSocialQQ.a in Frameworks */,
+				04F84EC21C08612300A51140 /* Bugly.framework in Frameworks */,
 				04F91AF41BF32A9700A2D21B /* TencentOpenAPI.framework in Frameworks */,
 				041CC2B61BA7F01A00D1CB51 /* libUMFeedback.a in Frameworks */,
 				045FF5061BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
@@ -513,7 +513,7 @@
 		04B2501C1B9552C80041DB62 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
-				0400A8BA1BF467250099F3E4 /* Bugly.framework */,
+				04F84EC11C08612300A51140 /* Bugly.framework */,
 				04F91AC11BF32A9700A2D21B /* UMSocial_Sdk_4.3 */,
 				04F91ADC1BF32A9700A2D21B /* UMSocial_Sdk_Extra_Frameworks */,
 				040685ED1BA81AAF006AB926 /* KeyChain */,

@@ -30,6 +30,8 @@
 
 @property (assign, nonatomic) NSInteger reqCount;
 
+@property (strong, nonatomic) NSString * groupuuid;
+
 @end
 
 @implementation HomePageViewController
@@ -58,7 +60,9 @@
     self.view.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-48);
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT-48)];
     
-    [self.webView setScalesPageToFit:YES];
+    self.webView.scalesPageToFit = NO;
+    
+//    [self.webView setScalesPageToFit:YES];
     self.webView.userInteractionEnabled = YES;
     self.webView.delegate = self;
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc]
@@ -239,7 +243,7 @@
     urlString = [urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 //    NSLog(@"urlString=%@",urlString);
     
-    //先将这个字符串地址按://分割成两部分
+    //先将这个字符串地址按://分割成两部分  /ios/selectImgPic/groupuuid
     NSArray *urlArray = [urlString componentsSeparatedByString:@"/ios/"];
 //    NSLog(@"urlArray=%@",urlArray);
     
@@ -247,7 +251,7 @@
     NSString *subStr = [urlArray lastObject];
 //    NSLog(@"subStr=%@",subStr);
     
-    //把这个字符串用/分割
+    //把这个字符串用/分割 selectImgPic/groupuuid
     NSArray *subArray = [subStr componentsSeparatedByString:@"/"];
     NSString *str1=subArray[0];
 //    NSLog(@"模块名称: %@",str1);
@@ -281,8 +285,16 @@
         
             
         }else if ([str1 isEqualToString:Image_Pic]) {//
-        
+            
+            if (subArray.count > 1)
+            {
+                self.groupuuid = subArray[1];
+                
+                NSLog(@"aaa %@",self.groupuuid);
+            }
+            
             [self uploadAllImages];
+            
         }else if ([str1 isEqualToString:Open_Window]) {
 
             NSString * dataStr = [self.webView stringByEvaluatingJavaScriptFromString:Share_Object];
@@ -504,7 +516,8 @@
 }
 //上传多张图片的方法
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
--(void)uploadAllImages{
+-(void)uploadAllImages
+{
     ZYQAssetPickerController *picker = [[ZYQAssetPickerController alloc] init];
     picker.maximumNumberOfSelection = 9;
     picker.assetsFilter = [ALAssetsFilter allPhotos];
@@ -546,7 +559,9 @@
         
         NSMutableDictionary * parameters = [[NSMutableDictionary alloc] init];
         [parameters setObject:[KGHttpService sharedService].jssionID  forKey:@"JSESSIONID"];
-        [parameters setObject:[NSNumber numberWithInteger:1] forKey:@"type"];
+        [parameters setObject:[NSNumber numberWithInteger:4] forKey:@"type"];
+        [parameters setObject:self.groupuuid forKey:@"groupuuid"];
+        
         //上传图片的地址
         NSString *url = URL(G_baseServiceURL, G_rest_uploadFile_upload);
         //上传图片的方法
