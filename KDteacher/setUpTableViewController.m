@@ -193,26 +193,21 @@
         if (indexPath.row==0) {
             //清除缓存
             [[NSURLCache sharedURLCache] removeAllCachedResponses];
-            [self dismissViewControllerAnimated:YES completion:^{
+            
+            [self dismissViewControllerAnimated:YES completion:^
+            {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"clearBuffer" object:self userInfo:nil];
             }];
-
-           
-//            HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
-//            [self presentViewController:home animated:YES completion:^{
-//                [home.myView setHidden:NO];
-//                home.setupBtn.selected = NO;
-//                home.homeBtn.selected = YES;
-//                [home.webView stringByEvaluatingJavaScriptFromString:@"javascript:menu_dohome()"];
-//            }];
-
         }
     //单击注销所响应的事件
-    else if(indexPath.row==1){
-        [self dismissViewControllerAnimated:YES completion:^{
+    else if(indexPath.row==1)
+    {
+        [self dismissViewControllerAnimated:YES completion:^
+        {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"cancellation" object:self userInfo:nil];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"hidentabbar" object:nil userInfo:nil];
         }];
-
     }
     }
 }

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface setUpTableViewController : UITableViewController
 
 @end

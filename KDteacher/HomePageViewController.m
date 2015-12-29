@@ -54,8 +54,11 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
+    
     
     self.view.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-48);
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT-48)];
@@ -67,8 +70,10 @@
     self.webView.delegate = self;
     UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc]
                              initWithFrame : CGRectMake(0.0f, 0.0f, 32.0f, 32.0f)] ;
+    
     [activityIndicatorView setCenter: self.view.center] ;
-    [activityIndicatorView setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleWhite] ;
+    [activityIndicatorView setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleWhite];
+    
     [self.view addSubview : activityIndicatorView] ;
     [self.webView setNeedsDisplayInRect:self.view.frame];
     [self.view addSubview: self.webView];
@@ -141,6 +146,7 @@
     [self.myView addSubview:self.setupBtn];
     [self.view addSubview:self.myView];
     [self.myView setHidden:YES];
+    
     //添加一个通知修改资料
     NSNotificationCenter *changeData = [NSNotificationCenter defaultCenter];
     [changeData addObserver:self
@@ -166,31 +172,34 @@
                          name:@"clearBuffer"
                        object:nil];
 }
-//实现通知方法
--(void)ChangeData{
-    [self.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_update()"];
-}
--(void)ChangePassword{
-    [self.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_updatepassword()"];
-}
--(void)cancellation{
-    
-   [self.webView stringByEvaluatingJavaScriptFromString:@"javascript:G_jsCallBack.userinfo_logout()"];
-}
--(void)clearBuffer{
-     
-    [self.webView stringByEvaluatingJavaScriptFromString:@"javascript:menu_dohome()"];
-}
--(void)homeClicked:(UIButton *)homebtn{
+////实现通知方法
+//-(void)ChangeData{
+//    [self.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_update()"];
+//}
+//-(void)ChangePassword{
+//    [self.webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_updatepassword()"];
+//}
+//-(void)cancellation{
+//    
+//   [self.webView stringByEvaluatingJavaScriptFromString:@"javascript:G_jsCallBack.userinfo_logout()"];
+//}
+//-(void)clearBuffer
+//{
+//    tan)
+//    [self.webView stringByEvaluatingJavaScriptFromString:@"javascript:menu_dohome()"];
+//}
+
+-(void)homeClicked:(UIButton *)homebtn
+{
     homebtn.selected = YES;
     self.messageBtn.selected = NO;
     self.setupBtn.selected = NO;
     self.mailListBtn.selected = NO;
     [self.webView stringByEvaluatingJavaScriptFromString:@"javascript:menu_dohome()"];
-    
-    
 }
--(void)mailClicked:(UIButton *)mailClick{
+
+-(void)mailClicked:(UIButton *)mailClick
+{
     mailClick.selected = YES;
     self.homeBtn.selected = NO;
     self.messageBtn.selected = NO;
@@ -219,14 +228,14 @@
     //获取当前页面网址
    // [self.webView stringByEvaluatingJavaScriptFromString:@"document.location.href"];
     
-    
     [self.webView stringByEvaluatingJavaScriptFromString:Star_Js];
     
     [self.webView stringByEvaluatingJavaScriptFromString:Share_Js];
     
 }
 //网页加载失败时调用此方法
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"加载网页失败" message:@"请检查网络是否连接" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     [alert show];
 }
@@ -257,21 +266,27 @@
 //    NSLog(@"模块名称: %@",str1);
     
     
-        if ([str1 isEqualToString:Web_IOS_sessionid]) {//
-            [KGHttpService sharedService].jssionID =subArray[1];
+        if ([str1 isEqualToString:Web_IOS_sessionid])
+        {
+            [KGHttpService sharedService].jssionID = subArray[1];
             [self.myView setHidden:NO];
             
-             KeychainItemWrapper * wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"KeyChain" accessGroup:nil];
+            KeychainItemWrapper * wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"KeyChain" accessGroup:nil];
+            
             NSString *status;
             if ([[NSUserDefaults standardUserDefaults] boolForKey:NewMessageKey]) {
                 status = @"0";
             }else{
                 status = @"2";
             }
-            [[KGHttpService sharedService] submitPushTokenWithStatus:status success:^(NSString *msgStr) {
+            
+            [[KGHttpService sharedService] submitPushTokenWithStatus:status success:^(NSString *msgStr)
+            {
                 [wrapper setObject:[KGHttpService sharedService].pushToken forKey:(__bridge id)kSecAttrAccount];
 //                NSLog(@"msgStr=%@",msgStr);
-            } faild:^(NSString *errorMsg) {
+            }
+            faild:^(NSString *errorMsg)
+            {
                 
             }];
 
@@ -289,8 +304,6 @@
             if (subArray.count > 1)
             {
                 self.groupuuid = subArray[1];
-                
-                NSLog(@"aaa %@",self.groupuuid);
             }
             
             [self uploadAllImages];
@@ -467,7 +480,12 @@
      //上传图片的参数
     
        NSMutableDictionary * parameters = [[NSMutableDictionary alloc] init];
-        [parameters setObject:[KGHttpService sharedService].jssionID  forKey:@"JSESSIONID"];
+        
+        if ([KGHttpService sharedService].jssionID != nil)
+        {
+             [parameters setObject:[KGHttpService sharedService].jssionID  forKey:@"JSESSIONID"];
+        }
+    
         [parameters setObject:[NSNumber numberWithInteger:1] forKey:@"type"];
 //上传图片的地址
         NSString *url = URL(G_baseServiceURL, G_rest_uploadFile_upload);
@@ -516,7 +534,7 @@
 }
 //上传多张图片的方法
 //－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
--(void)uploadAllImages
+- (void)uploadAllImages
 {
     ZYQAssetPickerController *picker = [[ZYQAssetPickerController alloc] init];
     picker.maximumNumberOfSelection = 9;
@@ -558,7 +576,12 @@
         //上传图片的参数
         
         NSMutableDictionary * parameters = [[NSMutableDictionary alloc] init];
-        [parameters setObject:[KGHttpService sharedService].jssionID  forKey:@"JSESSIONID"];
+        
+        if ([KGHttpService sharedService].jssionID != nil)
+        {
+            [parameters setObject:[KGHttpService sharedService].jssionID  forKey:@"JSESSIONID"];
+        }
+        
         [parameters setObject:[NSNumber numberWithInteger:4] forKey:@"type"];
         [parameters setObject:self.groupuuid forKey:@"groupuuid"];
         
@@ -606,22 +629,22 @@
 #pragma mark - 请求最新网页数据
 - (void)getNewerWebURL
 {
-    [[KGHttpService sharedService] getNewerMainUrl:^(id newurl)
-    {
-        MainDomain * domain = [MainDomain objectWithKeyValues:newurl];
-        
-        self.newerMainURL = domain.url;
-        
-        NSUserDefaults *defu = [NSUserDefaults standardUserDefaults];
-        
-        [defu setObject:domain.url forKey:@"newurl"];
-        
-        [defu synchronize];
-        
-        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[defu objectForKey:@"newurl"]]]];
-        
-        [self httphandler];
-    }];
+//    [[KGHttpService sharedService] getNewerMainUrl:^(id newurl)
+//    {
+//        MainDomain * domain = [MainDomain objectWithKeyValues:newurl];
+//        
+//        self.newerMainURL = domain.url;
+//        
+//        NSUserDefaults *defu = [NSUserDefaults standardUserDefaults];
+//        
+//        [defu setObject:domain.url forKey:@"newurl"];
+//        
+//        [defu synchronize];
+//        
+//        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[defu objectForKey:@"newurl"]]]];
+//        
+//        [self httphandler];
+//    }];
     
 }
 

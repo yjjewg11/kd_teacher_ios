@@ -12,6 +12,7 @@
 @property(nonatomic,strong)NSString *jssionID;
 + (KGHttpService *)sharedService;
 - (void)submitPushTokenWithStatus:(NSString *)status success:(void (^)(NSString * msgStr))success faild:(void (^)(NSString * errorMsg))faild;
-- (void)getNewerMainUrl:(void(^)(id newurl))success;
+
+- (void)getNewerMainUrl:(void(^)(id newurl))success faild:(void(^)(NSString *errMessage))faild;
 
 @end

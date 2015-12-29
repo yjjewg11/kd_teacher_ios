@@ -10,6 +10,8 @@
 
 @interface aboutUsViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *versionLbl;
+
 @end
 
 @implementation aboutUsViewController
@@ -23,6 +25,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.versionLbl.text = [NSString stringWithFormat:@"V %@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0 , 100, 44)];
     titleLabel.backgroundColor = [UIColor clearColor];  //设置Label背景透明
     titleLabel.font = [UIFont boldSystemFontOfSize:20];  //设置文本字体与大小

@@ -23,25 +23,24 @@
 }
 
 #pragma mark - 开关点击
-- (void)switchChange:(UISwitch *)sender{
-   
+- (void)switchChange:(UISwitch *)sender
+{
     [[KGHttpService sharedService] submitPushTokenWithStatus:sender.on?@"0":@"2" success:^(NSString *msgStr) {
     } faild:^(NSString *errorMsg) {
     }];
 
     [[NSUserDefaults standardUserDefaults] setBool:sender.on forKey:[_dic objectForKey:_flagTitleLabel.text]];
     [[NSUserDefaults standardUserDefaults] synchronize];
-   
-   
-       
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     return 15;
 }
 

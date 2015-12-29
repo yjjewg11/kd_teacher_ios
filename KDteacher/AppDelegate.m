@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "HomeVC.h"
 //#import "MobClick.h"
 #import "HomePageViewController.h"
 #import "UMessage.h"
@@ -44,7 +45,8 @@
     return  [UMSocialSnsService handleOpenURL:url];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     // Override point for customization after application launch.
     [[UIApplication sharedApplication]setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     
@@ -54,9 +56,13 @@
     
     self.window=[[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     
-    HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
+//    HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
+
+    HomeVC * home = [[HomeVC alloc] init];
     
-    self.window.rootViewController = home;
+    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:home];
+    
+    self.window.rootViewController = nav;
     
     [self.window makeKeyAndVisible];
     
@@ -67,7 +73,6 @@
     [UMSocialWechatHandler setWXAppId:@"wxc784adf432c9f59d" appSecret:@"078b3b3e3515f1d434c87d20dc02ab8c" url:@"http://www.wenjienet.com/"];
     
     [UMSocialQQHandler setQQWithAppId:@"1104813270" appKey:@"SumAAk7jtaUSnZqd" url:@"http://www.wenjienet.com/"];
-    
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
@@ -93,7 +98,9 @@
                                                                                      categories:[NSSet setWithObject:categorys]];
         [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
         
-    } else{
+    }
+    else
+    {
         //register remoteNotification types (iOS 8.0以下)
         [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
          |UIRemoteNotificationTypeSound
@@ -119,7 +126,6 @@
     
     return YES;
     //[MobClick startWithAppkey:@"55cc8dece0f55a2379004ba7" reportPolicy:BATCH channelId:@"app store"];
-    
 }
 
 
@@ -133,14 +139,18 @@
         [key appendString:str];
     }
     
-    if(![key isEqualToString:@""]){
+    if(![key isEqualToString:@""])
+    {
+        NSLog(@"== %@",[KGHttpService sharedService].pushToken);
         [KGHttpService sharedService].pushToken = key;
     }
 
     [UMessage registerDeviceToken:deviceToken];
     
     NSLog(@"umeng message alias is: %@", [UMFeedback uuid]);
-    [UMessage addAlias:[UMFeedback uuid] type:[UMFeedback messageType] response:^(id responseObject, NSError *error) {
+    
+    [UMessage addAlias:[UMFeedback uuid] type:[UMFeedback messageType] response:^(id responseObject, NSError *error)
+    {
         if (error != nil) {
             NSLog(@"%@", error);
             NSLog(@"%@", responseObject);

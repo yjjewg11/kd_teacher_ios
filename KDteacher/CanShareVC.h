@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface CanShareVC : UIViewController
+@interface CanShareVC : BaseViewController
 
 @property (strong, nonatomic) NSString * httpcontent;
 

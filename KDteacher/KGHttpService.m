@@ -58,17 +58,18 @@ success:^(NSString *message) {
     NSLog(@"str=%@",str);
 }
 
-- (void)getNewerMainUrl:(void(^)(id newurl))success
+- (void)getNewerMainUrl:(void(^)(id newurl))success faild:(void(^)(NSString *errMessage))faild
 {
     AFHTTPRequestOperationManager * mgr = [AFHTTPRequestOperationManager manager];
     
     [mgr GET:[NSString stringWithFormat:@"%@rest/share/getKDWebUrl.json",G_baseServiceURL] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
+        
         success(responseObject);
     }
     failure:^(AFHTTPRequestOperation *operation, NSError *error)
     {
-        NSLog(@"最新网页链接请求失败:%@",error);
+        faild(@"gg了");
     }];
 }
 

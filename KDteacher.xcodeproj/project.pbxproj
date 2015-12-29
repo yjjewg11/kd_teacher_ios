@@ -73,6 +73,7 @@
 		04B250351B959FBC0041DB62 /* feedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B250331B959FBC0041DB62 /* feedBackViewController.xib */; };
 		04E8FE8C1B900DFF00119282 /* HomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8FE801B900DFF00119282 /* HomePageViewController.xib */; };
 		04E8FE931B900DFF00119282 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FE8A1B900DFF00119282 /* HomePageViewController.m */; };
+		04F5C0701C326291003FDEA1 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5C06E1C326291003FDEA1 /* BaseViewController.m */; };
 		04F84EC21C08612300A51140 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F84EC11C08612300A51140 /* Bugly.framework */; };
 		04F91ABA1BF317FF00A2D21B /* CanShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F91AB81BF317FF00A2D21B /* CanShareVC.m */; };
 		04F91ABB1BF317FF00A2D21B /* CanShareVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04F91AB91BF317FF00A2D21B /* CanShareVC.xib */; };
@@ -100,6 +101,11 @@
 		04F91B941BF330D900A2D21B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F91B931BF330D900A2D21B /* CoreTelephony.framework */; };
 		04F91B961BF330E200A2D21B /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F91B951BF330E200A2D21B /* libstdc++.tbd */; };
 		04F91B981BF330EA00A2D21B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F91B971BF330EA00A2D21B /* libz.tbd */; };
+		04FA72401C311C09001D2793 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA723E1C311C09001D2793 /* HomeVC.m */; };
+		04FA72411C311C09001D2793 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA723F1C311C09001D2793 /* HomeVC.xib */; };
+		04FA72431C311F74001D2793 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FA72421C311F74001D2793 /* JavaScriptCore.framework */; };
+		04FA72501C312121001D2793 /* SDBaseProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA724D1C312121001D2793 /* SDBaseProgressView.m */; };
+		04FA72511C312121001D2793 /* SDRotationLoopProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA724F1C312121001D2793 /* SDRotationLoopProgressView.m */; };
 		04FAFBE41BF43B4E00F236C1 /* MainDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FAFBE31BF43B4E00F236C1 /* MainDomain.m */; };
 		E73218DD1B7C7CFA00B09F6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E73218DC1B7C7CFA00B09F6B /* main.m */; };
 		E73218E01B7C7CFA00B09F6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E73218DF1B7C7CFA00B09F6B /* AppDelegate.m */; };
@@ -233,6 +239,8 @@
 		04E8FE801B900DFF00119282 /* HomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageViewController.xib; sourceTree = "<group>"; };
 		04E8FE8A1B900DFF00119282 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		04E8FE8B1B900DFF00119282 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
+		04F5C06E1C326291003FDEA1 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		04F5C06F1C326291003FDEA1 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		04F84EC11C08612300A51140 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		04F91AB71BF317FF00A2D21B /* CanShareVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanShareVC.h; sourceTree = "<group>"; };
 		04F91AB81BF317FF00A2D21B /* CanShareVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanShareVC.m; sourceTree = "<group>"; };
@@ -278,6 +286,14 @@
 		04F91B931BF330D900A2D21B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		04F91B951BF330E200A2D21B /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		04F91B971BF330EA00A2D21B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		04FA723D1C311C09001D2793 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
+		04FA723E1C311C09001D2793 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
+		04FA723F1C311C09001D2793 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
+		04FA72421C311F74001D2793 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		04FA724C1C312121001D2793 /* SDBaseProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBaseProgressView.h; sourceTree = "<group>"; };
+		04FA724D1C312121001D2793 /* SDBaseProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBaseProgressView.m; sourceTree = "<group>"; };
+		04FA724E1C312121001D2793 /* SDRotationLoopProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDRotationLoopProgressView.h; sourceTree = "<group>"; };
+		04FA724F1C312121001D2793 /* SDRotationLoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRotationLoopProgressView.m; sourceTree = "<group>"; };
 		04FAFBE21BF43B4E00F236C1 /* MainDomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDomain.h; sourceTree = "<group>"; };
 		04FAFBE31BF43B4E00F236C1 /* MainDomain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDomain.m; sourceTree = "<group>"; };
 		E73218D71B7C7CFA00B09F6B /* 问界互动家园.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "问界互动家园.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,9 +306,9 @@
 		E73218F01B7C7CFB00B09F6B /* KDteacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KDteacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73218F51B7C7CFB00B09F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E73218F61B7C7CFB00B09F6B /* KDteacherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KDteacherTests.m; sourceTree = "<group>"; };
-		E75CA5E21B7CCE8000FF56CF /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
-		E75CA5E31B7CCE8000FF56CF /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
-		E75CA5E41B7CCE8000FF56CF /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		E75CA5E21B7CCE8000FF56CF /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libMobClickLibrary.a; path = ../libMobClickLibrary.a; sourceTree = "<group>"; };
+		E75CA5E31B7CCE8000FF56CF /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClick.h; path = ../MobClick.h; sourceTree = "<group>"; };
+		E75CA5E41B7CCE8000FF56CF /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobClickSocialAnalytics.h; path = ../MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +316,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04FA72431C311F74001D2793 /* JavaScriptCore.framework in Frameworks */,
 				0400A8BD1BF467580099F3E4 /* libc++.tbd in Frameworks */,
 				04F91B981BF330EA00A2D21B /* libz.tbd in Frameworks */,
 				040685F91BA8277E006AB926 /* Security.framework in Frameworks */,
@@ -346,6 +363,7 @@
 		040685F41BA81E8E006AB926 /* SerVice */ = {
 			isa = PBXGroup;
 			children = (
+				04F5C0741C326A62003FDEA1 /* model */,
 				040685F51BA81EB3006AB926 /* KGHttpService.h */,
 				040685F61BA81EB3006AB926 /* KGHttpService.m */,
 			);
@@ -417,20 +435,6 @@
 				041CC2B31BA7F01A00D1CB51 /* UMTextView.m */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		0454495E1BA03A330067C0F6 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				04F91AB11BF3157000A2D21B /* NewWebView */,
-				0454495F1BA03A5A0067C0F6 /* UtilMethod.h */,
-				045449601BA03A5A0067C0F6 /* UtilMethod.m */,
-				045449621BA03F010067C0F6 /* KGBaseDomain.h */,
-				045449631BA03F010067C0F6 /* KGBaseDomain.m */,
-				045449651BA03FA20067C0F6 /* ResMsgDomain.h */,
-				045449661BA03FA20067C0F6 /* ResMsgDomain.m */,
-			);
-			name = model;
 			sourceTree = "<group>";
 		};
 		045449681BA041240067C0F6 /* MJExtension */ = {
@@ -513,6 +517,17 @@
 		04B2501C1B9552C80041DB62 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				04FA72421C311F74001D2793 /* JavaScriptCore.framework */,
+				0400A8BC1BF467580099F3E4 /* libc++.tbd */,
+				04F91B971BF330EA00A2D21B /* libz.tbd */,
+				04F91B951BF330E200A2D21B /* libstdc++.tbd */,
+				04F91B931BF330D900A2D21B /* CoreTelephony.framework */,
+				04F91B911BF330CD00A2D21B /* libsqlite3.tbd */,
+				04F91B8F1BF330C400A2D21B /* CoreGraphics.framework */,
+				04F91B8D1BF330BC00A2D21B /* SystemConfiguration.framework */,
+				04F91B8B1BF330B200A2D21B /* libiconv.tbd */,
+				040685F81BA8277E006AB926 /* Security.framework */,
+				04FA724B1C3120B1001D2793 /* CQLoadManger(Longing菊花大法) */,
 				04F84EC11C08612300A51140 /* Bugly.framework */,
 				04F91AC11BF32A9700A2D21B /* UMSocial_Sdk_4.3 */,
 				04F91ADC1BF32A9700A2D21B /* UMSocial_Sdk_Extra_Frameworks */,
@@ -522,55 +537,70 @@
 				0462932D1BA15AC600741C3B /* ZYQAssetPickerController */,
 				045449681BA041240067C0F6 /* MJExtension */,
 				04A60AA91B9EBE8F00AC61D5 /* AFNETWording */,
-				04B2501D1B9552ED0041DB62 /* aboutUsViewController.h */,
-				04B2501E1B9552ED0041DB62 /* aboutUsViewController.m */,
-				04B2501F1B9552ED0041DB62 /* aboutUsViewController.xib */,
-				04B2502C1B958EE80041DB62 /* pushTableViewController.h */,
-				04B2502D1B958EE80041DB62 /* pushTableViewController.m */,
-				04B2502E1B958EE80041DB62 /* pushTableViewController.xib */,
-				045FF4FE1BA6A0DF00938124 /* pushTableViewCell.h */,
-				045FF4FF1BA6A0DF00938124 /* pushTableViewCell.m */,
-				045FF5001BA6A0DF00938124 /* pushTableViewCell.xib */,
-				04B250311B959FBC0041DB62 /* feedBackViewController.h */,
-				04B250321B959FBC0041DB62 /* feedBackViewController.m */,
-				04B250331B959FBC0041DB62 /* feedBackViewController.xib */,
 			);
 			name = FrameWorks;
 			sourceTree = "<group>";
 		};
-		04E8FE7F1B900DBD00119282 /* TabBar */ = {
+		04E8FE7F1B900DBD00119282 /* TabBar(老版本主页) */ = {
 			isa = PBXGroup;
 			children = (
-				0454495E1BA03A330067C0F6 /* model */,
-				0468E01E1B9EEB28001BA58F /* KDConstants.m */,
-				0468E01D1B9EEB28001BA58F /* KDConstants.h */,
 				04E8FE801B900DFF00119282 /* HomePageViewController.xib */,
 				04E8FE8A1B900DFF00119282 /* HomePageViewController.m */,
 				04E8FE8B1B900DFF00119282 /* HomePageViewController.h */,
-				04A6ADF71B9447EC0001E58D /* setUpTableViewController.h */,
-				04A6ADF81B9447EC0001E58D /* setUpTableViewController.m */,
-				04A6ADF91B9447EC0001E58D /* setUpTableViewController.xib */,
 			);
-			name = TabBar;
+			name = "TabBar(老版本主页)";
 			sourceTree = "<group>";
 		};
-		04F91AB11BF3157000A2D21B /* NewWebView */ = {
+		04F5C0661C325E0A003FDEA1 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				04F91ABD1BF323F600A2D21B /* model */,
-				04F91ABC1BF323ED00A2D21B /* controller */,
+				04F5C0731C326A50003FDEA1 /* model */,
+				04F5C0721C326A47003FDEA1 /* controller */,
+				04B2501C1B9552C80041DB62 /* FrameWorks */,
+				04FA723C1C311B4A001D2793 /* Config */,
+				040685F41BA81E8E006AB926 /* SerVice */,
 			);
-			name = NewWebView;
+			name = Base;
 			sourceTree = "<group>";
 		};
-		04F91ABC1BF323ED00A2D21B /* controller */ = {
+		04F5C0711C3269D7003FDEA1 /* controller */ = {
 			isa = PBXGroup;
 			children = (
 				04F91AB71BF317FF00A2D21B /* CanShareVC.h */,
 				04F91AB81BF317FF00A2D21B /* CanShareVC.m */,
 				04F91AB91BF317FF00A2D21B /* CanShareVC.xib */,
+				04FA723D1C311C09001D2793 /* HomeVC.h */,
+				04FA723E1C311C09001D2793 /* HomeVC.m */,
+				04FA723F1C311C09001D2793 /* HomeVC.xib */,
 			);
 			name = controller;
+			sourceTree = "<group>";
+		};
+		04F5C0721C326A47003FDEA1 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				04F5C06E1C326291003FDEA1 /* BaseViewController.m */,
+				04F5C06F1C326291003FDEA1 /* BaseViewController.h */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		04F5C0731C326A50003FDEA1 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				045449621BA03F010067C0F6 /* KGBaseDomain.h */,
+				045449631BA03F010067C0F6 /* KGBaseDomain.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		04F5C0741C326A62003FDEA1 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				045449651BA03FA20067C0F6 /* ResMsgDomain.h */,
+				045449661BA03FA20067C0F6 /* ResMsgDomain.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 		04F91ABD1BF323F600A2D21B /* model */ = {
@@ -587,6 +617,9 @@
 		04F91AC11BF32A9700A2D21B /* UMSocial_Sdk_4.3 */ = {
 			isa = PBXGroup;
 			children = (
+				E75CA5E21B7CCE8000FF56CF /* libMobClickLibrary.a */,
+				E75CA5E31B7CCE8000FF56CF /* MobClick.h */,
+				E75CA5E41B7CCE8000FF56CF /* MobClickSocialAnalytics.h */,
 				04F91AC21BF32A9700A2D21B /* UMSocialLocalizable.strings */,
 				04F91AC41BF32A9700A2D21B /* Header */,
 				04F91AD01BF32A9700A2D21B /* libUMSocial_Sdk_4.3.a */,
@@ -661,18 +694,62 @@
 			path = Wechat;
 			sourceTree = "<group>";
 		};
+		04FA723A1C311AC8001D2793 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				04F5C0711C3269D7003FDEA1 /* controller */,
+				04F91ABD1BF323F600A2D21B /* model */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		04FA723B1C311B01001D2793 /* Setting(设置) */ = {
+			isa = PBXGroup;
+			children = (
+				04B2501D1B9552ED0041DB62 /* aboutUsViewController.h */,
+				04B2501E1B9552ED0041DB62 /* aboutUsViewController.m */,
+				04B2501F1B9552ED0041DB62 /* aboutUsViewController.xib */,
+				04B2502C1B958EE80041DB62 /* pushTableViewController.h */,
+				04B2502D1B958EE80041DB62 /* pushTableViewController.m */,
+				04B2502E1B958EE80041DB62 /* pushTableViewController.xib */,
+				045FF4FE1BA6A0DF00938124 /* pushTableViewCell.h */,
+				045FF4FF1BA6A0DF00938124 /* pushTableViewCell.m */,
+				045FF5001BA6A0DF00938124 /* pushTableViewCell.xib */,
+				04B250311B959FBC0041DB62 /* feedBackViewController.h */,
+				04B250321B959FBC0041DB62 /* feedBackViewController.m */,
+				04B250331B959FBC0041DB62 /* feedBackViewController.xib */,
+				04A6ADF71B9447EC0001E58D /* setUpTableViewController.h */,
+				04A6ADF81B9447EC0001E58D /* setUpTableViewController.m */,
+				04A6ADF91B9447EC0001E58D /* setUpTableViewController.xib */,
+			);
+			name = "Setting(设置)";
+			sourceTree = "<group>";
+		};
+		04FA723C1C311B4A001D2793 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				0454495F1BA03A5A0067C0F6 /* UtilMethod.h */,
+				045449601BA03A5A0067C0F6 /* UtilMethod.m */,
+				0468E01E1B9EEB28001BA58F /* KDConstants.m */,
+				0468E01D1B9EEB28001BA58F /* KDConstants.h */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+		04FA724B1C3120B1001D2793 /* CQLoadManger(Longing菊花大法) */ = {
+			isa = PBXGroup;
+			children = (
+				04FA724C1C312121001D2793 /* SDBaseProgressView.h */,
+				04FA724D1C312121001D2793 /* SDBaseProgressView.m */,
+				04FA724E1C312121001D2793 /* SDRotationLoopProgressView.h */,
+				04FA724F1C312121001D2793 /* SDRotationLoopProgressView.m */,
+			);
+			path = "CQLoadManger(Longing菊花大法)";
+			sourceTree = "<group>";
+		};
 		E73218CE1B7C7CFA00B09F6B = {
 			isa = PBXGroup;
 			children = (
-				0400A8BC1BF467580099F3E4 /* libc++.tbd */,
-				04F91B971BF330EA00A2D21B /* libz.tbd */,
-				04F91B951BF330E200A2D21B /* libstdc++.tbd */,
-				04F91B931BF330D900A2D21B /* CoreTelephony.framework */,
-				04F91B911BF330CD00A2D21B /* libsqlite3.tbd */,
-				04F91B8F1BF330C400A2D21B /* CoreGraphics.framework */,
-				04F91B8D1BF330BC00A2D21B /* SystemConfiguration.framework */,
-				04F91B8B1BF330B200A2D21B /* libiconv.tbd */,
-				040685F81BA8277E006AB926 /* Security.framework */,
 				046293381BA188E700741C3B /* KDProject */,
 				E73218F31B7C7CFB00B09F6B /* KDteacherTests */,
 				E73218D81B7C7CFA00B09F6B /* Products */,
@@ -691,16 +768,10 @@
 		E73218D91B7C7CFA00B09F6B /* KDteacher */ = {
 			isa = PBXGroup;
 			children = (
-				040685F41BA81E8E006AB926 /* SerVice */,
-				04B2501C1B9552C80041DB62 /* FrameWorks */,
-				04E8FE7F1B900DBD00119282 /* TabBar */,
-				E75CA5E21B7CCE8000FF56CF /* libMobClickLibrary.a */,
-				E75CA5E31B7CCE8000FF56CF /* MobClick.h */,
-				E75CA5E41B7CCE8000FF56CF /* MobClickSocialAnalytics.h */,
-				E73218DE1B7C7CFA00B09F6B /* AppDelegate.h */,
-				E73218DF1B7C7CFA00B09F6B /* AppDelegate.m */,
-				E73218E71B7C7CFA00B09F6B /* Images.xcassets */,
-				E73218E91B7C7CFA00B09F6B /* LaunchScreen.xib */,
+				04F5C0661C325E0A003FDEA1 /* Base */,
+				04FA723B1C311B01001D2793 /* Setting(设置) */,
+				04FA723A1C311AC8001D2793 /* Main */,
+				04E8FE7F1B900DBD00119282 /* TabBar(老版本主页) */,
 				E73218DA1B7C7CFA00B09F6B /* Supporting Files */,
 			);
 			path = KDteacher;
@@ -709,6 +780,10 @@
 		E73218DA1B7C7CFA00B09F6B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E73218DE1B7C7CFA00B09F6B /* AppDelegate.h */,
+				E73218DF1B7C7CFA00B09F6B /* AppDelegate.m */,
+				E73218E71B7C7CFA00B09F6B /* Images.xcassets */,
+				E73218E91B7C7CFA00B09F6B /* LaunchScreen.xib */,
 				046F8BD11B994735009EF427 /* MacroDefinition.h */,
 				E73218DB1B7C7CFA00B09F6B /* Info.plist */,
 				E73218DC1B7C7CFA00B09F6B /* main.m */,
@@ -785,6 +860,11 @@
 					E73218D61B7C7CFA00B09F6B = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = M5PP646L93;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					E73218EF1B7C7CFB00B09F6B = {
 						CreatedOnToolsVersion = 6.4;
@@ -852,6 +932,7 @@
 				045FF5021BA6A0DF00938124 /* pushTableViewCell.xib in Resources */,
 				046293361BA1884500741C3B /* ZYQAssetPicker.Bundle in Resources */,
 				04F91AEE1BF32A9700A2D21B /* UMShareEditViewControlleriPad.xib in Resources */,
+				04FA72411C311C09001D2793 /* HomeVC.xib in Resources */,
 				041CC2BE1BA7F01A00D1CB51 /* ToolViewInputVoiceHL@2x.png in Resources */,
 				04F91AEF1BF32A9700A2D21B /* UMSLoginViewController.xib in Resources */,
 			);
@@ -869,14 +950,14 @@
 /* Begin PBXShellScriptBuildPhase section */
 		0400A8BE1BF469830099F3E4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\n# Copyright 2014-2015 Bugly @Tencent. All rights reserved.\n#\n# V 1.1\n#\n################################################################################\n# 注意: 请配置下面的信息\n################################################################################\nBUGLY_APP_ID=\"<YOUR_APP_ID>\"\nBUGLY_APP_KEY=\"<YOUR_APP_KEY>\"\nBUNDLE_IDENTIFIER=\"<YOUR_BUNDLE_ID>\"\n################################################################################\n# 自定义配置\n################################################################################\n# Debug模式编译是否上传，1＝上传 0＝不上传，默认不上传\nUPLOAD_DEBUG_SYMBOLS=1\n#\n# 模拟器编译是否上传，1=上传 0=不上传，默认不上传\nUPLOAD_SIMULATOR_SYMBOLS=1\n#\n# # 脚本默认配置的版本格式为CFBundleShortVersionString(CFBundleVersion),  如果你修改默认的版本格式, 请设置此变量, 如果不想修改, 请忽略此设置\n# CUSTOMIZED_APP_VERSION=\"\"\n#\n#\n#\n# This script will extract symbols from the .dSYM and generate .symbol file(Bugly supported) and upload to server.\n# You could visit http://bugly.qq.com to get more details about Bugly.\n#\n# Usage:\n#   * The instructions assume you have copyed this script into your project int Xcode.\n#   * Copy the \"buglySymbolIOS.jar\" file into the \"~/bin\" folder.\n#   * Open the project editor, select your build target.\n#   * Click \"Build Phases\" at the top of the project editor.\n#   * Click \"+\" button in the top left corner and select \"New Run Script Phase\".\n#   * Click \"Run Script\".\n#   * Paste the following script into the dark text box. You will have to uncomment the lines (remove the #) of course.\n#\n# --- SCRIPT BEGINS ON NEXT LINE, COPY AND EDIT FROM THERE ---\n#\n#\n#\n# --- END OF SCRIPT ---\n\n\n################################################################################\n# 注意: 如果你不知道此脚本的执行流程和用法，请不要随便修改！\n################################################################################\n\n# 退出执行并打印提示信息\nexitWithMessage() {\n    echo \"--------------------------------\"\n    echo -e \"${1}\"\n    echo \"--------------------------------\"\n    echo \"No upload and exit.\"\n    echo \"----------------------------------------------------------------\"\n    exit ${2}\n}\n\necho \"----------------------------------------------------------------\"\necho \"Copyright 2014-2015 Bugly @Tencent. All rights reserved.\"\n\necho \"This script will extract symbols from the .dSYM file and generate .symbol file(Bugly supported) and upload to server.\"\necho \"You could visit http://bugly.qq.com to get more details about Bugly.\"\necho \"----------------------------------------------------------------\"\n\necho \"Uploading dSYM to Bugly.\"\necho \"\"\n\n# Bugly服务域名\nDSYM_UPLOAD_DOMAIN=\"bugly.qq.com\"\n\n# 读取Info.plist文件中的版本信息\necho \"Info.Plist : ${INFOPLIST_FILE}\"\n\nBUNDLE_VERSION=$(/usr/libexec/PlistBuddy -c 'Print CFBundleVersion' \"${INFOPLIST_FILE}\")\nBUNDLE_SHORT_VERSION=$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' \"${INFOPLIST_FILE}\")\n\n# 组装Bugly默认识别的版本信息(格式为CFBundleShortVersionString(CFBundleVersion), 例如: 1.0(1))\nif [ ! \"${CUSTOMIZED_APP_VERSION}\" ]; then\nBUGLY_APP_VERSION=\"${BUNDLE_SHORT_VERSION}(${BUNDLE_VERSION})\"\nelse\nBUGLY_APP_VERSION=\"${CUSTOMIZED_APP_VERSION}\"\nfi\n\n# Bugly符号提取工具路径, 请确保已经把对应的buglySymboliOS.jar拷贝到目录~/bin\nBUGLY_SYMBOL_JAR_PATH=\"$HOME/bin/buglySymboliOS.jar\"\n\necho \"--------------------------------\"\necho \"Step 1: Prepare application information.\"\necho \"--------------------------------\"\n\necho \"Product Name: ${PRODUCT_NAME}\"\necho \"Bundle Identifier: ${BUNDLE_IDENTIFIER}\"\necho \"Version: ${BUNDLE_SHORT_VERSION}\"\necho \"Build: ${BUNDLE_VERSION}\"\n\necho \"Bugly App ID: ${BUGLY_APP_ID}\"\necho \"Bugly App key: ${BUGLY_APP_KEY}\"\necho \"Bugly App Version: ${BUGLY_APP_VERSION}\"\n\necho \"--------------------------------\"\necho \"Step 2: Check the arguments ...\"\n\n# 检查模拟器编译是否允许上传符号\nif [ \"$EFFECTIVE_PLATFORM_NAME\" == \"-iphonesimulator\" ]; then\nif [ $UPLOAD_SIMULATOR_SYMBOLS -eq 0 ]; then\nexitWithMessage \"Warning: Build for simulator and skipping to upload. \\nYou can modify 'UPLOAD_SIMULATOR_SYMBOLS' to 1 in the script.\" 0\nfi\nfi\n\nif [ \"${CONFIGURATION=}\" == \"Debug\" ]; then\nif [ $UPLOAD_DEBUG_SYMBOLS -eq 0 ]; then\nexitWithMessage \"Warning: Build for debug mode and skipping to upload. \\nYou can modify 'UPLOAD_DEBUG_SYMBOLS' to 1 in the script.\" 0\nfi\nfi\n\n# 检查必须参数是否设置\nif [ ! \"${BUGLY_APP_ID}\" ]; then\nexitWithMessage \"Error: Bugly App ID not defined.\" 1\nfi\n\nif [ ! \"${BUGLY_APP_KEY}\" ]; then\nexitWithMessage \"Error: Bugly APP Key not defined.\" 1\nfi\n\nif [ ! \"${BUNDLE_IDENTIFIER}\" ]; then\nexitWithMessage \"Error: Bundle Identifier not defined.\" 1\nfi\n\nfunction uploadDSYM {\n    DSYM_SRC=\"$1\"\n    echo \".dSYM file: ${DSYM_SRC}\"\n    if [ ! -d \"$DSYM_SRC\" ]; then\n    exitWithMessage \"dSYM source not found: ${DSYM_SRC}\" 1\n    fi\n    DSYM_FILE_NAME=${DSYM_SRC##*/}\n        DSYM_SYMBOL_OUT_ZIP_NAME=\"${DSYM_FILE_NAME}.bSymbol.zip\"\n        # 替换空格\n        DSYM_SYMBOL_OUT_ZIP_NAME=\"${DSYM_SYMBOL_OUT_ZIP_NAME// /_}\"\n        DSYM_ZIP_FPATH=\"${BUILT_PRODUCTS_DIR}/${DSYM_SYMBOL_OUT_ZIP_NAME}\"\n        \n        DSYM_SYMBOL_BACKUP_DIR=${BUILD_DIR}/Symbols\n        \n        if [ ! -e \"${DSYM_SYMBOL_BACKUP_DIR}\" ]; then\n        mkdir ${DSYM_SYMBOL_BACKUP_DIR}\n        fi\n        \n        # 备份并清理\n        find ${BUILT_PRODUCTS_DIR} -name \"*.zip\" -print0 | xargs -0 -I {} mv {} ${DSYM_SYMBOL_BACKUP_DIR}\n        /bin/rm -rf \"${BUILT_PRODUCTS_DIR}/*.zip\"\n        \n        echo \"Extract symbols from dSYM to ${DSYM_ZIP_FPATH}.\"\n        \n        echo \"--------------------------------\"\n        (/usr/bin/java -jar \"${BUGLY_SYMBOL_JAR_PATH}\" -i \"${DSYM_SRC}\" -o \"${DSYM_ZIP_FPATH}\" ) || exitWithMessage \"Error: Failed to extract symbols.\" 1\n        echo \"--------------------------------\"\n        \n        if [ ! -e \"${DSYM_ZIP_FPATH}\" ]; then\n        DSYM_SYMBOL_OUT_ZIP_NAME=$(ls ${BUILT_PRODUCTS_DIR} | grep \".zip\")\n        DSYM_ZIP_FPATH=\"${BUILT_PRODUCTS_DIR}/${DSYM_SYMBOL_OUT_ZIP_NAME}\"\n        DSYM_SYMBOL_OUT_ZIP_NAME=${DSYM_SYMBOL_OUT_ZIP_NAME//&/_}\n            fi\n            \n            if [ ! -e \"${DSYM_ZIP_FPATH}\" ] ; then\n            exitWithMessage \"no symbol file zip archive generated: ${DSYM_ZIP_FPATH}\" 1\n            fi\n            \n            # 提取符号信息\n            echo \"--------------------------------\"\n            echo \"Step 3: Extract symbol info from .dSYM file.\"\n            \n            if [ ! -e \"$BUGLY_SYMBOL_JAR_PATH\" ]; then\n            exitWithMessage \"Error: Jar file '${BUGLY_SYMBOL_JAR_PATH}' was not found. \\nPlease copy the jar file into ~/bin folder.\" 1\n            fi\n            \n            echo \"Step 4: Upload the symbols of dSYM.\"\n            echo \"--------------------------------\"\n            echo \"zip : ${DSYM_SYMBOL_OUT_ZIP_NAME}\"\n            echo \"dir : ${DSYM_ZIP_FPATH}\"\n            \n            echo \"dSYM upload domain: ${DSYM_UPLOAD_DOMAIN}\"\n            DSYM_UPLOAD_URL=\"http://${DSYM_UPLOAD_DOMAIN}/upload/dsym?app=${BUGLY_APP_ID}&pid=2&ver=${BUGLY_APP_VERSION}&n=${DSYM_SYMBOL_OUT_ZIP_NAME}&key=${BUGLY_APP_KEY}&bid=${BUNDLE_IDENTIFIER}\"\n            echo \"dSYM upload url: ${DSYM_UPLOAD_URL}\"\n            \n            # Upload dSYM to Bugly\n            echo \"curl --header \"Content-Type:application/zip\" --data-binary \"@${DSYM_ZIP_FPATH}\" \"${DSYM_UPLOAD_URL}\" --verbose\"\n            \n            echo \"--------------------------------\"\n            STATUS=$(/usr/bin/curl --header \"Content-Type:application/zip\" --data-binary \"@${DSYM_ZIP_FPATH}\" \"${DSYM_UPLOAD_URL}\" --verbose)\n            echo \"--------------------------------\"\n            \n            UPLOAD_RESULT=\"FAILTURE\"\n            echo \"Bugly server response: ${STATUS}\"\n            if [ ! \"${STATUS}\" ]; then\n            echo \"Error: Failed to upload the zip archive file.\"\n            elif [[ \"${STATUS}\" == *\":true\"* ]]; then\n            echo \"Success to upload the dSYM for the app [${BUNDLE_IDENTIFIER} ${BUGLY_APP_VERSION}]\"\n            UPLOAD_RESULT=\"SUCCESS\"\n            else\n            echo \"Error: Failed to upload the zip archive file to Bugly.\"\n            fi\n            \n            #Remove temp dSYM archive\n            echo \"Remove temporary zip archive: ${DSYM_ZIP_FPATH}\"\n            #/bin/rm -f \"${DSYM_ZIP_FPATH}\"\n            \n            if [ \"$?\" -ne 0 ]; then\n            exitWithMessage \"Error: Failed to remove temporary zip archive.\" 1\n            fi\n            \n            echo \"--------------------------------\"\n            echo \"${UPLOAD_RESULT} - dSYM upload complete.\"\n            \n            if [[ \"${UPLOAD_RESULT}\" == \"FAILTURE\" ]]; then\n            echo \"--------------------------------\"\n            echo \"Failed to upload the dSYM\"\n            echo \"Please check the script and try it again.\"\n            fi\n            \n            echo \"----------------------------------------------------------------\"\n        }\n        \n        # .dSYM文件信息\n        \n        echo \"DSYM FOLDER ${DWARF_DSYM_FOLDER_PATH}\"\n        \n        DSYM_FOLDER=\"${DWARF_DSYM_FOLDER_PATH}\"\n        \n        IFS=$'\\n'\n        \n        for dsymFile in $(find \"$DSYM_FOLDER\" -name '*.dSYM'); do\n        echo \"Found dSYM file: $dsymFile\"\n        uploadDSYM $dsymFile\n        done\n        \n";
 		};
@@ -898,12 +979,14 @@
 				E73218E01B7C7CFA00B09F6B /* AppDelegate.m in Sources */,
 				0454497D1BA041540067C0F6 /* MJType.m in Sources */,
 				04A6ADFA1B9447EC0001E58D /* setUpTableViewController.m in Sources */,
+				04F5C0701C326291003FDEA1 /* BaseViewController.m in Sources */,
 				04F91AC01BF3241800A2D21B /* ShareDomain.m in Sources */,
 				04F91ABA1BF317FF00A2D21B /* CanShareVC.m in Sources */,
 				04B250341B959FBC0041DB62 /* feedBackViewController.m in Sources */,
 				04A60AC41B9EBEB400AC61D5 /* AFURLResponseSerialization.m in Sources */,
 				045449671BA03FA20067C0F6 /* ResMsgDomain.m in Sources */,
 				040685F31BA81B4A006AB926 /* KeychainItemWrapper.m in Sources */,
+				04FA72401C311C09001D2793 /* HomeVC.m in Sources */,
 				04E8FE931B900DFF00119282 /* HomePageViewController.m in Sources */,
 				04FAFBE41BF43B4E00F236C1 /* MainDomain.m in Sources */,
 				041CC2CB1BA7F01A00D1CB51 /* UMPostTableViewCell.m in Sources */,
@@ -928,8 +1011,10 @@
 				045449811BA041540067C0F6 /* NSString+MJExtension.m in Sources */,
 				04B2502F1B958EE80041DB62 /* pushTableViewController.m in Sources */,
 				040685F71BA81EB3006AB926 /* KGHttpService.m in Sources */,
+				04FA72511C312121001D2793 /* SDRotationLoopProgressView.m in Sources */,
 				04A60AC01B9EBEB400AC61D5 /* AFNetworkReachabilityManager.m in Sources */,
 				04A60ABE1B9EBEB400AC61D5 /* AFHTTPRequestOperationManager.m in Sources */,
+				04FA72501C312121001D2793 /* SDBaseProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1065,8 +1150,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1088,7 +1173,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "问界互动家园";
-				PROVISIONING_PROFILE = "66ac4ccb-0ec7-41c5-9a0c-505a8ca5e95c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -1099,8 +1184,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1122,7 +1207,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "问界互动家园";
-				PROVISIONING_PROFILE = "66ac4ccb-0ec7-41c5-9a0c-505a8ca5e95c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
 			};

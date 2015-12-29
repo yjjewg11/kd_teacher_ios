@@ -38,7 +38,7 @@
 
 #define Share_Object   @"G_jsCallBack.getShareObject()"
 
-
+#define KWidth_Scale    [UIScreen mainScreen].bounds.size.width/375.0f //相对于ip6屏幕比
 //友盟
 #define UmengAPPKEY = @"55cc8dece0f55a2379004ba7"
 

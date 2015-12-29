@@ -29,8 +29,6 @@
 {
     [super viewDidLoad];
     
-    [UIView setAnimationsEnabled:NO];
-    
     self.titleLbl.text = self.mainTitle;
  
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:self.httpcontent]];
@@ -40,9 +38,8 @@
 
 - (IBAction)backBtnClick:(id)sender
 {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 - (IBAction)load:(id)sender
 {
@@ -69,13 +66,11 @@
                                      shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.imgUrl]]]
                                 shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,nil]
                                        delegate:self];
-    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    
 }
 
 - (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response

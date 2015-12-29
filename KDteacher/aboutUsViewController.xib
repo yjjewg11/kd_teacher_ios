@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9046" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="aboutUsViewController">
             <connections>
+                <outlet property="versionLbl" destination="1Fg-Eo-pAp" id="Vdi-sf-ZXZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,11 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="2fG-P4-PCk">
-                    <rect key="frame" x="100" y="161" width="120" height="120"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="2fG-P4-PCk">
+                    <rect key="frame" x="100" y="224" width="120" height="120"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="120" id="pz0-gP-apK"/>
-                        <constraint firstAttribute="width" constant="120" id="trX-Kd-c4J"/>
+                        <constraint firstAttribute="width" constant="120" id="OEL-vE-Abg"/>
+                        <constraint firstAttribute="height" constant="120" id="uhu-iy-9id"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="erweima" translatesAutoresizingMaskIntoConstraints="NO" id="IQW-Dd-Rtc">
@@ -31,7 +32,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="管方网站:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOg-Nt-brQ">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="官方网站:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOg-Nt-brQ">
                     <rect key="frame" x="139" y="441" width="60" height="15"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="feh-aM-2Ts"/>
@@ -56,10 +57,11 @@
             <constraints>
                 <constraint firstItem="Qwa-9I-7Mt" firstAttribute="leading" secondItem="IQW-Dd-Rtc" secondAttribute="trailing" constant="14" id="3C3-Fx-Fmf"/>
                 <constraint firstItem="1Fg-Eo-pAp" firstAttribute="trailing" secondItem="Qwa-9I-7Mt" secondAttribute="trailing" id="EuG-yU-ETi"/>
+                <constraint firstItem="2fG-P4-PCk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="FSi-sI-zXn"/>
                 <constraint firstItem="2fG-P4-PCk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="106" id="Fd7-sM-4jH"/>
                 <constraint firstItem="IQW-Dd-Rtc" firstAttribute="centerY" secondItem="EOg-Nt-brQ" secondAttribute="centerY" id="KxN-EA-04g"/>
+                <constraint firstItem="2fG-P4-PCk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="UWc-zx-d0w"/>
                 <constraint firstItem="1Fg-Eo-pAp" firstAttribute="leading" secondItem="EOg-Nt-brQ" secondAttribute="leading" id="dIj-72-Uby"/>
-                <constraint firstItem="2fG-P4-PCk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="80" id="geH-xT-qvQ"/>
                 <constraint firstItem="EOg-Nt-brQ" firstAttribute="top" secondItem="1Fg-Eo-pAp" secondAttribute="bottom" constant="4" id="hpw-eF-ldd"/>
                 <constraint firstItem="1Fg-Eo-pAp" firstAttribute="top" secondItem="IQW-Dd-Rtc" secondAttribute="top" id="iI5-E5-NPo"/>
                 <constraint firstItem="EOg-Nt-brQ" firstAttribute="leading" secondItem="IQW-Dd-Rtc" secondAttribute="trailing" constant="14" id="mxj-L4-gih"/>
@@ -67,7 +69,6 @@
                 <constraint firstItem="Qwa-9I-7Mt" firstAttribute="top" secondItem="EOg-Nt-brQ" secondAttribute="bottom" constant="4" id="ure-rN-WRb"/>
                 <constraint firstItem="IQW-Dd-Rtc" firstAttribute="bottom" secondItem="Qwa-9I-7Mt" secondAttribute="bottom" id="uua-hW-PV1"/>
                 <constraint firstItem="IQW-Dd-Rtc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="72" id="w1J-vD-fDu"/>
-                <constraint firstItem="2fG-P4-PCk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="161" id="w9K-es-VOG"/>
                 <constraint firstItem="Qwa-9I-7Mt" firstAttribute="top" secondItem="EOg-Nt-brQ" secondAttribute="bottom" constant="4" id="wCm-21-ntZ"/>
                 <constraint firstAttribute="bottom" secondItem="IQW-Dd-Rtc" secondAttribute="bottom" constant="93" id="x56-mp-iQ6"/>
             </constraints>
