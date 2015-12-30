@@ -11,12 +11,12 @@
 #define NewMessageKey @"newMessage"
 @interface pushTableViewController ()
 
-
 @end
 
 @implementation pushTableViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0 , 100, 44)];
     titleLabel.backgroundColor = [UIColor clearColor];  //设置Label背景透明
@@ -54,8 +54,8 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
@@ -65,14 +65,13 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     pushTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"pushTableViewCell"];
     cell.flagTitleLabel.text = @"推送消息";
     cell.mySwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:NewMessageKey];
     return cell;
-    
 }
-
 
 /*
 // Override to support conditional editing of the table view.

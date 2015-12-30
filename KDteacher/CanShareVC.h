@@ -8,16 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "ShareDomain.h"
 
 @interface CanShareVC : BaseViewController
 
-@property (strong, nonatomic) NSString * httpcontent;
-
-@property (strong, nonatomic) NSString * mainTitle;
-
-@property (strong, nonatomic) NSString * imgUrl;
-
-@property (strong, nonatomic) NSString * sharecontent;
+@property (strong, nonatomic) ShareDomain * domain;
 
 @end
 

@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "HomeVC.h"
 //#import "MobClick.h"
-#import "HomePageViewController.h"
 #import "UMessage.h"
 #import "UMFeedback.h"
 #import "UMOpus.h"
@@ -65,6 +64,8 @@
     self.window.rootViewController = nav;
     
     [self.window makeKeyAndVisible];
+    
+    [UMSocialData setAppKey:@"55cc8dece0f55a2379004ba7"];
     
     [UMessage startWithAppkey:@"55cc8dece0f55a2379004ba7" launchOptions:launchOptions];
     
@@ -124,6 +125,14 @@
     
     [[CrashReporter sharedInstance] installWithAppId:@"900011891"];
     
+    #pragma mark - 设置推送默认开启
+    id temp = [[NSUserDefaults standardUserDefaults] objectForKey:NewMessageKey];
+    if (temp == nil)
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:NewMessageKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
     return YES;
     //[MobClick startWithAppkey:@"55cc8dece0f55a2379004ba7" reportPolicy:BATCH channelId:@"app store"];
 }
@@ -158,7 +167,8 @@
     }];
 }
 
-- (void)savePushToken:(NSString *)key{
+- (void)savePushToken:(NSString *)key
+{
     KeychainItemWrapper * wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"KeyChain" accessGroup:nil];
     //    NSString * wrapperToken = [wrapper objectForKey:(__bridge id)kSecAttrAccount];
     
@@ -166,23 +176,27 @@
     
     
     id temp = [[NSUserDefaults standardUserDefaults] objectForKey:NewMessageKey];
-    if (temp == nil) {
+    if (temp == nil)
+    {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:NewMessageKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     NSString * status;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:NewMessageKey]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:NewMessageKey])
+    {
         status = @"0";
-    }else{
+    }
+    else
+    {
         status = @"2";
     }
+    
     [[KGHttpService sharedService] submitPushTokenWithStatus:status success:^(NSString *msgStr) {
         [wrapper setObject:key forKey:(__bridge id)kSecAttrAccount];
         NSLog(@"msgStr=%@",msgStr);
     } faild:^(NSString *errorMsg) {
         
     }];
-
-        
 }
 
 

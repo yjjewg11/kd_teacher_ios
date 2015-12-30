@@ -22,6 +22,11 @@ JSExportAs
  );
 
 JSExportAs
+(selectHeadPic  /** handleFactorialCalculateWithNumber 作为js方法的别名 */,
+ - (void)selectHeadPic:(NSString *)msg
+ );
+
+JSExportAs
 (finishProject  /** handleFactorialCalculateWithNumber 作为js方法的别名 */,
  - (void)finishProject:(NSString *)url
  );

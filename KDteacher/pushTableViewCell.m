@@ -17,8 +17,14 @@
 #define VoiceKey @"voice"
 #define ShakeKey @"shake"
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
+    NSUserDefaults *defu = [NSUserDefaults standardUserDefaults];
+    
+    _mySwitch.on = [defu boolForKey:NewMessageKey];
+    
     [_mySwitch addTarget:self action:@selector(switchChange:) forControlEvents:UIControlEventValueChanged];
+    
     _dic = @{@"推送消息":NewMessageKey,@"声音":VoiceKey,@"震动":ShakeKey};
 }
 

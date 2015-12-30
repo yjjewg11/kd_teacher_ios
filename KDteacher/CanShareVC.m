@@ -8,6 +8,9 @@
 
 #import "CanShareVC.h"
 #import "UMSocial.h"
+#import "HLActionSheet.h"
+#import "ShareDomain.h"
+#import "UMSocialWechatHandler.h"
 
 @interface CanShareVC () <UMSocialUIDelegate>
 
@@ -29,9 +32,9 @@
 {
     [super viewDidLoad];
     
-    self.titleLbl.text = self.mainTitle;
+    self.titleLbl.text = self.domain.title;
  
-    NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:self.httpcontent]];
+    NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:self.domain.httpurl]];
     
     [self.webView loadRequest:req];
 }
@@ -43,47 +46,116 @@
 
 - (IBAction)load:(id)sender
 {
-    if (self.sharecontent == nil)
-    {
-        self.sharecontent = @"http://www.wenjienet.com/";
-    }
+    ShareDomain * domain = [[ShareDomain alloc] init];
     
-    //微博
-    [UMSocialData defaultData].extConfig.sinaData.urlResource.resourceType = UMSocialUrlResourceTypeImage;
-    [UMSocialData defaultData].extConfig.sinaData.shareText = self.httpcontent;
-    //微信
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = self.httpcontent;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = self.httpcontent;
-    //qq
-    [UMSocialData defaultData].extConfig.qqData.urlResource.resourceType = UMSocialUrlResourceTypeImage;
-    [UMSocialData defaultData].extConfig.qqData.url = self.httpcontent;
-//    [UMSocialData defaultData].extConfig.qqData.shareText = self.httpcontent;
+    domain = self.domain;
     
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:@"55cc8dece0f55a2379004ba7"
-                                      shareText:self.sharecontent
-                                     shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.imgUrl]]]
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToQQ,nil]
-                                       delegate:self];
+    NSArray *titles = @[@"微博",@"微信",@"朋友圈",@"QQ好友",@"复制链接"];
+    NSArray *imageNames = @[@"xinlang",@"weixin",@"pyquan",@"qq",@"fuzhilianjie"];
+    HLActionSheet *sheet = [[HLActionSheet alloc] initWithTitles:titles iconNames:imageNames];
+    [sheet showActionSheetWithClickBlock:^(NSInteger btnIndex)
+     {
+         switch (btnIndex)
+         {
+             case 0:
+             {
+                 [self handelShareWithShareType:UMShareToSina domain:domain];
+             }
+                 break;
+                 
+             case 1:
+             {
+                 [self handelShareWithShareType:UMShareToWechatSession domain:domain];
+             }
+                 break;
+                 
+             case 2:
+             {
+                 [self handelShareWithShareType:UMShareToWechatTimeline domain:domain];
+             }
+                 break;
+                 
+             case 3:
+             {
+                 [self handelShareWithShareType:UMShareToQQ domain:domain];
+             }
+                 break;
+                 
+             case 4:
+             {
+                 UIPasteboard * pasteboard = [UIPasteboard generalPasteboard];
+                 pasteboard.string = domain.httpurl;
+                 //提示复制成功
+                 UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已复制分享链接" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                 [av show];
+             }
+                 break;
+                 
+             default:
+                 break;
+         }
+     }
+     cancelBlock:^
+     {
+         NSLog(@"取消");
+     }];
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - 处理分享操作
+- (void)handelShareWithShareType:(NSString *)shareType domain:(ShareDomain *)domain
 {
-    [super didReceiveMemoryWarning];
+    NSString * contentString = domain.title;
+    
+    NSString * shareurl = domain.httpurl;
+    
+    if(!shareurl || [shareurl length] == 0)
+    {
+        shareurl = @"http://wenjie.net";
+    }
+    
+    //微信title设置方法：
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = domain.title;
+    
+    //朋友圈title设置方法：
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = domain.title;
+    [UMSocialWechatHandler setWXAppId:@"wx6699cf8b21e12618" appSecret:@"639c78a45d012434370f4c1afc57acd1" url:domain.httpurl];
+    [UMSocialData defaultData].extConfig.qqData.title = domain.title;
+    [UMSocialData defaultData].extConfig.qqData.url = domain.httpurl;
+    
+    if (shareType == UMShareToSina)
+    {
+        [UMSocialData defaultData].extConfig.sinaData.shareText = [NSString stringWithFormat:@"%@ %@",contentString,shareurl];
+        [UMSocialData defaultData].extConfig.sinaData.urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeDefault url:shareurl];
+    }
+    
+    //设置分享内容，和回调对象
+    [[UMSocialControllerService defaultControllerService] setShareText:contentString shareImage:[UIImage imageNamed:@"sharelogo"] socialUIDelegate:self];
+    
+    UMSocialSnsPlatform * snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:shareType];
+    
+    snsPlatform.snsClickHandler(self, [UMSocialControllerService defaultControllerService],YES);
 }
 
 - (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
     //根据`responseCode`得到发送结果,如果分享成功
+    UIAlertView * alertView;
+    NSString * string;
     if(response.responseCode == UMSResponseCodeSuccess)
     {
-        //得到分享到的微博平台名
-        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+        string = @"分享成功";
+    }
+    else if (response.responseCode == UMSResponseCodeCancel)
+    {
     }
     else
     {
-        NSLog(@"%@",response);
+        string = @"分享失败";
+    }
+    if (string && string.length)
+    {
+        alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alertView show];
     }
 }
 

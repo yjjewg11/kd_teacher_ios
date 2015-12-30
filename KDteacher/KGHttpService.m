@@ -10,7 +10,6 @@
 #import "KGHttpService.h"
 #import "KDConstants.h"
 #import "AFNetworking.h"
-#import "HomePageViewController.h"
 
 @implementation KGHttpService
 + (KGHttpService *)sharedService {

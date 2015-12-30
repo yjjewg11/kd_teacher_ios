@@ -10,7 +10,6 @@
 #import "aboutUsViewController.h"
 #import "pushTableViewController.h"
 #import "feedBackViewController.h"
-#import "HomePageViewController.h"
 #import "KDConstants.h"
 @interface setUpTableViewController ()
 

@@ -71,8 +71,6 @@
 		04B250301B958EE80041DB62 /* pushTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B2502E1B958EE80041DB62 /* pushTableViewController.xib */; };
 		04B250341B959FBC0041DB62 /* feedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B250321B959FBC0041DB62 /* feedBackViewController.m */; };
 		04B250351B959FBC0041DB62 /* feedBackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B250331B959FBC0041DB62 /* feedBackViewController.xib */; };
-		04E8FE8C1B900DFF00119282 /* HomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E8FE801B900DFF00119282 /* HomePageViewController.xib */; };
-		04E8FE931B900DFF00119282 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8FE8A1B900DFF00119282 /* HomePageViewController.m */; };
 		04F5C0701C326291003FDEA1 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F5C06E1C326291003FDEA1 /* BaseViewController.m */; };
 		04F84EC21C08612300A51140 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F84EC11C08612300A51140 /* Bugly.framework */; };
 		04F91ABA1BF317FF00A2D21B /* CanShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F91AB81BF317FF00A2D21B /* CanShareVC.m */; };
@@ -101,6 +99,8 @@
 		04F91B941BF330D900A2D21B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F91B931BF330D900A2D21B /* CoreTelephony.framework */; };
 		04F91B961BF330E200A2D21B /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F91B951BF330E200A2D21B /* libstdc++.tbd */; };
 		04F91B981BF330EA00A2D21B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F91B971BF330EA00A2D21B /* libz.tbd */; };
+		04FA40921C337FAA00E5D606 /* HLActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA408F1C337FAA00E5D606 /* HLActionSheet.m */; };
+		04FA40931C337FAA00E5D606 /* HLActionSheetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA40911C337FAA00E5D606 /* HLActionSheetItem.m */; };
 		04FA72401C311C09001D2793 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FA723E1C311C09001D2793 /* HomeVC.m */; };
 		04FA72411C311C09001D2793 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04FA723F1C311C09001D2793 /* HomeVC.xib */; };
 		04FA72431C311F74001D2793 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04FA72421C311F74001D2793 /* JavaScriptCore.framework */; };
@@ -236,9 +236,6 @@
 		04B250311B959FBC0041DB62 /* feedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = feedBackViewController.h; sourceTree = "<group>"; };
 		04B250321B959FBC0041DB62 /* feedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = feedBackViewController.m; sourceTree = "<group>"; };
 		04B250331B959FBC0041DB62 /* feedBackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = feedBackViewController.xib; sourceTree = "<group>"; };
-		04E8FE801B900DFF00119282 /* HomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageViewController.xib; sourceTree = "<group>"; };
-		04E8FE8A1B900DFF00119282 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
-		04E8FE8B1B900DFF00119282 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
 		04F5C06E1C326291003FDEA1 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		04F5C06F1C326291003FDEA1 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		04F84EC11C08612300A51140 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
@@ -286,6 +283,10 @@
 		04F91B931BF330D900A2D21B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		04F91B951BF330E200A2D21B /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		04F91B971BF330EA00A2D21B /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		04FA408E1C337FAA00E5D606 /* HLActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLActionSheet.h; sourceTree = "<group>"; };
+		04FA408F1C337FAA00E5D606 /* HLActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLActionSheet.m; sourceTree = "<group>"; };
+		04FA40901C337FAA00E5D606 /* HLActionSheetItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLActionSheetItem.h; sourceTree = "<group>"; };
+		04FA40911C337FAA00E5D606 /* HLActionSheetItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLActionSheetItem.m; sourceTree = "<group>"; };
 		04FA723D1C311C09001D2793 /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		04FA723E1C311C09001D2793 /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
 		04FA723F1C311C09001D2793 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
@@ -296,7 +297,7 @@
 		04FA724F1C312121001D2793 /* SDRotationLoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRotationLoopProgressView.m; sourceTree = "<group>"; };
 		04FAFBE21BF43B4E00F236C1 /* MainDomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDomain.h; sourceTree = "<group>"; };
 		04FAFBE31BF43B4E00F236C1 /* MainDomain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDomain.m; sourceTree = "<group>"; };
-		E73218D71B7C7CFA00B09F6B /* 问界互动家园.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "问界互动家园.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73218D71B7C7CFA00B09F6B /* 问界互动家园 .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "问界互动家园 .app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73218DB1B7C7CFA00B09F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E73218DC1B7C7CFA00B09F6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E73218DE1B7C7CFA00B09F6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -517,6 +518,7 @@
 		04B2501C1B9552C80041DB62 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				04FA408D1C337FAA00E5D606 /* ShareActionSheet */,
 				04FA72421C311F74001D2793 /* JavaScriptCore.framework */,
 				0400A8BC1BF467580099F3E4 /* libc++.tbd */,
 				04F91B971BF330EA00A2D21B /* libz.tbd */,
@@ -539,16 +541,6 @@
 				04A60AA91B9EBE8F00AC61D5 /* AFNETWording */,
 			);
 			name = FrameWorks;
-			sourceTree = "<group>";
-		};
-		04E8FE7F1B900DBD00119282 /* TabBar(老版本主页) */ = {
-			isa = PBXGroup;
-			children = (
-				04E8FE801B900DFF00119282 /* HomePageViewController.xib */,
-				04E8FE8A1B900DFF00119282 /* HomePageViewController.m */,
-				04E8FE8B1B900DFF00119282 /* HomePageViewController.h */,
-			);
-			name = "TabBar(老版本主页)";
 			sourceTree = "<group>";
 		};
 		04F5C0661C325E0A003FDEA1 /* Base */ = {
@@ -694,6 +686,17 @@
 			path = Wechat;
 			sourceTree = "<group>";
 		};
+		04FA408D1C337FAA00E5D606 /* ShareActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				04FA408E1C337FAA00E5D606 /* HLActionSheet.h */,
+				04FA408F1C337FAA00E5D606 /* HLActionSheet.m */,
+				04FA40901C337FAA00E5D606 /* HLActionSheetItem.h */,
+				04FA40911C337FAA00E5D606 /* HLActionSheetItem.m */,
+			);
+			path = ShareActionSheet;
+			sourceTree = "<group>";
+		};
 		04FA723A1C311AC8001D2793 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -759,7 +762,7 @@
 		E73218D81B7C7CFA00B09F6B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E73218D71B7C7CFA00B09F6B /* 问界互动家园.app */,
+				E73218D71B7C7CFA00B09F6B /* 问界互动家园 .app */,
 				E73218F01B7C7CFB00B09F6B /* KDteacherTests.xctest */,
 			);
 			name = Products;
@@ -771,7 +774,6 @@
 				04F5C0661C325E0A003FDEA1 /* Base */,
 				04FA723B1C311B01001D2793 /* Setting(设置) */,
 				04FA723A1C311AC8001D2793 /* Main */,
-				04E8FE7F1B900DBD00119282 /* TabBar(老版本主页) */,
 				E73218DA1B7C7CFA00B09F6B /* Supporting Files */,
 			);
 			path = KDteacher;
@@ -827,7 +829,7 @@
 			);
 			name = KDteacher;
 			productName = KDteacher;
-			productReference = E73218D71B7C7CFA00B09F6B /* 问界互动家园.app */;
+			productReference = E73218D71B7C7CFA00B09F6B /* 问界互动家园 .app */;
 			productType = "com.apple.product-type.application";
 		};
 		E73218EF1B7C7CFB00B09F6B /* KDteacherTests */ = {
@@ -898,7 +900,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				041CC2BB1BA7F01A00D1CB51 /* ToolViewInputText@2x.png in Resources */,
-				04E8FE8C1B900DFF00119282 /* HomePageViewController.xib in Resources */,
 				04F91AEA1BF32A9700A2D21B /* UMSCommentDetailController.xib in Resources */,
 				04B250211B9552ED0041DB62 /* aboutUsViewController.xib in Resources */,
 				04F91AED1BF32A9700A2D21B /* UMShareEditViewController.xib in Resources */,
@@ -973,6 +974,7 @@
 				0468E01F1B9EEB28001BA58F /* KDConstants.m in Sources */,
 				0454497B1BA041540067C0F6 /* MJFoundation.m in Sources */,
 				0454497F1BA041540067C0F6 /* NSObject+MJKeyValue.m in Sources */,
+				04FA40921C337FAA00E5D606 /* HLActionSheet.m in Sources */,
 				04A60AC21B9EBEB400AC61D5 /* AFURLConnectionOperation.m in Sources */,
 				041CC2CA1BA7F01A00D1CB51 /* UMFullScreenPhotoView.m in Sources */,
 				041CC2CC1BA7F01A00D1CB51 /* UMRadialView.m in Sources */,
@@ -987,7 +989,6 @@
 				045449671BA03FA20067C0F6 /* ResMsgDomain.m in Sources */,
 				040685F31BA81B4A006AB926 /* KeychainItemWrapper.m in Sources */,
 				04FA72401C311C09001D2793 /* HomeVC.m in Sources */,
-				04E8FE931B900DFF00119282 /* HomePageViewController.m in Sources */,
 				04FAFBE41BF43B4E00F236C1 /* MainDomain.m in Sources */,
 				041CC2CB1BA7F01A00D1CB51 /* UMPostTableViewCell.m in Sources */,
 				04A60AC31B9EBEB400AC61D5 /* AFURLRequestSerialization.m in Sources */,
@@ -996,6 +997,7 @@
 				04A60AC51B9EBEB400AC61D5 /* AFURLSessionManager.m in Sources */,
 				0454497E1BA041540067C0F6 /* NSObject+MJCoding.m in Sources */,
 				045449641BA03F010067C0F6 /* KGBaseDomain.m in Sources */,
+				04FA40931C337FAA00E5D606 /* HLActionSheetItem.m in Sources */,
 				04B250201B9552ED0041DB62 /* aboutUsViewController.m in Sources */,
 				E73218DD1B7C7CFA00B09F6B /* main.m in Sources */,
 				041CC2C81BA7F01A00D1CB51 /* UMChatTableViewCell.m in Sources */,
@@ -1172,7 +1174,7 @@
 					"$(PROJECT_DIR)/KDteacher/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "问界互动家园";
+				PRODUCT_NAME = "问界互动家园 ";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
@@ -1206,7 +1208,7 @@
 					"$(PROJECT_DIR)/KDteacher/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "问界互动家园";
+				PRODUCT_NAME = "问界互动家园 ";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
