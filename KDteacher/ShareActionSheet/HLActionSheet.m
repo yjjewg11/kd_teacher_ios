@@ -115,6 +115,7 @@ static HLActionSheet *sheet = nil;
 
 - (void)dismiss
 {
+    
     [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         self.backgroundMask.alpha = 0;
         [self setContentViewFrameY:CGRectGetHeight(self.bounds)];
@@ -129,13 +130,21 @@ static HLActionSheet *sheet = nil;
     _clickBlock = clickBlock;
     _cancelBlock = cancelBlock;
     sheet = self;
-    sheet.hidden = NO;
-    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        self.backgroundMask.alpha = 0.6;
-        [self setContentViewFrameY:CGRectGetHeight(self.bounds) - CGRectGetHeight(self.contentView.frame)];
-    } completion:^(BOOL finished) {
+    
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        sheet.hidden = NO;
         
-    }];
+        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            self.backgroundMask.alpha = 0.6;
+            [self setContentViewFrameY:CGRectGetHeight(self.bounds) - CGRectGetHeight(self.contentView.frame)];
+        } completion:^(BOOL finished) {
+            
+        }];
+    });
+    
+    
+
 }
 
 -(void)dealloc
