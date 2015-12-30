@@ -24,6 +24,10 @@
 //提交推送token
 - (void)submitPushTokenWithStatus:(NSString *)status success:(void (^)(NSString * msgStr))success faild:(void (^)(NSString * errorMsg))faild {
     
+    if (_pushToken == nil)
+    {
+        _pushToken = @"";
+    }
         NSDictionary * dic = @{@"device_id" : _pushToken,
                            @"device_type": @"ios",
                            @"status":status,@"JSESSION":_jssionID
