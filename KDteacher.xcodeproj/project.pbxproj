@@ -297,7 +297,7 @@
 		04FA724F1C312121001D2793 /* SDRotationLoopProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDRotationLoopProgressView.m; sourceTree = "<group>"; };
 		04FAFBE21BF43B4E00F236C1 /* MainDomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDomain.h; sourceTree = "<group>"; };
 		04FAFBE31BF43B4E00F236C1 /* MainDomain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDomain.m; sourceTree = "<group>"; };
-		E73218D71B7C7CFA00B09F6B /* 问界互动家园 .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "问界互动家园 .app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73218D71B7C7CFA00B09F6B /* 问界互动家园.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "问界互动家园.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73218DB1B7C7CFA00B09F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E73218DC1B7C7CFA00B09F6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E73218DE1B7C7CFA00B09F6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -762,7 +762,7 @@
 		E73218D81B7C7CFA00B09F6B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E73218D71B7C7CFA00B09F6B /* 问界互动家园 .app */,
+				E73218D71B7C7CFA00B09F6B /* 问界互动家园.app */,
 				E73218F01B7C7CFB00B09F6B /* KDteacherTests.xctest */,
 			);
 			name = Products;
@@ -829,7 +829,7 @@
 			);
 			name = KDteacher;
 			productName = KDteacher;
-			productReference = E73218D71B7C7CFA00B09F6B /* 问界互动家园 .app */;
+			productReference = E73218D71B7C7CFA00B09F6B /* 问界互动家园.app */;
 			productType = "com.apple.product-type.application";
 		};
 		E73218EF1B7C7CFB00B09F6B /* KDteacherTests */ = {
@@ -1152,8 +1152,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1174,8 +1174,8 @@
 					"$(PROJECT_DIR)/KDteacher/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "问界互动家园 ";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = "问界互动家园";
+				PROVISIONING_PROFILE = "66ac4ccb-0ec7-41c5-9a0c-505a8ca5e95c";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -1186,8 +1186,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1208,8 +1208,8 @@
 					"$(PROJECT_DIR)/KDteacher/UMSocial_Sdk_Extra_Frameworks/Wechat",
 				);
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = "问界互动家园 ";
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = "问界互动家园";
+				PROVISIONING_PROFILE = "66ac4ccb-0ec7-41c5-9a0c-505a8ca5e95c";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7";
 			};
