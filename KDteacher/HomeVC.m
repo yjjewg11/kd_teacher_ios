@@ -284,21 +284,24 @@
 
 - (void)openNewWindow:(NSString *)title content:(NSString *)content pathurl:(NSString *)pathurl httpurl:(NSString *)httpurl
 {
-    CanShareVC * vc = [[CanShareVC alloc] init];
-    
-    ShareDomain * domain = [[ShareDomain alloc] init];
-    
-    domain.title = title;
-    
-    domain.pathurl = pathurl;
-    
-    domain.httpurl = httpurl;
-    
-    domain.content = title;
-    
-    vc.domain = domain;
-    
-    [self.navigationController pushViewController:vc animated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        CanShareVC * vc = [[CanShareVC alloc] init];
+        
+        ShareDomain * domain = [[ShareDomain alloc] init];
+        
+        domain.title = title;
+        
+        domain.pathurl = pathurl;
+        
+        domain.httpurl = httpurl;
+        
+        domain.content = title;
+        
+        vc.domain = domain;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    });
 }
 
 - (NSString *)getJsessionid:(NSString *)jessid

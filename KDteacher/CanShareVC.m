@@ -32,8 +32,11 @@
 {
     [super viewDidLoad];
     
-    self.titleLbl.text = self.domain.title;
- 
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        self.titleLbl.text = self.domain.title;
+    });
+    
     NSURLRequest * req = [NSURLRequest requestWithURL:[NSURL URLWithString:self.domain.httpurl]];
     
     [self.webView loadRequest:req];
@@ -51,8 +54,11 @@
     domain = self.domain;
     
     NSArray *titles = @[@"微博",@"微信",@"朋友圈",@"QQ好友",@"复制链接"];
+    
     NSArray *imageNames = @[@"xinlang",@"weixin",@"pyquan",@"qq",@"fuzhilianjie"];
+    
     HLActionSheet *sheet = [[HLActionSheet alloc] initWithTitles:titles iconNames:imageNames];
+    
     [sheet showActionSheetWithClickBlock:^(NSInteger btnIndex)
      {
          switch (btnIndex)
