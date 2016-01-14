@@ -18,6 +18,7 @@
 #import "ZYQAssetPickerController.h"
 #import "setUpTableViewController.h"
 #import "CanShareVC.h"
+
 #import "HLActionSheet.h"
 #import "UMSocialWechatHandler.h"
 
@@ -97,6 +98,12 @@
                     selector:@selector(hidentabbar)
                         name:@"hidentabbar"
                       object:nil];
+    
+    if([[[UIDevice
+          currentDevice] systemVersion] floatValue]>=8.0)
+    {
+        self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    }
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -204,22 +211,31 @@
 
 #pragma mark - 通知方法
 //实现通知方法
--(void)ChangeData
+- (void)ChangeData
 {
     [_webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_update()"];
 }
--(void)ChangePassword
+
+- (void)ChangePassword
 {
     [_webView stringByEvaluatingJavaScriptFromString:@"G_jsCallBack.user_info_updatepassword()"];
 }
--(void)cancellation
+
+- (void)cancellation
 {
     [_webView stringByEvaluatingJavaScriptFromString:@"javascript:G_jsCallBack.userinfo_logout()"];
 }
--(void)clearBuffer
+
+- (void)clearBuffer
 {
+    [self getNewerWebURL];
     [_webView stringByEvaluatingJavaScriptFromString:@"javascript:menu_dohome()"];
+    NSURLCache * cache = [NSURLCache sharedURLCache];
+    [cache removeAllCachedResponses];
+    [cache setDiskCapacity:0];
+    [cache setMemoryCapacity:0];
 }
+
 -(void)hidentabbar
 {
     tabbar.hidden = YES;
@@ -286,6 +302,11 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^
     {
+        [_webView endEditing:YES];
+    });
+    
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
         CanShareVC * vc = [[CanShareVC alloc] init];
         
         ShareDomain * domain = [[ShareDomain alloc] init];
@@ -300,7 +321,10 @@
         
         vc.domain = domain;
         
-        [self.navigationController pushViewController:vc animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+            [self.navigationController pushViewController:vc animated:YES];
+        });
     });
 }
 
@@ -311,6 +335,11 @@
 
 - (void)setShareContent:(NSString *)title content:(NSString *)content pathurl:(NSString *)pathurl httpurl:(NSString *)httpurl
 {
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        [_webView endEditing:YES];
+    });
+    
     ShareDomain * domain = [[ShareDomain alloc] init];
     
     domain.title = title;
@@ -357,8 +386,11 @@
                 UIPasteboard * pasteboard = [UIPasteboard generalPasteboard];
                 pasteboard.string = domain.httpurl;
                 //提示复制成功
-                UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已复制分享链接" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                [av show];
+                dispatch_async(dispatch_get_main_queue(), ^
+                {
+                    UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已复制分享链接" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                    [av show];
+                });
             }
                 break;
                 
@@ -407,7 +439,7 @@
     snsPlatform.snsClickHandler(self, [UMSocialControllerService defaultControllerService],YES);
 }
 
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+- (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
 {
     //根据`responseCode`得到发送结果,如果分享成功
     UIAlertView * alertView;
@@ -426,17 +458,33 @@
     if (string && string.length)
     {
         alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertView show];
+        
+        dispatch_async(dispatch_get_main_queue(), ^
+                       {
+                           [alertView show];
+                       });
+        
     }
 }
 
 - (void)selectImgPic:(NSString *)groupuuid
 {
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        [_webView endEditing:YES];
+    });
+    
     [self uploadAllImages];
 }
 
 - (void)selectHeadPic:(NSString *)msg
 {
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        [_webView endEditing:YES];
+    });
+    
+    
     _myActionSheet = [[UIActionSheet alloc]
                       initWithTitle:nil
                       delegate:self
@@ -444,7 +492,10 @@
                       destructiveButtonTitle:nil
                       otherButtonTitles: @"打开照相机", @"从手机相册获取",nil];
     
-    [_myActionSheet showInView:self.view];
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        [_myActionSheet showInView:self.view];
+    });
 }
 
 #pragma mark - 图片相关
@@ -471,6 +522,7 @@
 //开始拍照
 -(void)takePhoto
 {
+    
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
     if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera])
     {
@@ -480,7 +532,11 @@
         picker.allowsEditing = YES;
         picker.sourceType = sourceType;
         
-        [self presentViewController:picker animated:YES completion:nil];
+        //主线程更新ui
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+            [self presentViewController:picker animated:YES completion:nil];
+        });
     }
     else
     {
@@ -497,7 +553,12 @@
     picker.delegate = self;
     //设置选择后的图片可被编辑
     picker.allowsEditing = YES;
-    [self presentViewController:picker animated:YES completion:nil];
+    
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        [self presentViewController:picker animated:YES completion:nil];
+    });
+    
 }
 
 //上传头像
@@ -522,8 +583,13 @@
         NSString *imgJs = [NSString stringWithFormat:@"javascript:G_jsCallBack.selectHeadPic_callback('%@')", commitStr];
         
         [_webView stringByEvaluatingJavaScriptFromString:imgJs];
+        
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+            [picker dismissViewControllerAnimated:YES completion:nil];
+        });
         //关闭相册界面
-        [picker dismissViewControllerAnimated:YES completion:nil];
+        
     }
 }
 
@@ -542,8 +608,12 @@
             return YES;
         }
     }];
+    dispatch_async(dispatch_get_main_queue(), ^
+                   {
+                       [self presentViewController:picker animated:YES completion:NULL];
+                   });
     
-    [self presentViewController:picker animated:YES completion:NULL];
+    
 }
 
 - (void)assetPickerController:(ZYQAssetPickerController *)picker didFinishPickingAssets:(NSArray *)assets
@@ -623,7 +693,10 @@
             
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:setup];
             
-            [self presentViewController:nav animated:YES completion:nil];
+            dispatch_async(dispatch_get_main_queue(), ^
+                           {
+                               [self presentViewController:nav animated:YES completion:nil];
+                           });
         }
             break;
             

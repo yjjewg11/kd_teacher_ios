@@ -42,9 +42,15 @@
     self.navigationItem.leftBarButtonItem = leftButton;
    
 }
--(void)gotoBack{
-    [self dismissViewControllerAnimated:YES completion:nil];
+
+-(void)gotoBack
+{
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
 }
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -161,29 +167,52 @@
     if (indexPath.row == 0) {
         aboutUsViewController *ab = [[aboutUsViewController alloc]initWithNibName:@"aboutUsViewController" bundle:nil];
         
-        [self.navigationController pushViewController:ab animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+            [self.navigationController pushViewController:ab animated:YES];
+        });
+        
     }//单击推送消息所响应的事件
     else if (indexPath.row == 1){
         pushTableViewController *push = [[pushTableViewController alloc]initWithNibName:@"pushTableViewController" bundle:nil];
-        [self.navigationController pushViewController:push animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+           [self.navigationController pushViewController:push animated:YES];
+        });
+        
     }//单击反馈消息所显示的事件
     else if (indexPath.row == 2){
         feedBackViewController *feed = [[feedBackViewController alloc]initWithNibName:@"feedBackViewController" bundle:nil];
-        [self.navigationController pushViewController:feed animated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+           [self.navigationController pushViewController:feed animated:YES];
+        });
+        
     }
     }//第二个分区
     else if (indexPath.section == 1){
         //单击修改名字所显示的事件
         if (indexPath.row == 0) {
             //HomePageViewController *home = [[HomePageViewController alloc]initWithNibName:@"HomePageViewController" bundle:nil];
-            [self dismissViewControllerAnimated:YES completion:^{
-                 [[NSNotificationCenter defaultCenter] postNotificationName:@"changeData" object:self userInfo:nil];
-            }];
+            dispatch_async(dispatch_get_main_queue(), ^
+                           {
+                               [self dismissViewControllerAnimated:YES completion:^
+                                {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeData" object:self userInfo:nil];
+                                }];
+                           });
+            
+            
         }//单击修改密码所响应的事件
         else if (indexPath.row == 1){
-            [self dismissViewControllerAnimated:YES completion:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"changePassword" object:self userInfo:nil];
-            }];
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^
+                           {
+                               [self dismissViewControllerAnimated:YES completion:^{
+                                   [[NSNotificationCenter defaultCenter] postNotificationName:@"changePassword" object:self userInfo:nil];
+                               }];
+                           });
 
         }
     }//第三个分区
@@ -192,21 +221,28 @@
         if (indexPath.row==0) {
             //清除缓存
             [[NSURLCache sharedURLCache] removeAllCachedResponses];
+            dispatch_async(dispatch_get_main_queue(), ^
+                           {
+                               [self dismissViewControllerAnimated:YES completion:^
+                                {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearBuffer" object:self userInfo:nil];
+                                }];
+                           });
             
-            [self dismissViewControllerAnimated:YES completion:^
-            {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"clearBuffer" object:self userInfo:nil];
-            }];
         }
     //单击注销所响应的事件
     else if(indexPath.row==1)
     {
         [self dismissViewControllerAnimated:YES completion:^
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"cancellation" object:self userInfo:nil];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"hidentabbar" object:nil userInfo:nil];
-        }];
+             [self dismissViewControllerAnimated:YES completion:^
+              {
+                  [[NSNotificationCenter defaultCenter] postNotificationName:@"cancellation" object:self userInfo:nil];
+                  
+                  [[NSNotificationCenter defaultCenter] postNotificationName:@"hidentabbar" object:nil userInfo:nil];
+              }];
+         }];
+        
     }
     }
 }

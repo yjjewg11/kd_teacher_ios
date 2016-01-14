@@ -59,52 +59,56 @@
     
     HLActionSheet *sheet = [[HLActionSheet alloc] initWithTitles:titles iconNames:imageNames];
     
-    [sheet showActionSheetWithClickBlock:^(NSInteger btnIndex)
-     {
-         switch (btnIndex)
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        [sheet showActionSheetWithClickBlock:^(NSInteger btnIndex)
          {
-             case 0:
+             switch (btnIndex)
              {
-                 [self handelShareWithShareType:UMShareToSina domain:domain];
+                 case 0:
+                 {
+                     [self handelShareWithShareType:UMShareToSina domain:domain];
+                 }
+                     break;
+                     
+                 case 1:
+                 {
+                     [self handelShareWithShareType:UMShareToWechatSession domain:domain];
+                 }
+                     break;
+                     
+                 case 2:
+                 {
+                     [self handelShareWithShareType:UMShareToWechatTimeline domain:domain];
+                 }
+                     break;
+                     
+                 case 3:
+                 {
+                     [self handelShareWithShareType:UMShareToQQ domain:domain];
+                 }
+                     break;
+                     
+                 case 4:
+                 {
+                     UIPasteboard * pasteboard = [UIPasteboard generalPasteboard];
+                     pasteboard.string = domain.httpurl;
+                     //提示复制成功
+                     UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已复制分享链接" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+                     [av show];
+                 }
+                     break;
+                     
+                 default:
+                     break;
              }
-                 break;
-                 
-             case 1:
-             {
-                 [self handelShareWithShareType:UMShareToWechatSession domain:domain];
-             }
-                 break;
-                 
-             case 2:
-             {
-                 [self handelShareWithShareType:UMShareToWechatTimeline domain:domain];
-             }
-                 break;
-                 
-             case 3:
-             {
-                 [self handelShareWithShareType:UMShareToQQ domain:domain];
-             }
-                 break;
-                 
-             case 4:
-             {
-                 UIPasteboard * pasteboard = [UIPasteboard generalPasteboard];
-                 pasteboard.string = domain.httpurl;
-                 //提示复制成功
-                 UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已复制分享链接" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-                 [av show];
-             }
-                 break;
-                 
-             default:
-                 break;
          }
-     }
-     cancelBlock:^
-     {
-         NSLog(@"取消");
-     }];
+                                 cancelBlock:^
+         {
+             NSLog(@"取消");
+         }];
+    });
+    
 }
 
 #pragma mark - 处理分享操作
@@ -161,7 +165,10 @@
     if (string && string.length)
     {
         alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertView show];
+        dispatch_async(dispatch_get_main_queue(), ^
+        {
+            [alertView show];
+        });
     }
 }
 

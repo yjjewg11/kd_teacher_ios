@@ -1007,7 +1007,12 @@ static UIColor *titleColor;
     ZYQAssetViewController *vc = [[ZYQAssetViewController alloc] init];
     vc.assetsGroup = [self.groups objectAtIndex:indexPath.row];
     
-    [self.navigationController pushViewController:vc animated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^
+                   {
+                       [self.navigationController pushViewController:vc animated:YES];
+                   });
+    
+    
 }
 
 #pragma mark - Actions
@@ -1019,7 +1024,11 @@ static UIColor *titleColor;
     if ([picker.delegate respondsToSelector:@selector(assetPickerControllerDidCancel:)])
         [picker.delegate assetPickerControllerDidCancel:picker];
     
-    [picker.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+    dispatch_async(dispatch_get_main_queue(), ^
+                   {
+                       [picker.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+                   });
+    
 }
 
 @end

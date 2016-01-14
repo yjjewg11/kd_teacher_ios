@@ -37,7 +37,8 @@
     self.tableView.dataSource = self;
 
 }
--(void)gotoBack{
+-(void)gotoBack
+{
     [self.navigationController popViewControllerAnimated:YES];
 }
 //隐藏多余的表格线
