@@ -17,7 +17,7 @@
 
 #define G_rest_uploadFile_upload       @"rest/uploadFile/upload.json"      //正式
 
-#define Webview_URL      @"http://kd.wenjienet.com/px-rest/kd/index.html"
+//#define Webview_URL      @"http://kd.wenjienet.com/px-rest/kd/index.html"
 //#define Webview_URL      @"http://120.25.212.44/px-rest/kd/index.html"    //测试
 
 //#define Webview_URL @"http://192.168.0.116:8080/px-rest/"

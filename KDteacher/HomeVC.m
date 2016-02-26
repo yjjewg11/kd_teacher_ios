@@ -119,9 +119,12 @@
     [[KGHttpService sharedService] getNewerMainUrl:^(id newurl)
     {
         MainDomain * domain = [MainDomain objectWithKeyValues:newurl];
-        
+
         _webUrl = domain.url;
-        
+        NSLog(@"webUrl == %@",_webUrl);
+
+        _webUrl = @"http://120.25.212.44/px-rest/kd/index.html?v=12281232333";
+        NSLog(@"webtest == %@",_webUrl);
         [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_webUrl]]];
     }
     faild:^(NSString *errMessage)
@@ -704,5 +707,9 @@
             break;
     }
 }
-
+ -(void)jsessionToPhoneTel:(NSString *)tel
+{
+    
+    [[NSUserDefaults standardUserDefaults] setObject:tel forKey:@"personTel"];
+}
 @end

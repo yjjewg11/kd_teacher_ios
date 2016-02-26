@@ -233,14 +233,13 @@
     //单击注销所响应的事件
     else if(indexPath.row==1)
     {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cancellation" object:self userInfo:nil];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"hidentabbar" object:nil userInfo:nil];
         [self dismissViewControllerAnimated:YES completion:^
         {
-             [self dismissViewControllerAnimated:YES completion:^
-              {
-                  [[NSNotificationCenter defaultCenter] postNotificationName:@"cancellation" object:self userInfo:nil];
-                  
-                  [[NSNotificationCenter defaultCenter] postNotificationName:@"hidentabbar" object:nil userInfo:nil];
-              }];
+            
          }];
         
     }

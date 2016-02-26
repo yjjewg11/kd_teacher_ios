@@ -54,10 +54,17 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"意见不能为空" message:@"请输入内容" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alert show];
     }else{
-        NSDictionary *dictionary = @{@"content":self.textV.text};
+        //获取用户的电话号码
+       NSString * tel = [[NSUserDefaults standardUserDefaults] objectForKey:@"personTel"];
+        //拼接之后的文字
+        NSString *str = [[NSString alloc]initWithFormat:@"%@:%@",tel,self.textV.text];
+        
+        NSDictionary *dictionary = @{@"content":str};
+        
        [[UMFeedback sharedInstance] post:dictionary completion:^(NSError *error) {
            if (error==nil) {
                NSLog(@"提交成功");
+               
                [self dismissViewControllerAnimated:YES completion:nil];
            }
         }];

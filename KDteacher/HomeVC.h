@@ -50,6 +50,12 @@ JSExportAs
 (hideLoadingDialog  /** handleFactorialCalculateWithNumber 作为js方法的别名 */,
  - (void)hideLoadingDialog:(NSString *)msg
  );
+
+JSExportAs
+(jsessionToPhoneTel, /**接收用户电话号码
+                                   */
+ -(void)jsessionToPhoneTel:(NSString *)tel
+ );
 @end
 
 @interface HomeVC : BaseViewController
