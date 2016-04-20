@@ -123,7 +123,7 @@
         _webUrl = domain.url;
         NSLog(@"webUrl == %@",_webUrl);
 
-        _webUrl = @"http://120.25.212.44/px-rest/kd/index.html?v=12281232333";
+//        _webUrl = @"http://120.25.212.44/px-rest/kd/index.html?v=12281232333";
         NSLog(@"webtest == %@",_webUrl);
         [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_webUrl]]];
     }

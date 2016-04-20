@@ -73,7 +73,7 @@
     //集成微信 /  qq                                                    078b3b3e3515f1d434c87d20dc02ab8c
     [UMSocialWechatHandler setWXAppId:@"wxc784adf432c9f59d" appSecret:@"078b3b3e3515f1d434c87d20dc02ab8c" url:@"http://www.wenjienet.com/"];
     
-    [UMSocialQQHandler setQQWithAppId:@"1104813270" appKey:@"SumAAk7jtaUSnZqd" url:@"http://www.wenjienet.com/"];
+    [UMSocialQQHandler setQQWithAppId:@"1104762949" appKey:@"VL1KDd67eia4jGLS" url:@"http://www.wenjienet.com/"];
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
