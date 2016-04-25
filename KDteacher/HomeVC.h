@@ -56,6 +56,11 @@ JSExportAs
                                    */
  -(void)jsessionToPhoneTel:(NSString *)tel
  );
+
+JSExportAs
+(selectImgForCallBack  /** JavaScriptCall.selectImgForCallBack( callback, maxConut, quality(单位k))  作为js方法的别名 */,
+ - (void)selectImgForCallBack:(NSString *)callback maxConut:(NSString *)maxConut quality:(NSString *)quality
+ );
 @end
 
 @interface HomeVC : BaseViewController

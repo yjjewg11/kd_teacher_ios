@@ -18,7 +18,7 @@
 #import "ZYQAssetPickerController.h"
 #import "setUpTableViewController.h"
 #import "CanShareVC.h"
-
+#import "FPImagePickerVC.h"
 #import "HLActionSheet.h"
 #import "UMSocialWechatHandler.h"
 
@@ -45,6 +45,9 @@
     NSString * _jessionid;
     
     UIActionSheet * _myActionSheet;
+    NSString * _selectImgForCallBack_callback;
+    NSInteger _selectImgForCallBack_maxConut;
+    NSInteger _selectImgForCallBack_quality;
     
 }
 
@@ -54,10 +57,32 @@
 
 @implementation HomeVC
 
++ (ALAssetsLibrary *)defaultAssetsLibrary
+{
+    static dispatch_once_t pred = 0;
+    static ALAssetsLibrary *library = nil;
+    dispatch_once(&pred,^
+                  {
+                      library = [[ALAssetsLibrary alloc] init];
+                  });
+    return library;
+}
+
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+       [ super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+     self.navigationController.navigationBar.hidden = YES;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:YES animated:TRUE];
     
+
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     //给tabbar创建按钮
@@ -67,6 +92,20 @@
     [self getNewerWebURL];
     
     [self initWebView];
+    
+    [self regNotification];
+    
+    if([[[UIDevice
+          currentDevice] systemVersion] floatValue]>=8.0)
+    {
+        self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    }
+}
+- (void)regNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(didGetPhotoData:) name:@"didgetphotodata" object:nil];
     
     //添加一个通知修改资料
     NSNotificationCenter *changeData = [NSNotificationCenter defaultCenter];
@@ -99,13 +138,8 @@
                         name:@"hidentabbar"
                       object:nil];
     
-    if([[[UIDevice
-          currentDevice] systemVersion] floatValue]>=8.0)
-    {
-        self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-    }
+    
 }
-
 - (BOOL)prefersStatusBarHidden
 {
     return YES;
@@ -470,15 +504,7 @@
     }
 }
 
-- (void)selectImgPic:(NSString *)groupuuid
-{
-    dispatch_async(dispatch_get_main_queue(), ^
-    {
-        [_webView endEditing:YES];
-    });
-    
-    [self uploadAllImages];
-}
+
 
 - (void)selectHeadPic:(NSString *)msg
 {
@@ -712,4 +738,80 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:tel forKey:@"personTel"];
 }
+;
+
+- (void)selectImgPic:(NSString *)groupuuid
+{
+    dispatch_async(dispatch_get_main_queue(), ^
+                   {
+                       [_webView endEditing:YES];
+                   });
+    [self selectImgForCallBack:@"G_jsCallBack.selectPic_callback" maxConut:@"0" quality:@"2028"];
+//    [self uploadAllImages];
+}
+- (void)selectImgForCallBack:(NSString *)callback maxConut:(NSString *)maxConut quality:(NSString *)quality{
+    _selectImgForCallBack_callback=callback;
+    if([callback length]<1){
+        _selectImgForCallBack_callback=@"G_jsCallBack.selectPic_callback";
+    }
+    
+    //quality 单位k
+    _selectImgForCallBack_maxConut=[maxConut integerValue];
+    _selectImgForCallBack_quality=[quality integerValue]*1024;
+    dispatch_async(dispatch_get_main_queue(), ^
+                   {
+                        [self.navigationController pushViewController:[[FPImagePickerVC alloc] init] animated:YES];
+                   });
+  
+
+}
+//获取到了图片
+- (void)didGetPhotoData:(NSNotification *)noti
+{
+    NSArray * urls = noti.object;
+    
+    for (NSInteger i=0; i<urls.count; i++)
+    {
+        [self startUpLoad:urls[i] count:urls.count];
+      
+    }
+}
+#pragma mark - 开始上传
+- (void)startUpLoad: (NSURL *) localUrl count:(NSInteger) count
+{
+    ALAssetsLibrary * library=[HomeVC defaultAssetsLibrary];
+  
+    [library assetForURL:localUrl resultBlock:^(ALAsset *asset)
+     {
+         
+         if(asset==nil){
+            
+             return;
+         }
+         //获取大图
+         UIImage * tempImg = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
+         
+         
+         NSData *data = UIImageJPEGRepresentation(tempImg, 0.5);
+         if(_selectImgForCallBack_quality>0&&[data length]>_selectImgForCallBack_quality){
+             NSLog(@"_selectImgForCallBack_quality=%ld,data.length=%ld",_selectImgForCallBack_quality,[data length]);
+             data=UIImageJPEGRepresentation(tempImg, 0.1);
+         }
+         //转base64
+         NSString * imgBase64Str = [data base64EncodedStringWithOptions:0];
+         
+         NSString * commitStr = [NSString stringWithFormat:@"%@%@",@"data:image/png;base64,",imgBase64Str];
+         
+         NSString *imgJs = [NSString stringWithFormat:@"javascript:%@('%@','%ld')",_selectImgForCallBack_callback, commitStr,count];
+         
+         [_webView stringByEvaluatingJavaScriptFromString:imgJs];
+
+         
+           }
+                 failureBlock:^(NSError *error)
+     {
+         NSLog(@"根据local url 查找失败");
+     }];
+}
+
 @end
