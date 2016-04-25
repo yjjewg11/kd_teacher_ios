@@ -350,7 +350,7 @@ static NSString *const ImageCell = @"FPImagePickerImageCell";
         {
             NSMutableArray *array = [NSMutableArray array];
             UploadImage *upload1 = [[UploadImage alloc] init];
-            upload1.image = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullResolutionImage]];
+            upload1.image = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
             [array addObject:upload1];
             PhotoLargerViewController *photo = [[PhotoLargerViewController alloc] init];
             //UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:photo];

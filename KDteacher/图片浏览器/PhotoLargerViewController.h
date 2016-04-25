@@ -10,6 +10,8 @@
 #define kTopBorder 0
 #define kLeftBorder 20
 #import <UIKit/UIKit.h>
+#import "UploadImage.h"
+#import "UIImageView+WebCache.h"
 @class PhotoLargerViewController;
 
 @interface PhotoLargerViewController : UIViewController<UIScrollViewDelegate>

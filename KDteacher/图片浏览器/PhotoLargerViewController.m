@@ -10,6 +10,12 @@
 
 @implementation PhotoLargerViewController
 
+-(void)viewDidAppear:(BOOL)animated{
+    [ super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:FALSE animated:animated];
+    self.navigationController.navigationBar.hidden = NO;
+    
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -55,7 +61,14 @@
         
         UIImageView *imageview = [[UIImageView alloc] init];
         UploadImage *_upload = uploadImages[i];
-        imageview.image = [_upload image];
+        
+        if([_upload.url length]>0){
+            [imageview sd_setImageWithURL:[NSURL URLWithString:_upload.url] placeholderImage:[UIImage imageNamed:@"waitImageDown"] options:SDWebImageLowPriority completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+             {}];
+        }else{
+             imageview.image = [_upload image];
+        }
+       
         imageview.frame = CGRectMake(kLeftBorder, 0, _width - kLeftBorder, _height);
         [imageview setContentMode:UIViewContentModeScaleAspectFit];
         imageview.userInteractionEnabled = YES;

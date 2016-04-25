@@ -19,7 +19,7 @@
 #import "UMSocial.h"
 #import "MobClick.h"
 #import "UMSocialQQHandler.h"
-#import <Bugly/CrashReporter.h>
+#import <Bugly/Bugly.h>
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
@@ -121,9 +121,16 @@
     
     #pragma mark - bugly配置
     
-    [[CrashReporter sharedInstance] enableLog:YES];
+//    [[CrashReporter sharedInstance] enableLog:YES];
     
-    [[CrashReporter sharedInstance] installWithAppId:@"900011891"];
+
+    [Bugly startWithAppId:@"900011891"];
+    
+//     BuglyConfig *config = [[BuglyConfig alloc] init];
+//    config.blockMonitorEnable = YES;
+//    
+//    [Bugly startWithAppId:@"900011891" config:config];
+//    
     
     #pragma mark - 设置推送默认开启
     id temp = [[NSUserDefaults standardUserDefaults] objectForKey:NewMessageKey];

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "AA4FD6602B3DC6EC289A7C98FE98838478B20E50",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "AA4FD6602B3DC6EC289A7C98FE98838478B20E50" : 0,
+    "E53BA3B1910B5C13A105D000202DEBFA867B3EEA" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A03527C8-0805-4971-BCF8-78CEBFB4F67B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "AA4FD6602B3DC6EC289A7C98FE98838478B20E50" : "kd_teacher_ios\/",
+    "E53BA3B1910B5C13A105D000202DEBFA867B3EEA" : "..\/..\/ios_20151107\/jiazhangtong_ios"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "KDteacher",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "KDteacher.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/yjjewg11\/kd_teacher_ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AA4FD6602B3DC6EC289A7C98FE98838478B20E50"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/yjjewg11\/jiazhangtong_ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E53BA3B1910B5C13A105D000202DEBFA867B3EEA"
+    }
+  ]
+}

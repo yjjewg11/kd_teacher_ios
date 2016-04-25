@@ -13,6 +13,7 @@
 
 //图片
 @property (nonatomic,strong) UIImage *image;
+@property (nonatomic,strong) NSString  *url;
 //图片名
 @property (nonatomic,strong) NSString *imageName;
 //图片下标
