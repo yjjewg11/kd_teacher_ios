@@ -26,20 +26,27 @@
     
     if (_pushToken == nil)
     {
-        _pushToken = @"";
+        _pushToken = @"0";
     }
         NSDictionary * dic = @{@"device_id" : _pushToken,
                            @"device_type": @"ios",
                            @"status":status,@"JSESSION":_jssionID
                            };
-    NSString *path = URL(G_baseServiceURL, Push_Token);
-
-    [self getServerJson:path params:dic
-success:^(NSString *message) {
+    NSString * postUrl = [NSString stringWithFormat:@"%@?JSESSIONID=%@",Push_Token, _jssionID];
     
-} faild:^(NSString *errMessage) {
-    NSLog(@"errorMessage=%@",errMessage);
-}];
+    [xxNetworking POST:postUrl parameter:dic bodyJson:YES success:^(id str) {
+          NSLog(@"response=%@",(NSString *)str);
+    } failure:^(NSString * str) {
+        NSLog(@"str=%@",str);
+    }];
+//    NSString *path = URL(G_baseServiceURL, Push_Token);
+//
+//    [self getServerJson:path params:dic
+//success:^(NSString *message) {
+//    
+//} faild:^(NSString *errMessage) {
+//    NSLog(@"errorMessage=%@",errMessage);
+//}];
 }
 -(void)getServerJson:(NSString *)path params:(NSDictionary *)jsonDictionary success:(void(^)(NSString *message))success faild:(void(^)(NSString *errMessage))faild {
     NSData   * jsonData       = nil;
@@ -63,6 +70,16 @@ success:^(NSString *message) {
 
 - (void)getNewerMainUrl:(void(^)(id newurl))success faild:(void(^)(NSString *errMessage))faild
 {
+    
+    [xxNetworking GET:@"rest/share/getKDWebUrl.json" parameter:nil isNeedCache:false success:^(id  responseObject) {
+        
+        success(responseObject);
+    } failure:^(NSString * str) {
+        
+        faild(@"gg了");
+    }];
+    if(true)return;
+    
     AFHTTPRequestOperationManager * mgr = [AFHTTPRequestOperationManager manager];
     
     [mgr GET:[NSString stringWithFormat:@"%@rest/share/getKDWebUrl.json",G_baseServiceURL] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject)

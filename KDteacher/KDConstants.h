@@ -11,7 +11,7 @@
 @interface KDConstants : NSObject
 #define URL(baseURL, businessURL) [NSString stringWithFormat:@"%@%@", baseURL, businessURL];
 
-#define G_baseServiceURL       @"http://kd.wenjienet.com/px-rest/"      //正式
+#define G_baseServiceURL       @"https://112.74.140.220/px-rest/"      //正式
 //#define G_baseServiceURL @"http://120.25.212.44/px-rest/"                 //测试
 //#define G_baseServiceURL @"http://192.168.0.116:8080/px-rest/"
 
