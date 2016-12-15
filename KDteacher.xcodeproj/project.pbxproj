@@ -320,6 +320,7 @@
 		045449811BA041540067C0F6 /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 045449791BA041540067C0F6 /* NSString+MJExtension.m */; };
 		04575DB31E01901F00D7BD67 /* AFNetworking in Resources */ = {isa = PBXBuildFile; fileRef = 04575DB21E01901F00D7BD67 /* AFNetworking */; };
 		04575DB71E01909800D7BD67 /* xxNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 04575DB61E01909800D7BD67 /* xxNetworking.m */; };
+		04575DB91E02CA2500D7BD67 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04575DB81E02CA2500D7BD67 /* Bugly.framework */; };
 		045FF5011BA6A0DF00938124 /* pushTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FF4FF1BA6A0DF00938124 /* pushTableViewCell.m */; };
 		045FF5021BA6A0DF00938124 /* pushTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045FF5001BA6A0DF00938124 /* pushTableViewCell.xib */; };
 		045FF5061BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 045FF5041BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a */; };
@@ -337,7 +338,6 @@
 		04A60AC51B9EBEB400AC61D5 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A60ABC1B9EBEB400AC61D5 /* AFURLSessionManager.m */; };
 		04A6ADFA1B9447EC0001E58D /* setUpTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ADF81B9447EC0001E58D /* setUpTableViewController.m */; };
 		04A6ADFB1B9447EC0001E58D /* setUpTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04A6ADF91B9447EC0001E58D /* setUpTableViewController.xib */; };
-		04AE312E1CCE11C1002DC01E /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04AE312D1CCE11C1002DC01E /* Bugly.framework */; };
 		04B250201B9552ED0041DB62 /* aboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B2501E1B9552ED0041DB62 /* aboutUsViewController.m */; };
 		04B250211B9552ED0041DB62 /* aboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B2501F1B9552ED0041DB62 /* aboutUsViewController.xib */; };
 		04B2502F1B958EE80041DB62 /* pushTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B2502D1B958EE80041DB62 /* pushTableViewController.m */; };
@@ -1021,6 +1021,7 @@
 		04575DB21E01901F00D7BD67 /* AFNetworking */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AFNetworking; sourceTree = "<group>"; };
 		04575DB51E01909800D7BD67 /* xxNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xxNetworking.h; sourceTree = "<group>"; };
 		04575DB61E01909800D7BD67 /* xxNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = xxNetworking.m; sourceTree = "<group>"; };
+		04575DB81E02CA2500D7BD67 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		045FF4FE1BA6A0DF00938124 /* pushTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pushTableViewCell.h; sourceTree = "<group>"; };
 		045FF4FF1BA6A0DF00938124 /* pushTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pushTableViewCell.m; sourceTree = "<group>"; };
 		045FF5001BA6A0DF00938124 /* pushTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pushTableViewCell.xib; sourceTree = "<group>"; };
@@ -1057,7 +1058,6 @@
 		04A6ADF91B9447EC0001E58D /* setUpTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = setUpTableViewController.xib; sourceTree = "<group>"; };
 		04AE312B1CCE0D83002DC01E /* SystemNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemNumber.h; sourceTree = "<group>"; };
 		04AE312C1CCE0DD1002DC01E /* SystemString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemString.h; sourceTree = "<group>"; };
-		04AE312D1CCE11C1002DC01E /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		04B2501D1B9552ED0041DB62 /* aboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aboutUsViewController.h; sourceTree = "<group>"; };
 		04B2501E1B9552ED0041DB62 /* aboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aboutUsViewController.m; sourceTree = "<group>"; };
 		04B2501F1B9552ED0041DB62 /* aboutUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = aboutUsViewController.xib; sourceTree = "<group>"; };
@@ -1163,7 +1163,7 @@
 				04F91AF41BF32A9700A2D21B /* TencentOpenAPI.framework in Frameworks */,
 				041CC2B61BA7F01A00D1CB51 /* libUMFeedback.a in Frameworks */,
 				045FF5061BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
-				04AE312E1CCE11C1002DC01E /* Bugly.framework in Frameworks */,
+				04575DB91E02CA2500D7BD67 /* Bugly.framework in Frameworks */,
 				04F91AF71BF32A9700A2D21B /* libWeChatSDK.a in Frameworks */,
 				04F91AE91BF32A9700A2D21B /* libUMSocial_Sdk_4.3.a in Frameworks */,
 				04F91AF61BF32A9700A2D21B /* libSocialWechat.a in Frameworks */,
@@ -2284,8 +2284,8 @@
 		04B2501C1B9552C80041DB62 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				04575DB81E02CA2500D7BD67 /* Bugly.framework */,
 				04575DB21E01901F00D7BD67 /* AFNetworking */,
-				04AE312D1CCE11C1002DC01E /* Bugly.framework */,
 				04FA408D1C337FAA00E5D606 /* ShareActionSheet */,
 				04FA72421C311F74001D2793 /* JavaScriptCore.framework */,
 				0400A8BC1BF467580099F3E4 /* libc++.tbd */,
