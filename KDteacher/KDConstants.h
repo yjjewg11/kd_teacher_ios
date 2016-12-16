@@ -10,8 +10,9 @@
 
 @interface KDConstants : NSObject
 #define URL(baseURL, businessURL) [NSString stringWithFormat:@"%@%@", baseURL, businessURL];
-
-#define G_baseServiceURL       @"https://112.74.140.220/px-rest/"      //正式
+//umeng分享升级支持https。需要调整分享缩略图地址，必须是https 有效证书
+#define G_shareImageUrl @"https://mobile.umeng.com/images/pic/home/social/img-1.png"
+#define G_baseServiceURL       @"https://www.wenjienet.com/px-rest/"      //正式
 //#define G_baseServiceURL @"http://120.25.212.44/px-rest/"                 //测试
 //#define G_baseServiceURL @"http://192.168.0.116:8080/px-rest/"
 

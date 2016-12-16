@@ -15,10 +15,10 @@
 #import "UMOpenMacros.h"
 #import "KeychainItemWrapper.h"
 #import "KGHttpService.h"
-#import "UMSocialWechatHandler.h"
-#import "UMSocial.h"
-#import "MobClick.h"
-#import "UMSocialQQHandler.h"
+
+#import <UMSocialCore/UMSocialCore.h>
+
+
 #import <Bugly/Bugly.h>
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -33,7 +33,13 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    return [UMSocialSnsService handleOpenURL:url];
+    
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
+    if (!result) {
+        // 其他如支付等SDK的回调
+    }
+    return result;
+//    return [UMSocialSnsService handleOpenURL:url];
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -41,14 +47,46 @@
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-    return  [UMSocialSnsService handleOpenURL:url];
+    
+    
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
+    if (!result) {
+        // 其他如支付等SDK的回调
+    }
+    return result;
+//    return  [UMSocialSnsService handleOpenURL:url];
 }
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     [[UIApplication sharedApplication]setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     
+    [UMessage startWithAppkey:@"55cc8dece0f55a2379004ba7" launchOptions:launchOptions];
+    
+    //    [UMSocialData openLog:YES];
+       //share start
+    //打开日志
+    [[UMSocialManager defaultManager] openLog:YES];
+    
+    // 获取友盟social版本号
+    NSLog(@"UMeng social version: %@", [UMSocialGlobal umSocialSDKVersion]);
+    
+    //设置友盟appkey
+    [[UMSocialManager defaultManager] setUmSocialAppkey:@"55cc8dece0f55a2379004ba7"];
+   
+    //设置微信的appKey和appSecret
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxc784adf432c9f59d" appSecret:@"078b3b3e3515f1d434c87d20dc02ab8c" redirectURL:@"http://www.wenjienet.com/"];
+    
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1104762949"/*设置QQ平台的appID*/  appSecret:nil redirectURL:@"http://www.wenjienet.com/"];
+    
+    //设置新浪的appKey和appSecret
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"1987919613"  appSecret:@"cd53ba43727161b6a3ac688ff49f99e9" redirectURL:@"http://www.wenjienet.com/"];
+    
+
+    //share end
     [UMFeedback setAppkey:@"55cc8dece0f55a2379004ba7"];
     
 //    [MobClick setLogEnabled:YES];  // 打开友盟sdk调试，注意Release发布时需要注释掉此行,减少io消耗
@@ -65,15 +103,6 @@
     
     [self.window makeKeyAndVisible];
     
-    [UMSocialData setAppKey:@"55cc8dece0f55a2379004ba7"];
-    
-    [UMessage startWithAppkey:@"55cc8dece0f55a2379004ba7" launchOptions:launchOptions];
-    
-//    [UMSocialData openLog:YES];
-    //集成微信 /  qq                                                    078b3b3e3515f1d434c87d20dc02ab8c
-    [UMSocialWechatHandler setWXAppId:@"wxc784adf432c9f59d" appSecret:@"078b3b3e3515f1d434c87d20dc02ab8c" url:@"http://www.wenjienet.com/"];
-    
-    [UMSocialQQHandler setQQWithAppId:@"1104762949" appKey:@"VL1KDd67eia4jGLS" url:@"http://www.wenjienet.com/"];
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))

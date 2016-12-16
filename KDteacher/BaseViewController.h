@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MobClick.h"
 #import "KDConstants.h"
 #import "SDRotationLoopProgressView.h"
 

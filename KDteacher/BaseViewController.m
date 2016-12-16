@@ -7,23 +7,36 @@
 //
 
 #import "BaseViewController.h"
+#import <UMSocialCore/UMSocialCore.h>
 
 @interface BaseViewController ()
 
 @end
 
 @implementation BaseViewController
-
+- (void)getUserInfoForPlatform:(UMSocialPlatformType)platformType
+{
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:platformType currentViewController:self completion:^(id result, NSError *error) {
+        UMSocialUserInfoResponse *userinfo =result;
+        NSString *message = [NSString stringWithFormat:@"name: %@\n icon: %@\n gender: %@\n",userinfo.name,userinfo.iconurl,userinfo.gender];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"UserInfo"
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"确定", nil)
+                                              otherButtonTitles:nil];
+        [alert show];
+    }];
+}
 - (void) viewDidAppear:(BOOL)animated
 {
-    NSString* cName = [NSString stringWithFormat:@"%@",  self.title, nil];
-    [MobClick beginLogPageView:cName];
+//    NSString* cName = [NSString stringWithFormat:@"%@",  self.title, nil];
+//    [MobClick beginLogPageView:cName];
 }
 
 -(void) viewDidDisappear:(BOOL)animated
 {
-    NSString* cName = [NSString stringWithFormat:@"%@", self.title, nil];
-    [MobClick endLogPageView:cName];
+//    NSString* cName = [NSString stringWithFormat:@"%@", self.title, nil];
+//    [MobClick endLogPageView:cName];
 }
 
 - (SDRotationLoopProgressView *)loadingView

@@ -71,7 +71,7 @@ success:(void (^)(id))suc failure:(void (^)(NSString *))fail {
     [task resume];
 }
 
-+ (void)GET:(NSString *)url parameter:(NSDictionary *)para isNeedCache:(BOOL)isCache success:(void (^)( id))suc failure:(void (^)(NSError *))fail {
++ (void)GET:(NSString *)url parameter:(NSDictionary *)para isNeedCache:(BOOL)isCache success:(void (^)( id))suc failure:(void (^)(NSString *))fail {
     
     //如果需要缓存的数据
     if (isCache == YES){

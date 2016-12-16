@@ -15,13 +15,12 @@
 #import "KDConstants.h"
 #import "ShareDomain.h"
 #import "UIImageView+WebCache.h"
-#import "UMSocial.h"
+#import <UShareUI/UShareUI.h>
 #import "ZYQAssetPickerController.h"
 #import "setUpTableViewController.h"
 #import "CanShareVC.h"
 #import "FPImagePickerVC.h"
 #import "HLActionSheet.h"
-#import "UMSocialWechatHandler.h"
 #import "LBXScanView.h"
 #import "LBXScanResult.h"
 #import "LBXScanWrapper.h"
@@ -53,7 +52,7 @@ document.location=\"myweb:touch:cancel\";};\
 document.ontouchend=function(event){\
 document.location=\"myweb:touch:end\";};";
 
-@interface HomeVC () <UIWebViewDelegate,UIActionSheetDelegate,UMSocialUIDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZYQAssetPickerControllerDelegate,TestJSExport,UITabBarDelegate>
+@interface HomeVC () <UIWebViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,ZYQAssetPickerControllerDelegate,TestJSExport,UITabBarDelegate>
 {
     NSString * _webUrl;
     
@@ -64,6 +63,11 @@ document.location=\"myweb:touch:end\";};";
     int _gesState;	  // 用于UIWebView保存图片
     NSString *_imgURL;  // 用于UIWebView保存图片
     BOOL longPress;
+    
+    
+    NSString * contentString;
+    
+    NSString * shareurl;
     
     
     __weak IBOutlet UITabBar *tabbar;
@@ -319,7 +323,7 @@ document.location=\"myweb:touch:end\";};";
         _webUrl = domain.url;
         NSLog(@"webUrl == %@",_webUrl);
 
-//        _webUrl = @"http://120.25.212.44/px-rest/kd/index.html?v=12281232333";
+        _webUrl = @"https://www.wenjienet.com/px-rest/kd/index1.html?v=2281232333";
         NSLog(@"webtest == %@",_webUrl);
         [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_webUrl]]];
     }
@@ -570,25 +574,25 @@ document.location=\"myweb:touch:end\";};";
         {
             case 0:
             {
-                [self handelShareWithShareType:UMShareToSina domain:domain];
+                [self handelShareWithShareType:UMSocialPlatformType_Sina domain:domain];
             }
                 break;
                 
             case 1:
             {
-                [self handelShareWithShareType:UMShareToWechatSession domain:domain];
+                [self handelShareWithShareType:UMSocialPlatformType_WechatSession domain:domain];
             }
                 break;
                 
             case 2:
             {
-                [self handelShareWithShareType:UMShareToWechatTimeline domain:domain];
+                [self handelShareWithShareType:UMSocialPlatformType_WechatTimeLine domain:domain];
             }
                 break;
                 
             case 3:
             {
-                [self handelShareWithShareType:UMShareToQQ domain:domain];
+                [self handelShareWithShareType:UMSocialPlatformType_QQ domain:domain];
             }
                 break;
                 
@@ -616,66 +620,44 @@ document.location=\"myweb:touch:end\";};";
 }
 
 #pragma mark - 处理分享操作
-- (void)handelShareWithShareType:(NSString *)shareType domain:(ShareDomain *)domain
+- (void)handelShareWithShareType:(UMSocialPlatformType)shareType domain:(ShareDomain *)domain
 {
-    NSString * contentString = domain.title;
+   contentString = domain.title;
     
-    NSString * shareurl = domain.httpurl;
+    shareurl = domain.httpurl;
+    
     
     if(!shareurl || [shareurl length] == 0)
     {
-        shareurl = @"http://wenjie.net";
+        shareurl = @"http://www.wenjienet.com";
     }
     
-    //微信title设置方法：
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = domain.title;
     
-    //朋友圈title设置方法：
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = domain.title;
-    [UMSocialWechatHandler setWXAppId:@"wx6699cf8b21e12618" appSecret:@"639c78a45d012434370f4c1afc57acd1" url:domain.httpurl];
-    [UMSocialData defaultData].extConfig.qqData.title = domain.title;
-    [UMSocialData defaultData].extConfig.qqData.url = domain.httpurl;
+    [self shareWebPageToPlatformType:shareType];
+    return;
     
-    if (shareType == UMShareToSina)
-    {
-        [UMSocialData defaultData].extConfig.sinaData.shareText = [NSString stringWithFormat:@"%@ %@",contentString,shareurl];
-        [UMSocialData defaultData].extConfig.sinaData.urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeDefault url:shareurl];
-    }
-    
-    //设置分享内容，和回调对象
-    [[UMSocialControllerService defaultControllerService] setShareText:contentString shareImage:[UIImage imageNamed:@"sharelogo"] socialUIDelegate:self];
-    
-    UMSocialSnsPlatform * snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:shareType];
-    
-    snsPlatform.snsClickHandler(self, [UMSocialControllerService defaultControllerService],YES);
-}
-
-- (void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
-{
-    //根据`responseCode`得到发送结果,如果分享成功
-    UIAlertView * alertView;
-    NSString * string;
-    if(response.responseCode == UMSResponseCodeSuccess)
-    {
-        string = @"分享成功";
-    }
-    else if (response.responseCode == UMSResponseCodeCancel)
-    {
-    }
-    else
-    {
-        string = @"分享失败";
-    }
-    if (string && string.length)
-    {
-        alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        
-        dispatch_async(dispatch_get_main_queue(), ^
-                       {
-                           [alertView show];
-                       });
-        
-    }
+//    
+//    //微信title设置方法：
+//    [UMSocialData defaultData].extConfig.wechatSessionData.title = domain.title;
+//    
+//    //朋友圈title设置方法：
+//    [UMSocialData defaultData].extConfig.wechatTimelineData.title = domain.title;
+//    [UMSocialWechatHandler setWXAppId:@"wx6699cf8b21e12618" appSecret:@"639c78a45d012434370f4c1afc57acd1" url:domain.httpurl];
+//    [UMSocialData defaultData].extConfig.qqData.title = domain.title;
+//    [UMSocialData defaultData].extConfig.qqData.url = domain.httpurl;
+//    
+//    if (shareType == UMShareToSina)
+//    {
+//        [UMSocialData defaultData].extConfig.sinaData.shareText = [NSString stringWithFormat:@"%@ %@",contentString,shareurl];
+//        [UMSocialData defaultData].extConfig.sinaData.urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeDefault url:shareurl];
+//    }
+//    
+//    //设置分享内容，和回调对象
+//    [[UMSocialControllerService defaultControllerService] setShareText:contentString shareImage:[UIImage imageNamed:@"sharelogo"] socialUIDelegate:self];
+//    
+//    UMSocialSnsPlatform * snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:shareType];
+//    
+//    snsPlatform.snsClickHandler(self, [UMSocialControllerService defaultControllerService],YES);
 }
 
 
@@ -1122,4 +1104,65 @@ document.location=\"myweb:touch:end\";};";
 
 }
 
+
+
+- (void)getUserInfoForPlatform:(UMSocialPlatformType)platformType
+{
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:platformType currentViewController:self completion:^(id result, NSError *error) {
+        UMSocialUserInfoResponse *userinfo =result;
+        NSString *message = [NSString stringWithFormat:@"name: %@\n icon: %@\n gender: %@\n",userinfo.name,userinfo.iconurl,userinfo.gender];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"UserInfo"
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:NSLocalizedString(@"确定", nil)
+                                              otherButtonTitles:nil];
+        [alert show];
+    }];
+}
+
+- (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType
+{
+    //创建分享消息对象
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    
+    
+    //创建网页内容对象
+//    NSString* thumbURL =  @"https://www.wenjienet.com/px-rest/i/denglulogo.png";
+   NSString*  thumbURL=G_shareImageUrl;
+//    shareurl=@"http://mobile.umeng.com/social";
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:contentString descr:contentString thumImage:thumbURL];
+    //设置网页地址
+    shareObject.webpageUrl = shareurl;
+    //分享消息对象设置分享内容对象
+    messageObject.shareObject = shareObject;
+    
+    //调用分享接口
+    [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
+        
+        UIAlertView * alertView;
+        NSString * string;
+        
+        
+        if (error) {
+            string = @"分享失败";
+            if(error.code==2008){
+                string=@"应用未安装";
+            }
+            NSLog(@"************Share fail with error %@*********",error);
+            
+            
+        }else{
+            string = @"分享成功";
+            NSLog(@"response data is %@",data);
+            
+            
+        }
+        
+        alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:string delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        dispatch_async(dispatch_get_main_queue(), ^
+                       {
+                           [alertView show];
+                       });
+    }];
+}
 @end
