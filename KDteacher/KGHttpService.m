@@ -71,7 +71,7 @@
 - (void)getNewerMainUrl:(void(^)(id newurl))success faild:(void(^)(NSString *errMessage))faild
 {
     
-    [xxNetworking GET:@"rest/share/getKDWebUrl.json" parameter:nil isNeedCache:false success:^(id  responseObject) {
+    [xxNetworking GET:@"rest/share/getConfigOfIOS.json" parameter:nil isNeedCache:false success:^(id  responseObject) {
         
         success(responseObject);
     } failure:^(NSString * str) {

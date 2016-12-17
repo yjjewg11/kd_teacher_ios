@@ -318,14 +318,19 @@ document.location=\"myweb:touch:end\";};";
     
     [[KGHttpService sharedService] getNewerMainUrl:^(id newurl)
     {
-        MainDomain * domain = [MainDomain objectWithKeyValues:newurl];
+        
+        AppDelegate *app = [[UIApplication sharedApplication] delegate];
+        
+        app.mainDomain = [MainDomain objectWithKeyValues:newurl];
 
-        _webUrl = domain.url;
-        NSLog(@"webUrl == %@",_webUrl);
+//        _webUrl = domain.url;
+     
+//        app.mainDomain.url = @"https://www.wenjienet.com/px-rest/kd/index1.html?v=2281232333";
+//        NSLog(@"webtest == %@",_webUrl);
+        
+        NSLog(@"webUrl == %@",app.mainDomain.url);
 
-        _webUrl = @"https://www.wenjienet.com/px-rest/kd/index1.html?v=2281232333";
-        NSLog(@"webtest == %@",_webUrl);
-        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_webUrl]]];
+        [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:app.mainDomain.url]]];
     }
     faild:^(NSString *errMessage)
     {
@@ -1128,7 +1133,17 @@ document.location=\"myweb:touch:end\";};";
     
     //创建网页内容对象
 //    NSString* thumbURL =  @"https://www.wenjienet.com/px-rest/i/denglulogo.png";
+    
+    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    
+   
    NSString*  thumbURL=G_shareImageUrl;
+    
+    if( app.mainDomain&& app.mainDomain.shareImgUrlIOS){
+        thumbURL= app.mainDomain.shareImgUrlIOS;
+    }
+    
+     NSLog(@"share title content=%@,thumbUrl=%@ == %@",contentString,thumbURL);
 //    shareurl=@"http://mobile.umeng.com/social";
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:contentString descr:contentString thumImage:thumbURL];
     //设置网页地址
