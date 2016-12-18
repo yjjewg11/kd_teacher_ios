@@ -307,6 +307,8 @@
 		041CC2CB1BA7F01A00D1CB51 /* UMPostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CC2AF1BA7F01A00D1CB51 /* UMPostTableViewCell.m */; };
 		041CC2CC1BA7F01A00D1CB51 /* UMRadialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CC2B11BA7F01A00D1CB51 /* UMRadialView.m */; };
 		041CC2CD1BA7F01A00D1CB51 /* UMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 041CC2B31BA7F01A00D1CB51 /* UMTextView.m */; };
+		042681B91E067EA30025A2A5 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 042681B81E067EA30025A2A5 /* UserNotifications.framework */; };
+		042681BD1E067FB10025A2A5 /* libUMessage_Sdk_1.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 042681BB1E067FB10025A2A5 /* libUMessage_Sdk_1.4.0.a */; };
 		045449611BA03A5A0067C0F6 /* UtilMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 045449601BA03A5A0067C0F6 /* UtilMethod.m */; };
 		045449641BA03F010067C0F6 /* KGBaseDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 045449631BA03F010067C0F6 /* KGBaseDomain.m */; };
 		045449671BA03FA20067C0F6 /* ResMsgDomain.m in Sources */ = {isa = PBXBuildFile; fileRef = 045449661BA03FA20067C0F6 /* ResMsgDomain.m */; };
@@ -327,7 +329,6 @@
 		04575DD51E04080B00D7BD67 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04575DD41E04080B00D7BD67 /* WeiboSDK.bundle */; };
 		045FF5011BA6A0DF00938124 /* pushTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045FF4FF1BA6A0DF00938124 /* pushTableViewCell.m */; };
 		045FF5021BA6A0DF00938124 /* pushTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045FF5001BA6A0DF00938124 /* pushTableViewCell.xib */; };
-		045FF5061BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 045FF5041BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a */; };
 		046293361BA1884500741C3B /* ZYQAssetPicker.Bundle in Resources */ = {isa = PBXBuildFile; fileRef = 046293331BA1884500741C3B /* ZYQAssetPicker.Bundle */; };
 		046293371BA1884500741C3B /* ZYQAssetPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046293351BA1884500741C3B /* ZYQAssetPickerController.m */; };
 		0468E01F1B9EEB28001BA58F /* KDConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0468E01E1B9EEB28001BA58F /* KDConstants.m */; };
@@ -988,6 +989,10 @@
 		041CC2B21BA7F01A00D1CB51 /* UMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMTextView.h; sourceTree = "<group>"; };
 		041CC2B31BA7F01A00D1CB51 /* UMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMTextView.m; sourceTree = "<group>"; };
 		041CC2B41BA7F01A00D1CB51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UMFeedbackLocalizable.strings"; sourceTree = "<group>"; };
+		042681B81E067EA30025A2A5 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		042681BA1E067EBA0025A2A5 /* 问界互动家园.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "问界互动家园.entitlements"; path = "KDteacher/问界互动家园.entitlements"; sourceTree = "<group>"; };
+		042681BB1E067FB10025A2A5 /* libUMessage_Sdk_1.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.4.0.a; sourceTree = "<group>"; };
+		042681BC1E067FB10025A2A5 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		0454495F1BA03A5A0067C0F6 /* UtilMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilMethod.h; sourceTree = "<group>"; };
 		045449601BA03A5A0067C0F6 /* UtilMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilMethod.m; sourceTree = "<group>"; };
 		045449621BA03F010067C0F6 /* KGBaseDomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KGBaseDomain.h; sourceTree = "<group>"; };
@@ -1028,8 +1033,6 @@
 		045FF4FE1BA6A0DF00938124 /* pushTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pushTableViewCell.h; sourceTree = "<group>"; };
 		045FF4FF1BA6A0DF00938124 /* pushTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pushTableViewCell.m; sourceTree = "<group>"; };
 		045FF5001BA6A0DF00938124 /* pushTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = pushTableViewCell.xib; sourceTree = "<group>"; };
-		045FF5041BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
-		045FF5051BA6A63C00938124 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		046293331BA1884500741C3B /* ZYQAssetPicker.Bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZYQAssetPicker.Bundle; sourceTree = "<group>"; };
 		046293341BA1884500741C3B /* ZYQAssetPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYQAssetPickerController.h; sourceTree = "<group>"; };
 		046293351BA1884500741C3B /* ZYQAssetPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYQAssetPickerController.m; sourceTree = "<group>"; };
@@ -1115,6 +1118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				042681B91E067EA30025A2A5 /* UserNotifications.framework in Frameworks */,
 				04E5A5581E04364300BDD3CD /* libWeChatSDK.a in Frameworks */,
 				04E5A55B1E043D0500BDD3CD /* libSocialSina.a in Frameworks */,
 				04E5A5591E0439A300BDD3CD /* TencentOpenAPI.framework in Frameworks */,
@@ -1122,6 +1126,7 @@
 				04575DCF1E02F99400D7BD67 /* UShareUI.framework in Frameworks */,
 				04E5A55C1E043D0900BDD3CD /* libWeiboSDK.a in Frameworks */,
 				04575DC01E02F3E400D7BD67 /* UMSocialCore.framework in Frameworks */,
+				042681BD1E067FB10025A2A5 /* libUMessage_Sdk_1.4.0.a in Frameworks */,
 				04575DC11E02F3E400D7BD67 /* UMSocialNetwork.framework in Frameworks */,
 				0409822B1CCDFD040098EF4D /* MapKit.framework in Frameworks */,
 				040982291CCDFCFA0098EF4D /* ImageIO.framework in Frameworks */,
@@ -1137,7 +1142,6 @@
 				04F91B901BF330C400A2D21B /* CoreGraphics.framework in Frameworks */,
 				04F91B8C1BF330B200A2D21B /* libiconv.tbd in Frameworks */,
 				041CC2B61BA7F01A00D1CB51 /* libUMFeedback.a in Frameworks */,
-				045FF5061BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a in Frameworks */,
 				04575DB91E02CA2500D7BD67 /* Bugly.framework in Frameworks */,
 				041CC2C71BA7F01A00D1CB51 /* libUMOpus.a in Frameworks */,
 			);
@@ -2166,6 +2170,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		042681B71E067EA30025A2A5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				042681B81E067EA30025A2A5 /* UserNotifications.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		045449681BA041240067C0F6 /* MJExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -2202,8 +2214,8 @@
 		045FF5031BA6A61B00938124 /* Umessage_SDK */ = {
 			isa = PBXGroup;
 			children = (
-				045FF5041BA6A63C00938124 /* libUMessage_Sdk_1.1.0.a */,
-				045FF5051BA6A63C00938124 /* UMessage.h */,
+				042681BB1E067FB10025A2A5 /* libUMessage_Sdk_1.4.0.a */,
+				042681BC1E067FB10025A2A5 /* UMessage.h */,
 			);
 			name = Umessage_SDK;
 			sourceTree = "<group>";
@@ -2412,6 +2424,7 @@
 		E73218CE1B7C7CFA00B09F6B = {
 			isa = PBXGroup;
 			children = (
+				042681BA1E067EBA0025A2A5 /* 问界互动家园.entitlements */,
 				04575DD41E04080B00D7BD67 /* WeiboSDK.bundle */,
 				04575DD21E0407F900D7BD67 /* UMSocialSDKResources.bundle */,
 				04575DCE1E02F99400D7BD67 /* UShareUI.framework */,
@@ -2428,6 +2441,7 @@
 				046293381BA188E700741C3B /* KDProject */,
 				E73218F31B7C7CFB00B09F6B /* KDteacherTests */,
 				E73218D81B7C7CFA00B09F6B /* Products */,
+				042681B71E067EA30025A2A5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3124,6 +3138,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				CODE_SIGN_ENTITLEMENTS = "KDteacher/问界互动家园.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
 				ENABLE_BITCODE = NO;
@@ -3170,6 +3185,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				CODE_SIGN_ENTITLEMENTS = "KDteacher/问界互动家园.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu WenJie Technology Co., Ltd. (M5PP646L93)";
 				ENABLE_BITCODE = NO;

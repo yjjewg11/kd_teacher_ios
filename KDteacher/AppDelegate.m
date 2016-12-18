@@ -10,6 +10,9 @@
 #import "HomeVC.h"
 //#import "MobClick.h"
 #import "UMessage.h"
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 100000
+#import <UserNotifications/UserNotifications.h>
+#endif
 #import "UMFeedback.h"
 #import "UMOpus.h"
 #import "UMOpenMacros.h"
@@ -25,7 +28,7 @@
 
 #define _IPHONE80_ 80000
 #define NewMessageKey @"newMessage"
-@interface AppDelegate ()
+@interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
 @end
 
@@ -66,10 +69,30 @@
     
     [UMessage startWithAppkey:@"55cc8dece0f55a2379004ba7" launchOptions:launchOptions];
     
+    //设置 AppKey 及 LaunchOptions
+//    [UMessage startWithAppkey:@"your appkey" launchOptions:launchOptions];
+    //注册通知
+    [UMessage registerForRemoteNotifications];
+    //iOS10必须加下面这段代码。
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate=self;
+    UNAuthorizationOptions types10=UNAuthorizationOptionBadge|UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
+    [center requestAuthorizationWithOptions:types10 completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        if (granted) {
+            //点击允许
+            
+        } else {
+            //点击不允许
+            
+        }
+    }];
+    
+    //end push message
+    
     //    [UMSocialData openLog:YES];
        //share start
     //打开日志
-    [[UMSocialManager defaultManager] openLog:YES];
+//    [[UMSocialManager defaultManager] openLog:YES];
     
     // 获取友盟social版本号
     NSLog(@"UMeng social version: %@", [UMSocialGlobal umSocialSDKVersion]);
@@ -102,52 +125,52 @@
     self.window.rootViewController = nav;
     
     [self.window makeKeyAndVisible];
-    
-    
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
-    if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
-    {
-        //register remoteNotification types （iOS 8.0及其以上版本）
-        UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
-        action1.identifier = @"action1_identifier";
-        action1.title=@"Accept";
-        action1.activationMode = UIUserNotificationActivationModeForeground;//当点击的时候启动程序
-        
-        UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];  //第二按钮
-        action2.identifier = @"action2_identifier";
-        action2.title=@"Reject";
-        action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
-        action2.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
-        action2.destructive = YES;
-        
-        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
-        categorys.identifier = @"category1";//这组动作的唯一标示
-        [categorys setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
-        
-        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert
-                                                                                     categories:[NSSet setWithObject:categorys]];
-        [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
-        
-    }
-    else
-    {
-        //register remoteNotification types (iOS 8.0以下)
-        [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
-         |UIRemoteNotificationTypeSound
-         |UIRemoteNotificationTypeAlert];
-    }
-#else
-    
-    //register remoteNotification types (iOS 8.0以下)
-    [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
-     |UIRemoteNotificationTypeSound
-     |UIRemoteNotificationTypeAlert];
-    
-#endif
-    //for log
-    [UMessage setLogEnabled:YES];
-    
-    
+//    
+//    
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+//    if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
+//    {
+//        //register remoteNotification types （iOS 8.0及其以上版本）
+//        UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
+//        action1.identifier = @"action1_identifier";
+//        action1.title=@"Accept";
+//        action1.activationMode = UIUserNotificationActivationModeForeground;//当点击的时候启动程序
+//        
+//        UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];  //第二按钮
+//        action2.identifier = @"action2_identifier";
+//        action2.title=@"Reject";
+//        action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
+//        action2.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
+//        action2.destructive = YES;
+//        
+//        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
+//        categorys.identifier = @"category1";//这组动作的唯一标示
+//        [categorys setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
+//        
+//        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert
+//                                                                                     categories:[NSSet setWithObject:categorys]];
+//        [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
+//        
+//    }
+//    else
+//    {
+//        //register remoteNotification types (iOS 8.0以下)
+//        [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+//         |UIRemoteNotificationTypeSound
+//         |UIRemoteNotificationTypeAlert];
+//    }
+//#else
+//    
+//    //register remoteNotification types (iOS 8.0以下)
+//    [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+//     |UIRemoteNotificationTypeSound
+//     |UIRemoteNotificationTypeAlert];
+//    
+//#endif
+//    //for log
+//    [UMessage setLogEnabled:YES];
+//    
+//    
     #pragma mark - bugly配置
     
 //    [[CrashReporter sharedInstance] enableLog:YES];
@@ -190,17 +213,17 @@
         [KGHttpService sharedService].pushToken = key;
     }
 
-    [UMessage registerDeviceToken:deviceToken];
-    
-    NSLog(@"umeng message alias is: %@", [UMFeedback uuid]);
-    
-    [UMessage addAlias:[UMFeedback uuid] type:[UMFeedback messageType] response:^(id responseObject, NSError *error)
-    {
-        if (error != nil) {
-            NSLog(@"%@", error);
-            NSLog(@"%@", responseObject);
-        }
-    }];
+//    [UMessage registerDeviceToken:deviceToken];
+//    
+//    NSLog(@"umeng message alias is: %@", [UMFeedback uuid]);
+//    
+//    [UMessage addAlias:[UMFeedback uuid] type:[UMFeedback messageType] response:^(id responseObject, NSError *error)
+//    {
+//        if (error != nil) {
+//            NSLog(@"%@", error);
+//            NSLog(@"%@", responseObject);
+//        }
+//    }];
 }
 
 - (void)savePushToken:(NSString *)key
@@ -238,8 +261,10 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    
+    //关闭友盟自带的弹出框
+    [UMessage setAutoAlert:NO];
     [UMessage didReceiveRemoteNotification:userInfo];
+    
     
     
 }
@@ -267,5 +292,36 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+//iOS10新增：处理前台收到通知的代理方法
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        //应用处于前台时的远程推送接受
+        //必须加这句代码
+        [UMessage didReceiveRemoteNotification:userInfo];
+        
+    }else{
+        //应用处于前台时的本地推送接受
+    }
+    
+}
+
+//iOS10新增：处理后台点击通知的代理方法
+-(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        //应用处于后台时的远程推送接受
+        //必须加这句代码
+        [UMessage didReceiveRemoteNotification:userInfo];
+        
+    }else{
+        //应用处于后台时的本地推送接受
+    }
+    
+}
+
+
 
 @end
