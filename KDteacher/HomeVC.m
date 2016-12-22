@@ -1139,11 +1139,11 @@ document.location=\"myweb:touch:end\";};";
    
    NSString*  thumbURL=G_shareImageUrl;
     
-    if( app.mainDomain&& app.mainDomain.shareImgUrlIOS){
-        thumbURL= app.mainDomain.shareImgUrlIOS;
+    if( app.mainDomain&& app.mainDomain.shareImgUrl){
+        thumbURL= app.mainDomain.shareImgUrl;
     }
     
-     NSLog(@"share title content=%@,thumbUrl=%@ == %@",contentString,thumbURL);
+//     NSLog(@"share title content=%@,thumbUrl=%@ == %@",contentString,thumbURL);
 //    shareurl=@"http://mobile.umeng.com/social";
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:contentString descr:contentString thumImage:thumbURL];
     //设置网页地址

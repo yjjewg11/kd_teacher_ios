@@ -11,6 +11,6 @@
 @interface MainDomain : KGBaseDomain
 
 @property (strong, nonatomic) NSString * url;
-@property (strong, nonatomic) NSString * shareImgUrlIOS;
+@property (strong, nonatomic) NSString * shareImgUrl;
 
 @end

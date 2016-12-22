@@ -17,18 +17,30 @@
     bodyJson:(BOOL)bodyJson
 success:(void (^)(id))suc failure:(void (^)(NSString *))fail {
     
+    
     AFHTTPSessionManager * sessionManager = [AFHTTPSessionManager manager];
     sessionManager.requestSerializer.HTTPShouldHandleCookies = YES;
-    
-    
-    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
-    //allowInvalidCertificates 是否允许无效证书（也就是自建的证书），默认为NO//如果是需要验证自建证书，需要设置为YES
-    securityPolicy.allowInvalidCertificates = YES;
-    //validatesDomainName 是否需要验证域名，默认为YES；
-    securityPolicy.validatesDomainName = NO;
-    sessionManager.securityPolicy  = securityPolicy;
-    
     sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    sessionManager.securityPolicy.validatesDomainName = NO;// 关键语句1
+    sessionManager.securityPolicy.allowInvalidCertificates = YES;// 关键语句2
+
+//    
+//    AFHTTPSessionManager * sessionManager = [AFHTTPSessionManager manager];
+//    
+//    
+//    
+//    sessionManager.requestSerializer.HTTPShouldHandleCookies = YES;
+//    
+//    
+//    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+//    //allowInvalidCertificates 是否允许无效证书（也就是自建的证书），默认为NO//如果是需要验证自建证书，需要设置为YES
+//    securityPolicy.allowInvalidCertificates = YES;
+//    //validatesDomainName 是否需要验证域名，默认为YES；
+//    securityPolicy.validatesDomainName = NO;
+//    sessionManager.securityPolicy  = securityPolicy;
+//    
+//    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     //设置Cookie
 //    NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData:[UserDefaultInstance objectForKey:kCCookieKey]];
@@ -38,7 +50,7 @@ success:(void (^)(id))suc failure:(void (^)(NSString *))fail {
     NSString * postUrl = [NSString stringWithFormat:@"%@%@",G_baseServiceURL, url];
     
       NSLog(@"postUrl=%@",postUrl);
-    
+        sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
     if (  bodyJson) {
         sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
         [sessionManager.requestSerializer setValue:@"application/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
@@ -55,6 +67,8 @@ success:(void (^)(id))suc failure:(void (^)(NSString *))fail {
         
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"NSError=%@",error);
+
     }];
 //    NSURLSessionDataTask * task = [sessionManager POST:postUrl parameters:para progress:nil success:^(NSURLSessionDataTask *  task, id  responseObject) {
 ////        NSDictionary * content = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];//转换数据格式
@@ -87,18 +101,30 @@ success:(void (^)(id))suc failure:(void (^)(NSString *))fail {
 }
 + (void)getdata:(NSString *)url parameter:(id)para success:(void (^)(id))suc failure:(void (^)(NSString *))fail
 {
+    
+    
+    
     AFHTTPSessionManager * sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.requestSerializer.HTTPShouldHandleCookies = YES;
+    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    sessionManager.securityPolicy.validatesDomainName = NO;// 关键语句1
+    sessionManager.securityPolicy.allowInvalidCertificates = YES;// 关键语句2
+    
+
+    
+//    AFHTTPSessionManager * sessionManager = [AFHTTPSessionManager manager];
     NSString * postUrl = [NSString stringWithFormat:@"%@%@",G_baseServiceURL, url];
     
-    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
-    //allowInvalidCertificates 是否允许无效证书（也就是自建的证书），默认为NO//如果是需要验证自建证书，需要设置为YES
-    securityPolicy.allowInvalidCertificates = YES;
-    //validatesDomainName 是否需要验证域名，默认为YES；
-    securityPolicy.validatesDomainName = NO;
-    sessionManager.securityPolicy  = securityPolicy;
-    
-    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];
+//    //allowInvalidCertificates 是否允许无效证书（也就是自建的证书），默认为NO//如果是需要验证自建证书，需要设置为YES
+//    securityPolicy.allowInvalidCertificates = YES;
+//    //validatesDomainName 是否需要验证域名，默认为YES；
+//    securityPolicy.validatesDomainName = NO;
+//    sessionManager.securityPolicy  = securityPolicy;
 //    
+//    sessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//
 //    // 读取Cookie
 //    NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData:[UserDefaultInstance objectForKey:kCCookieKey]];
 //    // 设置Cookie
@@ -112,6 +138,7 @@ success:(void (^)(id))suc failure:(void (^)(NSString *))fail {
       
         if (suc) {
             NSString *str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+              NSLog(@"responseObject == %@",str);
             suc(str);
 //            suc(responseObject);
         }
@@ -121,6 +148,8 @@ success:(void (^)(id))suc failure:(void (^)(NSString *))fail {
 //            fail(error);
 //            [NoticeCenter postNotificationName:kCNetworkingFailedErrorNotificationKey object:error];
 //        }
+        
+          NSLog(@"NSError=%@",error);
 
     }];
      [task resume];
